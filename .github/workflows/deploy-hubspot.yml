@@ -53,4 +53,4 @@ jobs:
               "text": "🚨 GVF Website Theme deployment FAILED on branch *${{ github.ref }}*!"
             }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} 
