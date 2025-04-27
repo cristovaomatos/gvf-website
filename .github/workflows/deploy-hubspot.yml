@@ -16,7 +16,7 @@ jobs:
         run: npm install -g @hubspot/cli
 
       - name: Authenticate HubSpot
-        run: hs auth personalaccesskey ${{ secrets.HUBSPOT_PERSONAL_ACCESS_KEY }}
+        run: hs auth --personalaccesskey "${{ secrets.HUBSPOT_PERSONAL_ACCESS_KEY }}"
 
       - name: Upload Theme
         run: hs upload hs-theme hs-theme
