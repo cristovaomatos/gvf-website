@@ -1,0 +1,37 @@
+.in-menu-toggler-wrap {
+    display: none;
+  }
+  
+  .in-menu-toggler-wrap {
+    position: absolute;
+    right: 15px;
+    top: 26px;
+  }
+  
+  .in-menu-toggler {
+    cursor: pointer;
+  }
+  
+  .in-toggler--icon .hs_cos_wrapper_type_icon,
+  .in-toggler--icon span svg,
+  .in-toggler--icon span,
+  .in-toggler--icon {
+    display: inline-block;
+    height: 26px;
+    width: 26px;
+  }
+  
+  .in-menu-toggler--close,
+  .in-menu-toggler.in-toggle-open {
+    display: none;
+  }
+  
+  .in-menu-toggler.in-toggle-open+.in-menu-toggler--close {
+    display: block;
+  }
+  
+  @media only screen and (max-width: 991px) {
+    .in-menu-toggler-wrap {
+      display: block;
+    }
+  }

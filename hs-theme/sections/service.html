@@ -1,0 +1,308 @@
+<!--
+  templateType: section
+  label: Services.
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/services.png
+  description: "Section separated in two columns. Left column has an image and right column has services card."
+-->
+{% dnd_section 
+    class="in-service-section in-tab-full-width",
+    vertical_alignment='MIDDLE',
+     padding={
+     'default' : {
+         'bottom' : '80px',
+         'top' : '0px'
+       },
+       'mobile' : {
+         'bottom' : '50px',
+         'top' : '10px'
+       }
+     }
+   %}
+     {% dnd_column
+           offset=0,
+           width=4,
+           vertical_alignment='MIDDLE',
+           padding={
+             'default' : {
+               'bottom' : '0px',
+               'left' : '0px',
+               'right' : '0px',
+               'top' : '0px'
+             }
+           }
+         %}
+           {% dnd_row %}
+             {% dnd_module
+               path='../modules/image',
+               image={
+                 'alt' : 'girl-two',
+                 'height' : 548,
+                 'loading' : 'lazy',
+                 'max_height' : 548,
+                 'max_width' : 458,
+                 'size_type' : 'auto',
+                 'src' : get_asset_url('../images/multipurpose/girl-two.png'),
+                 'width' : 458
+               }
+             %}
+             {% end_dnd_module %}
+           {% end_dnd_row %}
+         {% end_dnd_column %}
+         {% dnd_column
+           offset=4,
+           width=8,
+           vertical_alignment='MIDDLE',
+           padding={
+             'default' : {
+               'bottom' : '0px',
+               'left' : '0px',
+               'right' : '0px',
+               'top' : '0px'
+             }
+           }
+         %}
+           {% dnd_row %}
+             {% dnd_module
+               path='../modules/icon-box',
+               card=[ {
+                 'button' : {
+                   'icon' : {
+                     'name' : 'arrow-right',
+                     'type' : 'SOLID',
+                     'unicode' : 'f061'
+                   },
+                   'link' : {
+                     'no_follow' : false,
+                     'open_in_new_tab' : false,
+                     'url' : {
+                       'href' : 'https://www.hubspot.com/',
+                       'type' : 'EXTERNAL'
+                     }
+                   },
+                   'text' : 'VIEW MORE'
+                 },
+                 'description' : '<p>Curabitur aliquet quam id dui posuere blandit. Nulla quis lorem ut libero malesuada.</p>',
+                 'image' : {
+                   'alt' : 'target',
+                   'height' : 180,
+                   'loading' : 'lazy',
+                   'max_height' : 180,
+                   'max_width' : 170,
+                   'size_type' : 'auto',
+                   'src' : get_asset_url('../images/multipurpose/target.png'),
+                   'width' : 170
+                 },
+                 'title' : {
+                   'icon' : {
+                     'name' : 'arrow-right',
+                     'type' : 'SOLID',
+                     'unicode' : 'f061'
+                   },
+                   'title' : '<h5>Digital marketing</h5>'
+                 },
+                 
+               }, {
+               'button' : {
+                   'icon' : {
+                     'name' : 'arrow-right',
+                     'type' : 'SOLID',
+                     'unicode' : 'f061'
+                   },
+                   'link' : {
+                     'no_follow' : false,
+                     'open_in_new_tab' : false,
+                     'url' : {
+                       'href' : 'https://www.hubspot.com/',
+                       'type' : 'EXTERNAL'
+                     }
+                   },
+                   'text' : 'VIEW MORE'
+                 },
+                 'description' : '<p>Curabitur aliquet quam id dui posuere blandit. Nulla quis lorem ut libero malesuada.</p>',
+                 'image' : {
+                   'alt' : 'target',
+                   'height' : 180,
+                   'loading' : 'lazy',
+                   'max_height' : 180,
+                   'max_width' : 170,
+                   'size_type' : 'auto',
+                   'src' : get_asset_url('../images/multipurpose/target.png'),
+                   'width' : 170
+                 },
+                 'title' : {
+                   'icon' : {
+                     'name' : 'arrow-right',
+                     'type' : 'SOLID',
+                     'unicode' : 'f061'
+                   },
+                   'title' : '<h5>SEO</h5>'
+                 }
+               }, {
+               'button' : {
+                 'icon' : {
+                   'name' : 'arrow-right',
+                   'type' : 'SOLID',
+                   'unicode' : 'f061'
+                 },
+                 'link' : {
+                   'no_follow' : false,
+                   'open_in_new_tab' : false,
+                   'url' : {
+                     'href' : 'https://www.hubspot.com/',
+                     'type' : 'EXTERNAL'
+                   }
+                 },
+                 'text' : 'VIEW MORE'
+               },
+               'button' : {
+                 'icon' : {
+                   'name' : 'arrow-right',
+                   'type' : 'SOLID',
+                   'unicode' : 'f061'
+                 },
+                 'link' : {
+                   'no_follow' : false,
+                   'open_in_new_tab' : false,
+                   'url' : {
+                     'href' : 'https://www.hubspot.com/',
+                     'type' : 'EXTERNAL'
+                   }
+                 },
+                 'text' : 'VIEW MORE'
+               },
+                 'description' : '<p>Curabitur aliquet quam id dui posuere blandit. Nulla quis lorem ut libero malesuada.</p>',
+                 'image' : {
+                   'alt' : 'target',
+                   'height' : 180,
+                   'loading' : 'lazy',
+                   'max_height' : 180,
+                   'max_width' : 170,
+                   'size_type' : 'auto',
+                   'src' : get_asset_url('../images/multipurpose/target.png'),
+                   'width' : 170
+                 },
+                 'title' : {
+                   'icon' : {
+                     'name' : 'arrow-right',
+                     'type' : 'SOLID',
+                     'unicode' : 'f061'
+                   },
+                   'title' : '<h5>Digital Analysis</h5>'
+                 }
+               }, {
+               'button' : {
+                 'icon' : {
+                   'name' : 'arrow-right',
+                   'type' : 'SOLID',
+                   'unicode' : 'f061'
+                 },
+                 'link' : {
+                   'no_follow' : false,
+                   'open_in_new_tab' : false,
+                   'url' : {
+                     'href' : 'https://www.hubspot.com/',
+                     'type' : 'EXTERNAL'
+                   }
+                 },
+                 'text' : 'VIEW MORE'
+               },
+                 'description' : '<p>Curabitur aliquet quam id dui posuere blandit. Nulla quis lorem ut libero malesuada.</p>',
+                 'image' : {
+                   'alt' : 'target',
+                   'height' : 180,
+                   'loading' : 'lazy',
+                   'max_height' : 180,
+                   'max_width' : 170,
+                   'size_type' : 'auto',
+                   'src' : get_asset_url('../images/multipurpose/target.png'),
+                   'width' : 170
+                 },
+                 'title' : {
+                   'icon' : {
+                     'name' : 'arrow-right',
+                     'type' : 'SOLID',
+                     'unicode' : 'f061'
+                   },
+                   'title' : '<h5>Email Marketing</h5>'
+                 }
+               } ],
+               column={
+                 'select_column' : 'two'
+               },
+               enable_box_shadow=True,
+               enable_button=False,
+               enable_image=False,
+               layout={
+                 'select_layout' : 'card'
+               },
+               style={
+                 'card' : {
+                   'desktop_spacing' : {
+                     'margin' : {
+                       'bottom' : {
+                         'units' : 'px',
+                         'value' : 35
+                       },
+                       'top' : { }
+                     },
+                     'padding' : {
+                       'bottom' : {
+                         'units' : 'px',
+                         'value' : 20
+                       },
+                       'left' : {
+                         'units' : 'px',
+                         'value' : 15
+                       },
+                       'right' : {
+                         'units' : 'px',
+                         'value' : 15
+                       },
+                       'top' : {
+                         'units' : 'px',
+                         'value' : 20
+                       }
+                     }
+                   },
+                   'mobile_spacing' : {
+                     'margin' : {
+                       'bottom' : {
+                         'units' : 'px',
+                         'value' : 20
+                       },
+                       'top' : { }
+                     },
+                     'padding' : {
+                       'bottom' : {
+                         'units' : 'px',
+                         'value' : 20
+                       },
+                       'left' : {
+                         'units' : 'px',
+                         'value' : 15
+                       },
+                       'right' : {
+                         'units' : 'px',
+                         'value' : 15
+                       },
+                       'top' : {
+                         'units' : 'px',
+                         'value' : 20
+                       }
+                     }
+                   }
+                 },
+                 'icon_box' : {
+                   'background_color' : {
+                     'color' : '#FBFBFB',
+                     'opacity' : 0
+                   }
+                 }
+               }
+             %}
+             {% end_dnd_module %}
+       {% end_dnd_row %}
+     {% end_dnd_column %}
+   {% end_dnd_section %}
+   

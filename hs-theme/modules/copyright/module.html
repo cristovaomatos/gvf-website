@@ -1,0 +1,50 @@
+<!-- Module Styles -->
+{% require_css %}
+<style>
+  {% scope_css %}
+
+  {% if module.style.enable_border_top %}
+  .in-footer-copyright {
+    {{ module.style.border_top.css }}
+    {{ module.style.spacing_field.css }}
+  }
+  {% endif %}
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<!-- module html  -->
+<div class="in-footer-copyright">
+  <span>{{ module.copyright.copyright }}</span>
+  <div class="in-footer-copyright__links" role="navigation" aria-label="Footer Legal Links">
+    {% set href = module.copyright.privacy_policy.link.url.href %}
+    {% if module.copyright.privacy_policy.link.url.type is equalto "EMAIL_ADDRESS" %}
+    {% set href = "mailto:" + href %}
+    {% endif %}
+    <a 
+      href="{{ href }}"
+      {% if module.copyright.privacy_policy.link.open_in_new_tab %}target="_blank"{% endif %}
+      {% if module.copyright.privacy_policy.link.rel %}rel="{{ module.copyright.privacy_policy.link.rel }}"{% endif %}
+      aria-label="{{ module.copyright.privacy_policy.text }}"
+    >
+      {{ module.copyright.privacy_policy.text }} |
+    </a>
+
+    {% set href = module.copyright.terms_and_conditions.link.url.href %}
+    {% if module.copyright.terms_and_conditions.link.url.type is equalto "EMAIL_ADDRESS" %}
+    {% set href = "mailto:" + href %}
+    {% endif %}
+    <a 
+      href="{{ href }}"
+      {% if module.copyright.terms_and_conditions.link.open_in_new_tab %}target="_blank"{% endif %}
+      {% if module.copyright.terms_and_conditions.link.rel %}rel="{{ module.copyright.terms_and_conditions.link.rel }}"{% endif %}
+      aria-label="{{ module.copyright.terms_and_conditions.text }}"
+    >
+      {{ module.copyright.terms_and_conditions.text }}
+    </a>
+  </div>
+</div>
+
+
+

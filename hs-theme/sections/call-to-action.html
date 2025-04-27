@@ -1,0 +1,115 @@
+<!--
+  templateType: section
+  label: Call to Action
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/cta.png
+  description: "Section separated in two columns. Left column has content and right column has button."
+-->
+{% dnd_section
+    class="in-git in-tab-full-width",
+    vertical_alignment='MIDDLE',
+    padding={
+        'default' : {
+          'bottom' : '60px',
+          'left' : '60px',
+          'right' : '45px',
+          'top' : '60px'
+        }
+      },
+      'mobile' : {
+          'bottom' : '60px',
+          'left' : '30px',
+          'right' : '30px',
+          'top' : '60px'
+        }
+      }
+    %}
+      {% dnd_column
+        offset=0,
+        width=9
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path='../modules/title-content',
+            offset=0,
+            width=12,
+            mini_title='Lets get in touch!',
+            style={
+              'container' : {
+                'enable_max_width' : true
+              },
+                'desc' : {
+                  'desktop' : {
+                    'font' : {
+                      'color' : '#FFFFFF',
+                      'fallback' : 'sans-serif',
+                      'font' : 'Inter',
+                      'font_set' : 'GOOGLE',
+                      'size' : 16,
+                      'styles' : { },
+                      'variant' : 'regular'
+                    }
+                  },
+                  'overwrite_style' : true
+                },
+                'mini_title' : {
+                  'desktop' : {
+                    'font' : {
+                      'color' : '#FFFFFF',
+                      'fallback' : 'sans-serif',
+                      'font' : 'Inter',
+                      'font_set' : 'GOOGLE',
+                      'size' : 24,
+                      'styles' : { },
+                      'variant' : '600'
+                    }
+                  },
+                  'overwrite_style' : true
+                },
+                'title' : {
+                  'desktop' : {
+                    'font' : {
+                      'color' : '#FFFFFF',
+                      'fallback' : 'sans-serif',
+                      'font' : 'Inter',
+                      'font_set' : 'GOOGLE',
+                      'size' : 48,
+                      'styles' : { },
+                      'variant' : '700'
+                    }
+                  },
+                  'overwrite_style' : true
+                }
+            }
+          %}
+            {% module_attribute 'content' %}
+              <h2>Ready to start your Journey</h2>
+              <p><span>Move Parallel with us. Achieve your goals by consistently getting our latest updates. Always keep an eye on what we are doing by subscribing to our newsletter.</span></p>
+            {% end_module_attribute %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+      {% dnd_column
+        offset=9,
+        width=3
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path='../modules/button',
+            offset=0,
+            width=12,
+            style={
+              'alignment' : {
+                'desktop_alignment' : {
+                  'horizontal_align' : 'RIGHT'
+                }
+              }
+            },
+            button={
+              'type' : 'filled_light'
+            }
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}

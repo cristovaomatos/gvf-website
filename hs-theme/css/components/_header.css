@@ -1,0 +1,113 @@
+/* Header DND sections and container */
+
+{% if theme.header.box_shadow.is_box_shadow %} 
+.in-box-shadow--enable {
+  box-shadow: 0 1px 2px 0 rgba({{ theme.header.box_shadow.box_shadow_color.first_color.color | convert_rgb }},{{ theme.header.box_shadow.box_shadow_color.first_color.opacity }}%), 0 4px 8px 0 rgba({{ theme.header.box_shadow.box_shadow_color.second_color.color | convert_rgb }},{{ theme.header.box_shadow.box_shadow_color.second_color.opacity }}%);
+}
+{% endif %}
+
+.header .dnd-section {
+  padding: 0;
+}
+
+.in-header.header__container {
+  padding: 15px 0;
+}
+
+@media (max-width: 991px) {
+  body.in-header__dropdown--open {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  body.in-header__dropdown--open:after {
+    position: absolute;
+    inset: 0;
+    content: '';
+    background-color: rgba(0,0,0,0.5);
+  }
+  
+  body:not(.hubspot-disable-focus-styles) .in-header-wrap {
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 9999;
+    overflow-y: auto;
+  }
+  
+  body.in-header__dropdown--open:not(.hubspot-disable-focus-styles) .in-header-wrap {
+    bottom: 30px;
+  }
+  
+  .in-header.header__container {
+    position: relative;
+  }
+  
+  div:not(.hs-landing-page) .body-container-wrapper {
+    transition: margin-top 0.2s linear;
+    margin-top: 70px;
+  }
+  
+  .page-editor .body-container-wrapper, 
+  .hubspot-disable-focus-styles .body-container-wrapper {
+    margin-top: 0!important;
+  }
+  
+  .in-header__top,
+  .in-header__bottom {
+    display: none;
+  }
+}
+
+/* Navigation skipper */
+
+.header__skip {
+  height: 1px;
+  left: -1000px;
+  overflow: hidden;
+  position: absolute;
+  text-align: left;
+  top: -1000px;
+  width: 1px;
+}
+
+.header__skip:hover,
+.header__skip:focus,
+.header__skip:active {
+  height: auto;
+  left: 0;
+  overflow: visible;
+  top: 0;
+  width: auto;
+}
+
+@media only screen and (min-width: 768px) {
+  .in-header.header__container .row-fluid.show-menu {
+    display: unset !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .in-header .span8 .span6,
+  .in-header .span12 .span6,
+  .in-header .span12, 
+  .in-header .span11, 
+  .in-header .span10,
+  .in-header .span9, 
+  .in-header .span8, 
+  .in-header .span7, 
+  .in-header .span6, 
+  .in-header .span5,
+  .in-header .span4,
+  .in-header .span3,
+  .in-header .span2,
+  .in-header .span1 {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  .in-header > .row-fluid {
+    display: block !important;
+  }
+}

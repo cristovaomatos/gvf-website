@@ -1,0 +1,95 @@
+{% import '../macros.html' %} 
+<!-- Module Styles -->
+{% require_css %}
+<style>
+  {% scope_css %}
+  .in-header__controls .in-lang-switcher .globe_class {
+    background-image: none;
+    overflow: hidden;
+    width: 0;
+    height: 0;
+  }
+
+  {% if module.enable_search %}
+  /* Search Field */
+  .in-header--search .open form .hs-search-field__input {
+    background-color: rgba({{module.style.search.background_color.color | convert_rgb }},{{ module.style.search.background_color.opacity }}%);
+    color: {{ module.style.search.text_color.color }};
+  }
+
+  .in-btn-search--open svg path {
+    stroke: rgba({{ module.style.search.icon_color.color |convert_rgb}},{{ module.style.search.icon_color.opacity }}%);
+  }
+
+  .in-btn-search--close svg path {
+    fill: rgba({{ module.style.search.icon_color.color |convert_rgb}},{{ module.style.search.icon_color.opacity }}%);
+  }
+  {% endif %}
+
+  .in-lang-switcher__icon-wrap.icon--desktop svg path {
+    fill: rgba({{ module.style.language_switcher.icon_color.color | convert_rgb }},{{ module.style.language_switcher.icon_color.opacity }}%);
+  }
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<div id="{{ name }}" class="in-header__controls">
+
+  {% if module.enable_search %}
+  <!-- Search -->
+  <div class="in-header--search" role="search" aria-label="Site search">
+    <div class="in-header--search-container">
+      <div class="hs-search-field">
+        <div class="hs-search-field__bar">
+          <form action="/{{ site_settings.content_search_results_page_path }}" role="search" aria-label="Search form">
+                 <label for="search-input" class="sr-only">Search</label>
+            <input type="search" class="hs-search-field__input" name="term" autocomplete="off" placeholder="{{ module.search.placeholder }}">
+          </form>
+        </div>
+        <div class="in-btn-search--icon">
+          <div class="in-btn-search--open" role="button" aria-label="Open search" tabindex="0">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.875 18.75C15.2242 18.75 18.75 15.2242 18.75 10.875C18.75 6.52576 15.2242 3 10.875 3C6.52576 3 3 6.52576 3 10.875C3 15.2242 6.52576 18.75 10.875 18.75Z" stroke="#53535B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16.4431 16.4438L20.9994 21.0002" stroke="#53535B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="in-btn-search--close" role="button" aria-label="Close search" tabindex="0">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z" fill="#8047D7"/>
+            </svg>
+          </div>   
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  {% if content.translated_content %}
+  <!-- language switcher -->
+  <div class="in-lang-switcher" role="navigation" aria-label="Language selector">
+    <div class="in-lang-switcher__lang--current"  aria-haspopup="true" aria-expanded="false">
+      <span class="in-lang-switcher__label--current">{{ locale_name(locale) }}</span>
+      <span class="in-lang-switcher__icon-wrap icon--desktop">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="{{ theme.primary_color.color }}" class="bi bi-globe" viewBox="0 0 16 16">
+          <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
+        </svg>
+      </span>
+      <span class="in-lang-switcher__icon-wrap icon--mobile">
+        <span class="in-lang-switcher__icon"></span>
+      </span>
+    </div>
+    <div class="in-lang-switcher__dropdown"  role="menu" aria-label="Language options">
+      {% language_switcher display_mode="{{ module.language_switcher.display_mode }}"%}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if module.enable_button %}
+  <!-- Button -->
+  <div class="in-header--btn">
+    <div class="in-header--btn-wrap">
+      {{ button(module.button) }}
+    </div>
+  </div>
+  {% endif %}
+
+</div>

@@ -1,0 +1,141 @@
+<!--
+templateType: blog_post
+isAvailableForNewContent: true
+label: Infinity - Blog Post
+screenshotPath: ../images/template-previews/blog-details.png
+-->
+{% set template_css = "../../css/templates/blog.css" %}
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+<div class="body-container body-container--blog-detail">
+
+  {# Blog post #}
+
+  <div class="in-blog-detail">
+    <div class="content-wrapper in-blog-detail__head">
+      <div class="in-blog-detail__title">
+        {% if theme.blog_setting.blog_post.show_hide_tags.enable %}
+        {% if content.tag_list %}
+        <div class="blog-post__tags">
+          {% for tag in content.tag_list %}
+            <a class="blog-post__tag-link" href="{{ blog_tag_url(group.id, tag.slug) }}" rel="tag">{{ tag.name }}</a>{% if not loop.last %},{% endif %}
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% endif %}
+        <h1>{{ content.name }}</h1>
+        <div class="blog-post__meta">
+          {% if theme.blog_setting.blog_post.show_hide_author_name.enable && content.blog_post_author.slug %}
+          <a href="{{ blog_author_url(group.id, content.blog_post_author.slug) }}" rel="author">
+             <span>{% module 'Blog Author Text'
+              path='@hubspot/text',
+              label='Blog Author Text',
+              value='By'
+            %}</span>- {{ content.blog_post_author.display_name }},
+          </a>
+          {% endif %}
+          
+          {% if theme.blog_setting.blog_post.show_hide_timestamp.enable %}
+          <time datetime="{{ content.publish_date }}" class="blog-post__timestamp">
+            {{ format_datetime(content.publish_date_local_time, 'MMM dd, YYYY') }}
+            
+          </time>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% if content.featured_image %}
+    <div class="blog-post__featured-img{% if theme.blog_setting.blog_post.feature_image.feature_image_effect.choice == 'fixed' %} in-blog-post--featured-img-fixed {% endif %}{% if theme.blog_setting.blog_post.feature_image.feature_image_effect.choice == 'scroll' %} in-blog-post--featured-img-scroll{% endif %} {% if theme.blog_setting.blog_post.feature_image.feature_image_position.choice == 'top' %} in-blog-post--featured-img-top {% endif %}{% if theme.blog_setting.blog_post.feature_image.feature_image_position.choice == 'center' %} in-blog-post--featured-img-center{% endif %}{% if theme.blog_setting.blog_post.feature_image.feature_image_position.choice == 'bottom' %} in-blog-post--featured-img-bottom{% endif %}" style="background-image: url({{ content.featured_image }});">
+    </div>
+    <div class="blog-post__featured-img--mobile">
+      <img src="{{ content.featured_image }}" alt="{% if content.featured_image_alt_text %} {{content.featured_image_alt_text}} {% else %} Featured Image{% endif %}"  width="{{ content.featured_image_width }}" height="{{ content.featured_image_height }}" loading="Eager" >
+    </div>
+    {% endif %}
+    <div class="content-wrapper">
+      <div class="in-blog-detail__row">
+        <div class="in-blog-detail__main">
+          <article class="blog-post">
+            <div class="blog-post__body">
+              {{ content.post_body }}
+            </div>
+          </article>
+        </div>
+        {% if theme.blog_setting.sidebar.enable_blog_sidebar %}
+        <div class="in-blog-detail__sidebar">
+          {% if theme.blog_setting.sidebar.sidebar_option.topics.enable_blog_topics %}
+          <div class="in-blog-detail__widget">
+             {% module "Category"
+               path="@hubspot/rich_text",
+               html="<h6>Category</h6>"
+             %}
+            {% set my_tags = blog_tags(group.id, 250) %}
+            <ul class="in-blog-detail__sidebar-tags">
+              {% for item in my_tags %}
+              <li>
+                <a href="{{ blog_tag_url(group.id, item.slug) }}" class="in-blog__sidebar-tags-link">
+                  {{ item }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+
+          {% if theme.blog_setting.sidebar.sidebar_option.popular_posts.enable_blog_popular_posts %}
+          <div class="in-blog-detail__widget">
+            {% module "Popular Post"
+               path="@hubspot/rich_text",
+               html="<h6>Popular Post</h6>"
+             %}
+            {% set pop_posts = blog_popular_posts(group.id, 5) %}
+            <ul class="in-blog-detail__sidebar-post">
+              {% for pop_post in pop_posts %}
+              <li>
+                <a href="{{ pop_post.absolute_url }}">{{ pop_post.name }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+
+          {% if theme.blog_setting.sidebar.sidebar_option.subscription_form.enable_subscription %}
+          <div class="in-blog-detail__widget in-blog-detail__subscribe">
+            {% module "Subscribe"
+              path="@hubspot/rich_text",
+              html="<h6>Subscribe</h6>"
+            %}
+            {% blog_subscribe select_blog='default', title='' ,response_message='Thanks for Subscribing!', label='Blog Email Subscription', overrideable=False %}
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+      {% if group.allow_comments %}
+      <div class="blog-comments">
+        {% module "Blog Comments Title"
+           path="@hubspot/rich_text",
+           html="<h3>Leave a Comment</h3"
+         %}
+        {% module "blog_comments"
+            path="@hubspot/blog_comments",
+            label="Blog comments"
+          %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  {# Recent posts listing #}
+
+  {# This macro is used to format each recent post card and gets passed to the related_blog_posts HubL tag below #}
+  {% if theme.blog_setting.blog_post.show_hide_related_posts.enable %}
+  <div class="in-blog-related-posts">
+    {% module "blog_related_posts"
+      path="../modules/blog-related-posts",
+      label="Blog Related Posts"
+    %}
+  </div>
+  {% endif %}
+</div>
+{% endblock body %}

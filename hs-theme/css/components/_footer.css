@@ -1,0 +1,96 @@
+.footer .dnd-section .dnd-column {
+    padding: 0;
+  }
+  
+  .footer .content-wrapper {
+    padding: 0;
+  }
+  
+  .footer .menu__submenu {
+    background: 0;
+    box-shadow: none;
+    position: unset;
+    transform: translateX(0);
+  }
+  
+  .footer .menu__submenu .menu__item {
+    border: 0;
+  }
+  
+  .footer .menu__item--depth-1>.menu__child-toggle .menu__child-toggle-icon {
+    transform: rotate(45deg);
+  }
+  
+  .footer .menu__item--depth-1>.menu__child-toggle .menu__child-toggle-icon,
+  .footer .menu .menu__wrapper .menu__item .menu__submenu--level-2 .menu__child-toggle-icon {
+    border-bottom: 2px solid #ffffff;
+    border-right: 2px solid #ffffff;
+    display: block;
+    height: 8px;
+    width: 8px;
+  }
+  
+  .footer .menu .menu__wrapper .menu__item .menu__submenu--level-2 .menu__child-toggle {
+    background: 0;
+    border: 0;
+    top: 20px;
+  }
+  
+  .footer .menu .menu__wrapper .menu__item .menu__submenu--level-2 .menu__child-toggle-icon {
+    border-color: #ffffff;
+    transform: rotate(45deg);
+  }
+  
+  .footer .menu--mobile {
+    display: none !important;
+  }
+  
+  .footer .menu__item {
+    padding: 8px 12px 8px 0px;
+    width: 100%;
+  }
+  
+  .footer .menu__item:last-child {
+    padding-bottom: 0;
+  }
+  
+  .footer .menu__submenu--level-2,
+  .footer .menu__submenu .menu__submenu--level-3 {
+    padding-left: 15px;
+  }
+  
+  .in-footer__copyright a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .footer .in-social-links {
+    margin-bottom: 20px;
+  }
+  
+  .footer .menu__item {
+    border: none !important;
+  }
+  
+  .footer .in-icon-box__col-compact .in-icon-box__content p {
+    word-break: break-word;
+  }
+  
+  .footer .menu__submenu {
+    display: block !important;
+  }
+  
+  .footer--no-navigation .in-footer-copyright {
+    border-top: none !important;
+    padding: 0 !important;
+  }
+  
+  @media (max-width: 767px) {
+    .footer .menu__link {
+      padding: 0 !important;
+    }
+  
+    .in-footer__menu-heading h6 {
+      margin-bottom: 10px;
+    }
+  }

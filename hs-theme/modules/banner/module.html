@@ -1,0 +1,282 @@
+{% @import '../macros.html' %}
+
+<!-- style -->
+{% require_css %}
+<style>
+  {% scope_css %}
+  .in-banner {
+    margin-top: {{module.style.spacing.mobile_spacing.margin.top.value }}px;
+    margin-bottom: {{module.style.spacing.mobile_spacing.margin.bottom.value }}px;
+  }
+
+  .in-banner .in-banner__container {
+    padding: {{ module.style.spacing.mobile_spacing.padding.top.value }}px {{ module.style.spacing.mobile_spacing.padding.right.value }}px {{ module.style.spacing.mobile_spacing.padding.bottom.value }}px {{ module.style.spacing.mobile_spacing.padding.left.value }}px
+  }
+
+  .banner__bg-color {
+    background-color: rgba({{ module.style.background_color.color.color | convert_rgb }},{{ module.style.background_color.color.opacity }}%);
+  }
+
+  {% if module.style.overlay.enable_overlay %}
+  .in-banner.banner__bg-img::after {
+    background-color: rgba({{ module.style.overlay.color.color | convert_rgb }},{{ module.style.overlay.color.opacity }}%);
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 9;  
+  }
+
+  .in-banner.banner__bg-img>.content-wrapper {
+    position: relative; 
+    z-index: 99;
+  }
+  {% endif %}
+
+  {% if module.button_breadcrumb_choice.select == 'breadcrumb' or module.button_breadcrumb_choice.select == 'none' %}
+  .in-banner .in-tc__btn-wrap {
+    display: none;
+  }
+  {% endif %}
+
+
+
+  /* Title Content CSS Start  */
+
+  .in-banner .in-banner__content {
+    {% if module.style.content.enable_max_width %}
+    max-width: {{ module.style.content.max_width }}px;
+    {% endif %}
+
+    {% if module.style.content.alignment.mobile_alignment =='left' %}
+    text-align: left;
+    margin-right: auto;
+    {% elif module.style.content.alignment.mobile_alignment =='center' %}
+    text-align: center;
+    {% if module.style.content.enable_max_width %}
+    margin-left: auto;
+    margin-right: auto;
+    {% endif %}
+    {% elif module.style.content.alignment.mobile_alignment =='right' %}
+    text-align: right;
+    {% if module.style.content.enable_max_width %}
+    margin-left: auto;
+    {% endif %}
+
+    {% endif %}
+  }
+
+  {% if module.style.content.overwrite_content_color %}
+  .in-banner .in-tc__mini-title {
+    color: rgba({{ module.style.content.color.mini_title.color | convert_rgb }},{{ module.style.content.color.mini_title.opacity }}%);
+  }
+
+  .in-banner .in-tc__content h1,
+  .in-banner .in-tc__content h2,
+  .in-banner .in-tc__content h3,
+  .in-banner .in-tc__content h4,
+  .in-banner .in-tc__content h5,
+  .in-banner .in-tc__content h6 {
+    color: rgba({{ module.style.content.color.title.color | convert_rgb }},{{ module.style.content.color.title.opacity }}%);
+  }
+
+  .in-banner .in-tc__content p {
+    color: rgba({{ module.style.content.color.description.color | convert_rgb }},{{ module.style.content.color.description.opacity }}%);
+  }
+  {% endif %}
+
+  {% if module.content.button.enable_secondary_button %}
+  .in-tc__btn-wrap .in-btn:first-child {
+    margin-bottom: 20px;
+  }
+  {% endif %}
+
+  {% if module.content.button.enable_primary_button == 'true' || module.content.button.enable_secondary_button == 'true' %}
+  .in-tc__content {
+    margin-bottom: 50px;
+  }
+  {% endif %}
+
+  {% if module.button_breadcrumb_choice.select == 'breadcrumb' or module.button_breadcrumb_choice.select == 'none' %}
+  .in-tc__content {
+    margin-bottom: 0;
+  }
+  {% endif %}
+
+  /* Title Content CSS End  */
+
+  /* Background Image CSS Start  */
+
+  .banner__bg-img {
+    {{ module.style.background_image.image.css }};
+  }
+
+  @media (max-width: 767px) {
+
+    {% if module.style.background_image_mobile.change_background_image %}
+    .banner__bg-img.in-banner__bg-img--mobile {
+      {{ module.style.background_image_mobile.image.css }};           
+    }
+    {% endif %}
+  }
+  /* Background Image CSS End  */
+
+  .in-banner__breadcrumb-list {
+    color: {{ theme.global_colors.primary.color }};
+    font-weight: 600;
+  } 
+
+  {% if module.style.breadcrumb.overwrite_style %}
+  .in-banner__breadcrumb-list,
+  .in-banner__breadcrumb-list a,
+  .in-banner__breadcrumb-list a:hover {
+    font-family: {{ module.style.breadcrumb.text.font }}; 
+    {{ module.style.breadcrumb.text.style }}; 
+    color: {{ module.style.breadcrumb.text.color }};
+    font-size: {{ module.style.breadcrumb.text.size }}px;
+    line-height: 1.5;
+  }
+  {% endif %}
+
+  .in-banner__breadcrumb {
+    {% if module.style.content.alignment.mobile_alignment =='left' %}
+    justify-content: flex-start;
+    {% elif module.style.content.alignment.mobile_alignment =='center' %}
+    justify-content: center;
+    {% elif module.style.content.alignment.mobile_alignment =='right' %}
+    justify-content: flex-end;
+    {% endif %}
+  }
+
+
+  @media (min-width: 992px) {
+    .in-banner {
+      margin-top: {{module.style.spacing.desktop_spacing.margin.top.value }}px;
+      margin-bottom: {{module.style.spacing.desktop_spacing.margin.bottom.value }}px;
+    }
+
+    .in-banner .in-banner__container {
+      padding: {{ module.style.spacing.desktop_spacing.padding.top.value }}px {{ module.style.spacing.desktop_spacing.padding.right.value }}px {{ module.style.spacing.desktop_spacing.padding.bottom.value }}px {{ module.style.spacing.desktop_spacing.padding.left.value }}px
+    }
+
+    .in-banner .in-banner__content {
+      {% if module.style.content.alignment.desktop_alignment =='left' %}
+      text-align: left;
+      margin-right: auto;
+      margin-left: unset;
+      {% elif module.style.content.alignment.desktop_alignment =='center' %}
+      text-align: center;
+      {% if module.style.content.enable_max_width %}
+      margin-left: auto;
+      margin-right: auto;
+      {% endif %}
+      {% elif module.style.content.alignment.desktop_alignment =='right' %}
+      text-align: right;
+      {% if module.style.content.enable_max_width %}
+      margin-left: auto;
+      margin-right: unset;
+      {% endif %}
+      {% endif %}
+    }
+
+    .in-banner__breadcrumb {
+      {% if module.style.content.alignment.desktop_alignment =='left' %}
+      justify-content: flex-start;
+      {% elif module.style.content.alignment.desktop_alignment =='center' %}
+      justify-content: center;
+      {% elif module.style.content.alignment.desktop_alignment =='right' %}
+      justify-content: flex-end;
+      {% endif %}
+    }
+  }
+
+  @media (min-width: 576px) {
+    {% if module.content.button.enable_secondary_button %}
+    .in-tc__btn-wrap .in-btn:first-child {
+      margin-right: 10px;
+      margin-bottom: 0;
+    }
+    {% endif %}
+  }
+
+  @media (max-width: 767px) {
+    {% if module.style.background_image_mobile.change_background_image %}
+
+    .in-banner__bg-img--mobile {
+      display: block;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .in-banner__content {
+      padding: 0 15px;
+    }
+
+    {% endif %}
+  }
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<!-- Layout  -->
+
+{% if module.layout.select_layout == 'banner_with_image' %}
+{% set layoutClass = 'banner__img' %}
+{% elif module.layout.select_layout == 'background_image' %}
+{% set layoutClass = 'banner__bg-img' %}
+{% elif module.layout.select_layout == 'background_color' %}
+{% set layoutClass = 'banner__bg-color' %}
+{% endif %}
+
+<div class="in-banner {{layoutClass}} {% if module.layout.select_layout == 'background_image' && module.style.background_image_mobile.change_background_image %} in-banner__bg-img--mobile {% endif %}">
+  <div class="content-wrapper">
+    <div class="in-banner__container">
+      <div class="in-banner__row">
+        <div class="in-banner__col--left">
+          <div class="in-banner__content">
+            {{title_content(module.content)}}
+            
+            {% if module.button_breadcrumb_choice.select == 'breadcrumb' %}
+            <nav class="in-banner__breadcrumb-nav" aria-label="Breadcrumb">
+              <ul class="in-banner__breadcrumb">
+                {% for item in module.breadcrumbs.parent.page %}
+                <li class="in-banner__breadcrumb-list">
+                  {% set href = item.page_link.url.href %}
+                  {% if item.page_link.url.type is equalto "EMAIL_ADDRESS" %}
+                  {% set href = "mailto:" + href %}
+                  {% endif %}
+                  <a href="{{ href }}"
+                     {% if item.page_link.open_in_new_tab %}target="_blank"{% endif %}
+                     {% if item.page_link.rel %}rel="{{ item.page_link.rel }}"{% endif %}
+                     aria-label="Go to {{ item.page_name }}"
+                  >
+                    {{ item.page_name }}
+                  </a>
+                  <span class="in-banner__breadcurmb-icon--forward" aria-hidden="true">></span>
+                </li>
+                {% endfor %}
+                <li class="in-banner__breadcrumb-list" aria-current="page">
+                  {{ module.breadcrumbs.current.page_name }}
+                </li>
+              </ul>
+            </nav>
+            {% endif %}
+          </div>
+        </div>
+
+        {% if module.layout.select_layout == 'banner_with_image' %}
+        <div class="in-banner__col--right">
+          <div class="in-banner__img">
+            {{ image(module.image.image) }}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+

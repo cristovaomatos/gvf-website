@@ -1,0 +1,409 @@
+/* Global */
+
+.error-page,
+.systems-page {
+  margin: 0 auto;
+  max-width: 700px;
+  padding: 50px 20px;
+  position: relative;
+}
+
+.systems-page form,
+.in-search-results form,
+.in-communication-preferences form {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+.system-page__banner {
+  max-width: 300px;
+  margin: 0 auto 30px;
+}
+
+.system-page__banner img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.in-error__content-404,
+.in-error__content-500,
+.in-password-prompt__content,
+.in-membership__head,
+.in-membership__admin-content {
+  text-align: center;
+}
+
+.in-membership-register__admin-content {
+  padding-left: 30px;
+}
+
+.in-membership__reset-password-admin-content {
+  margin: 20px 0 0;
+}
+
+.membership-register h1,
+.membership-reset-password-request h1,
+.membership-reset-password h1,
+.password-prompt-wrap h1,
+.subscription-confirmation h1,
+.membership-login-header h1,
+.backup-unsubscribe__content h1,
+.in-communication-preferences h1 {
+  font-size: 40px;
+  letter-spacing: 0.5px;
+  line-height: 44px;
+}
+
+.membership-reset-password-request__form form,
+.membership-reset-password form,
+.password-prompt-wrap form,
+.in-membership__form form {
+  padding: 30px;
+}
+
+.membership-reset-password-request__form input[type="submit"],
+.membership-reset-password__form input[type="submit"] {
+  margin: 25px auto 0 !important;
+}
+
+/* Error Page */
+
+.error-page h1 {
+  font-size: 28px;
+  letter-spacing: 0.5px;
+  line-height: 40px;
+  margin: 0 0 10px 0;
+}
+
+.error-page p {
+  margin: 0;
+}
+
+/* System pages */
+
+.systems-page--search-results {
+  max-width: 100%;
+}
+
+.systems-page .header {
+  background-color: transparent;
+  border-bottom: none;
+  padding: 0;
+}
+
+.systems-page .success {
+  background: rgba(39, 174, 96, 0.16);
+  border-radius: 8px;
+  color: #27AE60 !important;
+  display: inline-block;
+  margin: 25px 0;
+  padding: 8px 16px;
+  width: 100%;
+}
+
+.systems-page form input {
+  max-width: 100%;
+}
+
+.systems-page form input[type='submit'] {
+  display: inline-block;
+}
+
+/* Search pages */
+
+.hs-search-results__title {
+  font-size: 1.25rem;
+  margin-bottom: 0.35rem;
+  text-decoration: underline;
+}
+
+.hs-search-results__title:hover {
+  text-decoration: none;
+}
+
+.hs-search-results__description {
+  padding-top: 0.7rem;
+}
+
+.search-results__input {
+  margin: 0 auto 50px;
+  max-width: 780px;
+}
+
+.in-search-results .hs-search-field--open .hs-search-field__suggestions {
+  border-radius: 12px;
+  border: 0;
+  box-shadow: 0 20px 30px rgba(1, 11, 60, 0.1);
+  margin: 0px 0;
+  padding: 10px 0;
+}
+
+.in-search-results .hs-search-field__suggestions #results-for,
+.in-search-results .hs-search-field__suggestions li a {
+  color: #53535b;
+  padding: 6px 10px;
+  transition: 0.3s linear all;
+}
+
+
+.in-search-results {
+  padding: 30px 20px 50px !important;
+}
+
+.in-search-results .hs-search-results__listing li {
+  background: #fafafa;
+  margin-bottom: 30px;
+  padding: 30px 30px;
+}
+
+.in-search-results .hs-search-results__listing li a {
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.3s linear all;
+}
+
+.in-search-results .hs-search-results__listing li a:hover {
+  transition: 0.3s linear all;
+}
+
+.in-search-results .hs-search-results__listing li .hs-search-results__description {
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.in-search__keyword {
+  margin-bottom: 20px;
+}
+
+.in-search-results .hs-search__no-results p {
+  font-size: 20px;
+  line-height: 28px;
+  margin: 0 0 20px 0;
+}
+
+.in-search-results .hs-search-results__title {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+/* Password prompt */
+
+.password-prompt input[type=password] {
+  height: auto !important;
+}
+
+.systems-page #hs-login-widget-remember,
+.systems-page #hs-login-widget-remember~label {
+  display: inline-block;
+  margin-bottom: 0.175rem;
+}
+
+.systems-page #hs_login_reset {
+  display: block;
+  margin-bottom: 0.7rem;
+}
+
+/* Backup unsubscribe */
+
+.backup-unsubscribe #email-prefs-form div {
+  padding-bottom: 0 !important;
+}
+
+.backup-unsubscribe input[type=email] {
+  padding: 10px !important;
+}
+
+.backup-unsubscribe__content {
+  text-align: center;
+}
+
+.backup-unsubscribe__content h3 {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.backup-unsubscribe__content input[type="submit"] {
+  margin: 40px auto 0 !important;
+}
+
+.backup-unsubscribe__content h1 {
+  margin: 0 0 20px 0;
+}
+
+/* Subscription preferences */
+
+#email-prefs-form .item.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#email-prefs-form .item.disabled input:disabled {
+  cursor: not-allowed;
+}
+
+.in-communication-preferences {
+  max-width: 800px;
+  text-align: left;
+}
+
+.in-communication-preferences h2 {
+  font-size: 24px;
+  line-height: 36px;
+  margin: 0;
+}
+
+.in-communication-preferences .header {
+  color: #0E0E0E;
+  font-weight: 500;
+  margin: 0 0 15px 0;
+}
+
+.in-communication-preferences form input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.in-communication-preferences .subscribe-options {
+  margin-top: 30px;
+}
+
+.in-communication-preferences .page-header {
+  margin-bottom: 30px;
+}
+
+.in-communication-preferences input[type='submit'] {
+  margin-top: 20px !important;
+}
+
+/* Subscription confirmation */
+
+.in-subscription-confirmation .page-header h2 {
+  font-size: 24px;
+  line-height: 26px;
+  margin: 0;
+}
+
+/* Membership pages */
+
+.membership-login-header h1 {
+  margin-bottom: 25px;
+}
+
+/* Password Prompt */
+.password-prompt__content input[type="submit"] {
+  margin: 30px auto 0 !important;
+}
+
+.password-prompt__content p {
+  margin: 0;
+}
+
+/* Reset Password */
+
+.membership-reset-password__form .hs-form-field {
+  text-align: left;
+}
+
+/* Reset Password Request */
+
+.membership-reset-password-request__form .hs-form-field {
+  text-align: left;
+}
+
+/* Memebership Register */
+
+.membership-register {
+  max-width: 600px;
+}
+
+.membership-register .hs-error-msgs label {
+  color: #DB524E;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.membership-register .hs-form-field {
+  text-align: left;
+}
+
+.membership-register input[type="submit"] {
+  margin: 40px auto 0 !important;
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Input error messages */
+
+.form-input-validation-message ul.hs-error-msgs {
+  padding-left: 0;
+  margin: 0;
+}
+
+.form-input-validation-message ul.hs-error-msgs li {
+  margin: 0;
+}
+
+/* Media Queries */
+
+@media only screen and (min-width: 768px) {
+
+  .in-search-results,
+  .systems-page,
+  .error-page {
+    padding: 80px 20px !important;
+  }
+
+  .in-search__keyword {
+    margin-bottom: 40px;
+  }
+
+  .in-search-results .hs-search-results__listing li {
+    margin-bottom: 40px;
+  }
+
+  .error-page h1,
+  .backup-unsubscribe__content h1,
+  .membership-login-header h1,
+  .membership-register h1,
+  .membership-reset-password-request h1,
+  .membership-reset-password h1,
+  .password-prompt-wrap h1,
+  .in-communication-preferences h1,
+  .subscription-confirmation h1 {
+    font-size: 48px;
+    line-height: 56px;
+    letter-spacing: 0.5px;
+  }
+
+  .in-subscription-confirmation .page-header h2 {
+    font-size: 40px;
+    line-height: 43px;
+  }
+
+  .backup-unsubscribe__content h3 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .backup-unsubscribe__content form {
+    padding: 20px;
+  }
+
+  .membership-login-header h1 {
+    margin-bottom: 40px;
+  }
+
+  .in-communication-preferences .page-header {
+    margin-bottom: 50px;
+  }
+
+  .in-communication-preferences input[type='submit'] {
+    margin-top: 40px !important;
+  }
+
+  .backup-unsubscribe__content h1 {
+    margin: 0;
+  }
+}

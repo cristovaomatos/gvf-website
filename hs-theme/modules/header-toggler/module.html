@@ -1,0 +1,46 @@
+{% import '../macros.html' %}
+
+<!-- Module Styles -->
+{% require_css %}
+<style>
+  {% scope_css %}
+  {% if module.toggle.icon_or_image == 'icon' %}
+  .in-toggler--icon svg path {
+    fill: rgba({{ module.style.color.icon_color.color |convert_rgb }},{{ module.style.color.icon_color.opacity }}%);
+  }
+  {% endif %}
+  {% end_scope_css %} 
+</style>
+{% end_require_css %}
+<!-- toggler -->
+<div id="{{name}}" class="in-menu-toggler-wrap">
+  <!--   Open icon -->
+  <div class="in-menu-toggler">
+    {% if module.toggle.icon_or_image == 'icon' %}
+    <div class="in-toggler--icon">
+      {% icon name="{{ module.toggle.icon.name }}" style="{{ module.toggle.icon.type }}" unicode="{{ module.toggle.icon.unicode }}" icon_set="{{ module.toggle.icon.icon_set }}" %}
+    </div>
+    {% else %}
+    <div class="in-toggler--image">
+      {{ image(module.toggle.image) }}
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Close icon -->
+  <div class="in-menu-toggler--close">
+    {% if  module.toggle_close.icon_or_image == 'icon' %}
+    <div class="in-toggler--icon">
+      {% icon name="{{ module.toggle_close.icon.name }}" style="{{ module.toggle_close.icon.type }}" unicode="{{ module.toggle_close.icon.unicode }}" icon_set="{{ module.toggle_close.icon.icon_set }}" %}
+    </div>
+    {% else %}
+    <div class="in-toggler--image">
+      {{ image(module.toggle_close.image) }}
+    </div>
+    {% endif %}
+  </div>
+
+</div>
+
+
+

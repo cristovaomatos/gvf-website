@@ -1,0 +1,574 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Service
+  screenshotPath: ../images/template-previews/services.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--services"
+%}
+
+<!-- Banner Section  -->
+{% dnd_section
+ full_width=true,
+  padding={
+    "default" : {
+      "bottom" : "0px",
+      "left" : "0px",
+      "right" : "0px",
+      "top" : "0px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12,
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    }
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/banner",
+        offset=0,
+        width=12,
+        breadcrumbs={
+          "current" : {
+            "page_name" : "Services"
+          }
+        },
+        button_breadcrumb_choice={
+          "select" : "breadcrumb"
+        },
+        content={
+          "content" : "<h1>You are our priority</h1>",
+          "enable_mini_title" : true,
+          "mini_title" : "SERVICES"
+        },
+        layout={
+          "select_layout" : "background_image"
+        },
+        style={
+          "background_image" : {
+            "image" : {
+              "background_position" : "MIDDLE_CENTER",
+              "background_size" : "cover",
+              "src" : get_asset_url('../images/multipurpose/banner-eight.jpg')
+            }
+          },
+          "breadcrumb" : {
+            "overwrite_style" : true
+          },
+          "content" : {
+            "color" : {
+              "mini_title" : {
+                "color" : "#FAFAFA",
+                "opacity" : 100
+              },
+              "title" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              }
+            },
+            "overwrite_content_color" : true
+          },
+          "spacing" : {
+            "desktop_spacing" : {
+              "margin" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 0
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 0
+                }
+              },
+              "padding" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 85
+                },
+                "left" : {
+                  "units" : "px",
+                  "value" : 15
+                },
+                "right" : {
+                  "units" : "px",
+                  "value" : 15
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 85
+                }
+              }
+            },
+            "mobile_spacing" : {
+              "margin" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 0
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 0
+                }
+              },
+              "padding" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 50
+                },
+                "left" : {
+                  "units" : "px",
+                  "value" : 15
+                },
+                "right" : {
+                  "units" : "px",
+                  "value" : 15
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 50
+                }
+              }
+            }
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+<!-- Services Section -->
+{% dnd_section
+  background_color="rgba(250, 249, 246, 1)",
+  padding={
+    "mobile" : {
+      "bottom" : "50px",
+      "top" : "50px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/title-content",
+        offset=0,
+        width=12,
+        mini_title="SERVICES",
+        style={
+            "alignment" : {
+              "desktop_alignment" : "center"
+            }
+        }
+      %}
+        {% module_attribute "content" %}
+          <h2>Your happiness is what matters</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Leo nec felis at pellentesque. Sed amet dolor penatibus sed at posuere justo, lacinia neque.</p>
+        {% end_module_attribute %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/spacer",
+        offset=0,
+        width=12,
+        style={
+          "height_desktop_" : 60,
+          "height_mobile_" : 50,
+          "height_tablet_" : 50
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/why-us",
+        offset=0,
+        width=12,
+        image_box=[ {
+          "image" : {
+            "alt" : "Social Media Marketing",
+            "height" : 120,
+            "loading" : "lazy",
+            "max_height" : 120,
+            "max_width" : 120,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/networking-perspective.png'),
+            "width" : 120
+          },
+          "title" : {
+            "enable" : true,
+            "title" : "Social Media Marketing"
+          }
+        }, {
+          "image" : {
+            "alt" : "Digital Marketing",
+            "height" : 120,
+            "loading" : "lazy",
+            "max_height" : 120,
+            "max_width" : 120,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/digital-marketing.png'),
+            "width" : 120
+          },
+          "title" : {
+            "enable" : true,
+            "title" : "Digital Marketing"
+          }
+        }, {
+          "image" : {
+            "alt" : "Search Engine Optimization",
+            "height" : 120,
+            "loading" : "lazy",
+            "max_height" : 120,
+            "max_width" : 120,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/rocket.png'),
+            "width" : 120
+          },
+          "title" : {
+            "enable" : true,
+            "title" : "Search Engine Optimization"
+          }
+        } ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+<!-- Video Section  -->
+{% include_dnd_partial path="../sections/two-column-content-video.html" %}
+
+{% dnd_section
+  background_color="rgba(250, 249, 246, 1)",
+  padding={
+    "mobile" : {
+      "bottom" : "50px",
+      "top" : "50px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/title-content",
+        offset=0,
+        width=12,
+        mini_title="THREE WAY SUPPORT",
+        style={
+            "alignment" : {
+              "desktop_alignment" : "center"
+            }
+        }
+      %}
+        {% module_attribute "content" %}
+          <h2>Reasons for choosing us</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Leo nec felis at pellentesque. Sed amet dolor penatibus sed at posuere justo, lacinia neque.</p>
+        {% end_module_attribute %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/spacer",
+        offset=0,
+        width=12,
+        style={
+          "height_desktop_" : 60,
+          "height_mobile_" : 50,
+          "height_tablet_" : 50
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/why-us",
+        offset=0,
+        width=12,
+        enable_arrow=true,
+        image_box=[ {
+          "image" : {
+            "alt" : "clock",
+            "height" : 172,
+            "loading" : "lazy",
+            "max_height" : 172,
+            "max_width" : 172,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/clock.png'),
+            "width" : 172
+          },
+          "title" : {
+            "enable" : true,
+            "title" : "24/7 Services"
+          }
+        }, {
+          "image" : {
+            "alt" : "Free Cost Estimation",
+            "height" : 172,
+            "loading" : "lazy",
+            "max_height" : 172,
+            "max_width" : 172,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/price.png'),
+            "width" : 172
+          },
+          "title" : {
+            "enable" : true,
+            "title" : "Free Cost Estimation"
+          }
+        }, {
+          "image" : {
+            "alt" : "Low Price Guarantee",
+            "height" : 172,
+            "loading" : "lazy",
+            "max_height" : 172,
+            "max_width" : 172,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/guarantee.png'),
+            "width" : 172
+          },
+          "title" : {
+            "enable" : true,
+            "title" : "Low Price Guarantee"
+          }
+        } ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+<!-- Testimonial Section -->
+{% dnd_section
+  padding={
+    "mobile" : {
+      "bottom" : "50px",
+      "top" : "50px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/testimonial",
+        offset=0,
+        width=12,
+        layout_choice={
+          "select_layout" : "slider"
+        },
+       style={
+          "styles" : {
+            "background_color" : {
+              "color" : "#FEF2FF",
+              "opacity" : 100
+            }
+          }
+        },
+        testimonial=[ {
+          "client_image" : {
+            "alt" : "Jenny",
+            "height" : 116,
+            "loading" : "lazy",
+            "max_height" : 116,
+            "max_width" : 116,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/bessie.png'),
+            "width" : 116
+          },
+          "client_logo" : {
+            "alt" : "Logo (3)",
+            "height" : 32,
+            "loading" : "lazy",
+            "max_height" : 32,
+            "max_width" : 138,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+            "width" : 138
+          },
+          "client_name" : "Jenny Wilson",
+          "client_review" : '<p>\"I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>',
+        }, {
+          "client_image" : {
+            "alt" : "Wade Warren",
+            "height" : 116,
+            "loading" : "lazy",
+            "max_height" : 116,
+            "max_width" : 116,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/cody.png'),
+            "width" : 116
+          },
+          "client_logo" : {
+            "alt" : "Logo (3)",
+            "height" : 32,
+            "loading" : "lazy",
+            "max_height" : 32,
+            "max_width" : 138,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+            "width" : 138
+          },
+          "client_name" : "Wade Warren",
+          "client_review" : '<p>\"I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>',
+        }, {
+          "client_image" : {
+            "alt" : "Kristin Watson",
+            "height" : 116,
+            "loading" : "lazy",
+            "max_height" : 116,
+            "max_width" : 116,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/kristin.png'),
+            "width" : 116
+          },
+          "client_logo" : {
+            "alt" : "Logo (3)",
+            "height" : 32,
+            "loading" : "lazy",
+            "max_height" : 32,
+            "max_width" : 138,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+            "width" : 138
+          },
+          "client_name" : "Kristin Watson",
+          "client_review" : '<p>\"I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>',
+        }, {
+          "client_image" : {
+            "alt" : "Jacob Jones",
+            "height" : 116,
+            "loading" : "lazy",
+            "max_height" : 116,
+            "max_width" : 116,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/jacob.png'),
+            "width" : 116
+          },
+          "client_logo" : {
+            "alt" : "Logo (3)",
+            "height" : 32,
+            "loading" : "lazy",
+            "max_height" : 32,
+            "max_width" : 138,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+            "width" : 138
+          },
+          "client_name" : "Jacob Jones",
+          "client_review" : '<p>\"I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>',
+        }, {
+          "client_image" : {
+            "alt" : "Cody Fisher",
+            "height" : 116,
+            "loading" : "lazy",
+            "max_height" : 116,
+            "max_width" : 116,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/jenny.png'),
+            "width" : 116
+          },
+          "client_logo" : {
+            "alt" : "Logo (3)",
+            "height" : 32,
+            "loading" : "lazy",
+            "max_height" : 32,
+            "max_width" : 138,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+            "width" : 138
+          },
+          "client_name" : "Cody Fisher",
+          "client_review" : '<p>\"I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>',
+        } ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+{% dnd_section
+  padding={
+    "default" : {
+      "bottom" : "0px",
+      "left" : "0px",
+      "right" : "0px",
+      "top" : "0px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/spacer",
+        offset=0,
+        width=12,
+        style={
+          "height_desktop_" : 40,
+          "height_mobile_" : 50,
+          "height_tablet_" : 60
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+<!-- Call to action section -->
+{% include_dnd_partial path="../sections/call-to-action.html" %}
+
+{% dnd_section
+  padding={
+    "default" : {
+      "bottom" : "0px",
+      "left" : "0px",
+      "right" : "0px",
+      "top" : "0px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/spacer",
+        offset=0,
+        width=12,
+        style={
+          "height_desktop_" : 80,
+          "height_mobile_" : 60,
+          "height_tablet_" : 60
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+{% end_dnd_area %}
+{% endblock body %}

@@ -1,0 +1,108 @@
+<!--
+templateType: "none"
+isAvailableForNewContent: false
+-->
+
+{# Macro to render a button from a module field #}
+{% macro button(btn, overwrite_class) -%}
+
+{% if btn.enable_icon %}
+{% if  btn.icon.icon_position == 'left' %}
+{% set iconPosition = "icon--left" %}
+{% elif  btn.icon.icon_position == 'right' %}
+{% set iconPosition = "icon--right" %}
+{% endif %}
+{% endif %}
+
+{% set href = btn.link.url.href %}
+{% if btn.link.url.type is equalto "EMAIL_ADDRESS" %}
+{% set href = "mailto:" + href %}
+{% elif btn.link.url.type is equalto "PHONE_NUMBER" %}
+{% set href = "tel:" + href %}
+{% endif %}
+
+{% if overwrite_class %}
+{% set class = overwrite_class %}
+{% else %}
+{% set class = 'in-btn' %}
+{% if btn.type == 'filled_dark' %}
+{% set class = class ~ ' in-btn--filled-dark' %}
+{% elif btn.type == 'outlined_dark' %}
+{% set class = class ~ ' in-btn--outlined-dark' %}
+{% elif btn.type == 'filled_light' %}
+{% set class = class ~ ' in-btn--filled-light' %}
+{% endif %}
+
+{% endif %}
+
+{% if theme.buttons.button.animation.enable_animation  %}
+{% set class = class ~ ' in-btn-animation inn' %}
+{% endif %}
+   
+
+{% set anchor = { 'class': class } %}
+<a href="{% if btn.link.url.type is equalto "CALL_TO_ACTION" %}{{ href|escape_url }}{% else %} {{href}}{% endif %}" {{ anchor | xmlattr }}
+   {% if btn.link.open_in_new_tab %}target="_blank"{% endif %}
+   {% if btn.link.rel %}rel="{{ btn.link.rel }}"{% endif %}
+   aria-label="{{ btn.text }}"
+   > 
+
+  <span class="in-btn__text {{ iconPosition }}">
+    {% if btn.enable_icon %}
+    <span class="in-btn__icon">
+      {% icon
+          name="{{ btn.icon.icon.name }}"
+          style="{{ btn.icon.icon.type }}"
+          unicode="{{ btn.icon.icon.unicode }}"
+          icon_set="{{ btn.icon.icon.icon_set }}"
+        %}
+    </span>
+    {% endif %}
+    {{ btn.text }}
+  </span>
+</a>
+
+{%- endmacro %}
+
+{# Macro to render a image from a image field #}
+{% macro image(image, classes, default_src) -%}
+
+{% set sizeAttrs = { width: image.width, height: image.height } %}
+{% if image.size_type == 'auto' %}
+{% set sizeAttrs = { style: 'max-width: 100%; height: auto;' } %}
+{% elif image.size_type == 'auto_custom_max' %}
+{% set sizeAttrs = { 
+      width: '100%', height: 'auto', 
+      style: 'max-width: %spx; max-height: %spx'|format(image.max_width, image.max_height)
+    } %}
+{% endif %}
+{% set loadingAttr = image.loading != 'disabled' ? 'loading="{{ image.loading }}"' : '' %}
+<img class="{{ classes }}" src="{{ image.src|default(default_src, true) }}" alt="{{ image.alt }}" {{ loadingAttr }} {{ sizeAttrs|xmlattr }} />
+
+{%- endmacro %}
+
+{# Macro to render title content module from module fields #}
+
+{% macro title_content(tc) -%}
+<div id="{{name}}" class="in-tc">
+  {% if tc.enable_mini_title %}
+  <h2 class="in-tc__mini-title">{{ tc.mini_title }}</h2>
+  {% endif %}
+
+  <div class="in-tc__content">
+    {{ tc.content }}
+  </div>
+
+  {% if tc.button.enable_primary_button =='true' || tc.button.enable_secondary_button =='true' %}
+  <div class="in-tc__btn-wrap">
+    {% if tc.button.enable_primary_button %}
+    {{ button(tc.button.primary_button) }}
+    {% endif %}
+
+    {% if tc.button.enable_secondary_button %}
+    {{ button(tc.button.secondary_button) }}
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+{%- endmacro  %}

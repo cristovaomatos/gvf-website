@@ -1,0 +1,586 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Career
+  screenshotPath: ../images/template-previews/career.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--contact"
+%}
+
+<!-- Banner Section -->
+{% dnd_section
+ full_width=true,
+  padding={
+    "default" : {
+      "bottom" : "0px",
+      "left" : "0px",
+      "right" : "0px",
+      "top" : "0px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12,
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    }
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/banner",
+        offset=0,
+        width=12,
+        breadcrumbs={
+          "current" : {
+            "page_name" : "Career"
+          }
+        },
+        button_breadcrumb_choice={
+          "select" : "breadcrumb"
+        },
+        content={
+          "content" : "<h1>Join us</h1>",
+          "enable_mini_title" : true,
+          "mini_title" : "CAREER"
+        },
+        layout={
+          "select_layout" : "background_image"
+        },
+        style={
+          "background_image" : {
+            "image" : {
+              "background_position" : "MIDDLE_CENTER",
+              "background_size" : "cover",
+              "src" : get_asset_url('../images/multipurpose/banner-twelve.jpg')
+            }
+          },
+          "breadcrumb" : {
+            "overwrite_style" : true
+          },
+          "content" : {
+            "color" : {
+              "description" : {
+                "color" : "#666666",
+                "opacity" : 100
+              },
+              "mini_title" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              },
+              "title" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              }
+            },
+            "overwrite_content_color" : true
+          },
+          "spacing" : {
+            "desktop_spacing" : {
+              "margin" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 0
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 0
+                }
+              },
+              "padding" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 85
+                },
+                "left" : {
+                  "units" : "px",
+                  "value" : 15
+                },
+                "right" : {
+                  "units" : "px",
+                  "value" : 15
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 85
+                }
+              }
+            },
+            "mobile_spacing" : {
+              "margin" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 0
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 0
+                }
+              },
+              "padding" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 50
+                },
+                "left" : {
+                  "units" : "px",
+                  "value" : 15
+                },
+                "right" : {
+                  "units" : "px",
+                  "value" : 15
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 50
+                }
+              }
+            }
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+<!--Career Listing  -->
+{% dnd_section
+  padding={
+    "mobile" : {
+      "bottom" : "50px",
+      "top" : "50px"
+    }
+  }
+%}
+  {% dnd_module
+    path="../modules/listing-layouts",
+    offset=0,
+    width=12,
+    layout_choice={
+      "select_layout" : "filter"
+    },
+    tab_content=[ {
+      "button" : {
+        "button" : {
+          "button_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://www.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          },
+          "button_text" : "Apply Now"
+        },
+        "enable_button" : true
+      },
+      "description" : "<p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Exercitation veniam consequat sunt nostrud amet.</p>",
+      "item_id" : "*,hybrid",
+      "sub_title" : {
+        "enable" : true,
+        "text" : "4 months ago"
+      },
+      "tag" : {
+        "enable" : true,
+        "text_field" : "Remote"
+      },
+      "title" : "UI UX Designer",
+      "title_link" : {
+        "no_follow" : false,
+        "open_in_new_tab" : false,
+        "url" : {
+          "href" : "https://www.hubspot.com/",
+          "type" : "EXTERNAL"
+        }
+      }
+    }, {
+      "button" : {
+        "button" : {
+          "button_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://www.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          },
+          "button_text" : "Apply Now"
+        },
+        "enable_button" : true
+      },
+      "description" : "<p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Exercitation veniam consequat sunt nostrud amet.</p>",
+      "item_id" : "*,fulltime",
+      "sub_title" : {
+        "enable" : true,
+        "text" : "4 months ago"
+      },
+      "tag" : {
+        "enable" : true,
+        "text_field" : "Remote"
+      },
+      "title" : "Human Resource",
+      "title_link" : {
+        "no_follow" : false,
+        "open_in_new_tab" : false,
+        "url" : {
+          "href" : "https://www.hubspot.com/",
+          "type" : "EXTERNAL"
+        }
+      }
+    }, {
+      "button" : {
+        "button" : {
+          "button_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://www.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          },
+          "button_text" : "Apply Now"
+        },
+        "enable_button" : true
+      },
+      "description" : "<p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Exercitation veniam consequat sunt nostrud amet.</p>",
+      "item_id" : "*,parttime",
+      "sub_title" : {
+        "enable" : true,
+        "text" : "4 months ago"
+      },
+      "tag" : {
+        "enable" : true,
+        "text_field" : "Remote"
+      },
+      "title" : "Freshers",
+      "title_link" : {
+        "no_follow" : false,
+        "open_in_new_tab" : false,
+        "url" : {
+          "href" : "https://www.hubspot.com/",
+          "type" : "EXTERNAL"
+        }
+      }
+    }, {
+      "button" : {
+        "button" : {
+          "button_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://www.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          },
+          "button_text" : "Apply Now"
+        },
+        "enable_button" : true
+      },
+      "description" : "<p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Exercitation veniam consequat sunt nostrud amet.</p>",
+      "item_id" : "*,hybrid",
+      "sub_title" : {
+        "enable" : true,
+        "text" : "4 months ago"
+      },
+      "tag" : {
+        "enable" : true,
+        "text_field" : "Remote"
+      },
+      "title" : "UX Architect",
+      "title_link" : {
+        "no_follow" : false,
+        "open_in_new_tab" : false,
+        "url" : {
+          "href" : "https://www.hubspot.com/",
+          "type" : "EXTERNAL"
+        }
+      }
+    }, {
+      "button" : {
+        "button" : {
+          "button_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://www.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          },
+          "button_text" : "Apply Now"
+        },
+        "enable_button" : true
+      },
+      "description" : "<p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Exercitation veniam consequat sunt nostrud amet.</p>",
+      "item_id" : "*,remote",
+      "sub_title" : {
+        "enable" : true,
+        "text" : "4 months ago"
+      },
+      "tag" : {
+        "enable" : true,
+        "text_field" : "Remote"
+      },
+      "title" : "PHP Developer",
+      "title_link" : {
+        "no_follow" : false,
+        "open_in_new_tab" : false,
+        "url" : {
+          "href" : "https://www.hubspot.com/",
+          "type" : "EXTERNAL"
+        }
+      }
+    }, {
+      "button" : {
+        "button" : {
+          "button_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://www.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          },
+          "button_text" : "Apply Now"
+        },
+        "enable_button" : true
+      },
+      "description" : "<p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Exercitation veniam consequat sunt nostrud amet.</p>",
+      "item_id" : "*,remote",
+      "sub_title" : {
+        "enable" : true,
+        "text" : "4 months ago"
+      },
+      "tag" : {
+        "enable" : true,
+        "text_field" : "Remote"
+      },
+      "title" : "Python Developer",
+      "title_link" : {
+        "no_follow" : false,
+        "open_in_new_tab" : false,
+        "url" : {
+          "href" : "https://www.hubspot.com/",
+          "type" : "EXTERNAL"
+        }
+      }
+    }, {
+      "button" : {
+        "button" : {
+          "button_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://www.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          },
+          "button_text" : "Apply Now"
+        },
+        "enable_button" : true
+      },
+      "description" : "<p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Exercitation veniam consequat sunt nostrud amet.</p>",
+      "item_id" : "*,hybrid",
+      "sub_title" : {
+        "enable" : true,
+        "text" : "4 months ago"
+      },
+      "tag" : {
+        "enable" : true,
+        "text_field" : "Remote"
+      },
+      "title" : "Security Assistant",
+      "title_link" : {
+        "no_follow" : false,
+        "open_in_new_tab" : false,
+        "url" : {
+          "href" : "https://www.hubspot.com/",
+          "type" : "EXTERNAL"
+        }
+      }
+    }, {
+      "button" : {
+        "button" : {
+          "button_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://www.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          },
+          "button_text" : "Apply Now"
+        },
+        "enable_button" : true
+      },
+      "description" : "<p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Exercitation veniam consequat sunt nostrud amet.</p>",
+      "item_id" : "*,fulltime",
+      "sub_title" : {
+        "enable" : true,
+        "text" : "4 months ago"
+      },
+      "tag" : {
+        "enable" : true,
+        "text_field" : "Remote"
+      },
+      "title" : "Human Resource",
+      "title_link" : {
+        "no_follow" : false,
+        "open_in_new_tab" : false,
+        "url" : {
+          "href" : "https://www.hubspot.com/",
+          "type" : "EXTERNAL"
+        }
+      }
+    }, {
+      "button" : {
+        "button" : {
+          "button_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://www.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          },
+          "button_text" : "Apply Now"
+        },
+        "enable_button" : true
+      },
+      "description" : "<p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Exercitation veniam consequat sunt nostrud amet.</p>",
+      "item_id" : "*,parttime",
+      "sub_title" : {
+        "enable" : true,
+        "text" : "4 months ago"
+      },
+      "tag" : {
+        "enable" : true,
+        "text_field" : "Remote"
+      },
+      "title" : "Joomla Developer",
+      "title_link" : {
+        "no_follow" : false,
+        "open_in_new_tab" : false,
+        "url" : {
+          "href" : "https://www.hubspot.com/",
+          "type" : "EXTERNAL"
+        }
+      }
+    }, {
+      "button" : {
+        "button" : {
+          "button_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://www.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          },
+          "button_text" : "Apply Now"
+        },
+        "enable_button" : true
+      },
+      "description" : "<p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Exercitation veniam consequat sunt nostrud amet.</p>",
+      "item_id" : "*,hybrid",
+      "sub_title" : {
+        "enable" : true,
+        "text" : "4 months ago"
+      },
+      "tag" : {
+        "enable" : true,
+        "text_field" : "Remote"
+      },
+      "title" : "UX Architect",
+      "title_link" : {
+        "no_follow" : false,
+        "open_in_new_tab" : false,
+        "url" : {
+          "href" : "https://www.hubspot.com/",
+          "type" : "EXTERNAL"
+        }
+      }
+    }, {
+      "button" : {
+        "button" : {
+          "button_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://www.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          },
+          "button_text" : "Apply Now"
+        },
+        "enable_button" : true
+      },
+      "description" : "<p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Exercitation veniam consequat sunt nostrud amet.</p>",
+      "item_id" : "*,remote",
+      "sub_title" : {
+        "enable" : true,
+        "text" : "4 months ago"
+      },
+      "tag" : {
+        "enable" : true,
+        "text_field" : "Remote"
+      },
+      "title" : "Python Developer",
+      "title_link" : {
+        "no_follow" : false,
+        "open_in_new_tab" : false,
+        "url" : {
+          "href" : "https://www.hubspot.com/",
+          "type" : "EXTERNAL"
+        }
+      }
+    }, {
+      "button" : {
+        "button" : {
+          "button_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://www.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          },
+          "button_text" : "Apply Now"
+        },
+        "enable_button" : true
+      },
+      "description" : "<p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Exercitation veniam consequat sunt nostrud amet.</p>",
+      "item_id" : "*,remote",
+      "sub_title" : {
+        "enable" : true,
+        "text" : "4 months ago"
+      },
+      "tag" : {
+        "enable" : true,
+        "text_field" : "Remote"
+      },
+      "title" : "PHP Developer",
+      "title_link" : {
+        "no_follow" : false,
+        "open_in_new_tab" : false,
+        "url" : {
+          "href" : "https://www.hubspot.com/",
+          "type" : "EXTERNAL"
+        }
+      }
+    } ]
+  %}
+  {% end_dnd_module %}
+{% end_dnd_section %}
+{% end_dnd_area %}
+{% endblock body %}

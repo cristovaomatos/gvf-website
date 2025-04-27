@@ -1,0 +1,60 @@
+.in-form--single-field .hs-form-field {
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .in-form--multiple-field h4 {
+    margin: 0 0 20px 0;
+    text-align: center;
+  }
+  
+  .in-form--single-form-field form .actions,
+  .in-form--single-field form .actions {
+    text-align: center;
+  }
+  
+  .submitted-message {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  
+  @media (min-width: 992px) {
+    .in-form--multiple-field h4 {
+      text-align: left;
+    } 
+  
+    .in-form--single-field form {
+      display: flex;
+    }
+  
+    .in-form--single-field .hs-form-field {
+      width: calc(100% - 160px);
+    }
+  
+    .in-form--single-field .hs-submit {
+      width: auto;
+    }
+  
+    .in-form--single-field .actions {
+      margin-left: 20px;
+    }
+  
+    .in-form--single-form-field form .actions,
+    .in-form--single-field form .actions {
+      text-align: left;
+    }
+  
+    .in-form--single-field form {
+      padding-top: 40px;
+    }
+  
+    .in-form--single-field form label {
+      margin-bottom: 0;
+      margin-top: -26px;
+    }
+  
+    .in-form--single-field form label span:empty {
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+  }

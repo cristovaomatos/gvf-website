@@ -1,0 +1,141 @@
+{% @import '../macros.html' %}
+
+<!-- Style -->
+{% require_css %}
+<style>
+  {% scope_css %}
+  .in-video__overlay {
+    border-radius: {{ module.style.corner.border_radius }}px; 
+    background-color: rgba({{ module.style.overlay.color.color | convert_rgb }},{{ module.style.overlay.color.opacity }}%);
+  }
+  
+  .in-video img {
+   border-radius: {{ module.style.corner.border_radius }}px; 
+  }
+  
+  .in-video__btn {
+    background-color: {{theme.global_colors.primary.color}};
+  }
+  {% if module.icon_content.select_icon_content == 'icon_over_image' %}
+  .in-video__btn {
+    width: {{ module.style.icon_size.width }}px;
+    height: {{ module.style.icon_size.width }}px;
+  }
+  {% endif %}
+  
+  .in-video__btn::before,
+  .in-video__btn::after {
+    border: 8px solid {{theme.global_colors.primary.color}};
+  }
+  
+  {% if module.style.overwrite_icon_color %}
+    .in-video__btn {
+      background-color: rgba({{ module.style.icon.background_color.color | convert_rgb }},{{ module.style.icon.background_color.opacity }}%);
+    }
+  
+    .in-video__btn::before,
+    .in-video__btn::after {
+      border: 8px solid rgba({{ module.style.icon.background_color.color | convert_rgb }},{{ module.style.icon.background_color.opacity }}%);
+    }
+  
+    .in-video__btn-icon svg path {
+      fill: rgba({{ module.style.icon.icon_color.color | convert_rgb }},{{ module.style.icon.icon_color.opacity }}%);
+    }
+  {% endif %}
+  
+  .in-video {
+    {% if module.style.alignment.mobile_alignment == "left"  %}
+        text-align: left;
+    {% elif module.style.alignment.mobile_alignment == "center"  %}
+        text-align: center;
+    {% elif module.style.alignment.mobile_alignment == "right"  %}
+        text-align: right;
+    {% endif %}
+  }
+  
+  {% if module.style.content.overwrite_color %}
+
+  .in-video__icon svg path {
+    fill: rgba({{ module.style.content.color.color | convert_rgb }},{{ module.style.content.color.opacity }}%);
+  }
+  
+  .in-video__icon-text,
+  .in-video__title {
+    color: rgba({{ module.style.content.color.color | convert_rgb }},{{ module.style.content.color.opacity }}%);
+  }
+  
+  {% endif %}
+  
+  @media (min-width: 992px) {
+    .in-video {
+      {% if module.style.alignment.alignment == "left"  %}
+        text-align: left;
+      {% elif module.style.alignment.alignment == "center"  %}
+        text-align: center;
+      {% elif module.style.alignment.alignment == "right"  %}
+        text-align: right;
+      {% endif %}
+      
+    }
+  }
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<div id="{{name}}" class="in-video">
+  <div class="in-video__container">
+    {% if module.style.enable_overlay %}
+    <span class="in-video__overlay"></span>
+    {% endif %}
+    {{image(module.video_poster.poster)}}
+    {% if module.icon_content.select_icon_content == 'icon_over_image' %}
+    <a href="{{ module.video_link }}" class="in-video__btn in-play-btn" aria-label="{{module.icon.play_icon.name}}">
+     <span class="in-video__btn-icon">
+         {% icon
+          name="{{ module.icon.play_icon.name }}"
+          style="{{ module.icon.play_icon.type }}"
+          unicode="{{ module.icon.play_icon.unicode }}"
+          icon_set="{{ module.icon.play_icon.icon_set }}"
+        %}
+      </span>
+    </a>
+    {% elif module.icon_content.select_icon_content == 'content_over_image' %}
+    <div class="in-video__content">
+       <h3 class="in-video__title">{{ module.content.title }}</h3>
+       <div class="in-video__icon-content">
+       <a href="{{ module.video_link }}" class="in-video__icon in-play-btn" aria-label="{{ module.content.icon_text }}">
+         {% icon
+          name="{{ module.icon.play_icon.name }}"
+          style="{{ module.icon.play_icon.type }}"
+          unicode="{{ module.icon.play_icon.unicode }}"
+          icon_set="{{ module.icon.play_icon.icon_set }}"
+        %}
+         <span class="in-video__icon-text">{{ module.content.icon_text }}</span>
+         </a>         
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{{ require_css("https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css", { async : true, preload :true }) }}
+{{ require_js("https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js", { async : true, preload :true }) }}
+
+{% require_js %}
+  <script>
+    window.addEventListener('load', (event) => {
+      if(! window.GLightbox){
+        window.loadAsyncJs('https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js').then(() => {
+          var lightboxVideo = GLightbox({
+            selector: '#{{name}} .in-play-btn'
+          });
+        });
+      } else {
+        var lightboxVideo = GLightbox({
+          selector: '#{{name}} .in-play-btn'
+        });
+      }
+    }); 
+  </script>
+{% end_require_js %}
+

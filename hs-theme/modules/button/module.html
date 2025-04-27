@@ -1,0 +1,73 @@
+{% import '../macros.html'  %}
+
+<!-- Styles -->
+
+{% require_css %}
+  <style>
+    {% scope_css %}
+      .in-btn__wrap {
+        text-align: {{ module.style.alignment.desktop_alignment.horizontal_align }};
+      }
+      
+      {% if module.style.overwrite_style %}
+        .in-btn {
+        {{ module.style.normal.border.border.css }}
+        {{ module.style.normal.text.font.css }}
+        {{ module.style.normal.spacing.spacing.css }}
+        background-color: rgba({{ module.style.normal.background.color.color|convert_rgb }}, {{ module.style.normal.background.color.opacity / 100 }});
+        border-radius: {{ module.style.normal.corner.radius ~ "px" }};
+        line-height: {{ module.style.normal.text.line_height }}px;        
+        }
+    
+      .in-btn .in-btn__icon svg path {
+        fill: {{module.style.normal.text.font.color }};
+      }
+    
+     .in-btn:hover {
+       background-color: rgba({{ module.style.hover.background_color.color |convert_rgb }}, {{module.style.hover.background_color.opacity }}%);
+       color: rgba({{ module.style.hover.text_color.color | convert_rgb }},{{ module.style.hover.text_color.opacity }}%);
+       {{ module.style.hover.border.border.css }};
+       line-height: {{ module.style.normal.text.line_height }}px;  
+     }
+    
+      .in-btn:hover .in-btn__icon svg path {
+        fill: rgba({{ module.style.hover.text_color.color | convert_rgb }},{{ module.style.hover.text_color.opacity }}%);
+      }
+    
+      .in-btn:active,
+      .in-btn:focus {
+        background-color: rgba({{ module.style.active.background_color.color |convert_rgb }}, {{module.style.active.background_color.opacity }}%);
+        color: rgba({{ module.style.active.text_color.color | convert_rgb }},{{ module.style.active.text_color.opacity }}%);
+        {{ module.style.active.border.border.css }};
+      }
+    
+      .in-btn:active .in-btn__icon svg path,
+      .in-btn:focus .in-btn__icon svg path {
+        fill: rgba({{ module.style.active.text_color.color | convert_rgb }},{{ module.style.active.text_color.opacity }}%);
+      }
+    
+    
+      .in-btn-animation::before {
+         background-color: rgba({{ module.style.hover.background_color.color |convert_rgb }}, {{module.style.hover.background_color.opacity }}%);
+       }
+
+      .in-btn-animation:hover {
+        background-color: unset;
+        color: rgba({{ module.style.hover.text_color.color | convert_rgb }},{{ module.style.hover.text_color.opacity }}%);
+       }
+      {% endif %}
+    {% end_scope_css %}
+    
+    @media (max-width: 992px) {
+      body:not(.hubspot-disable-focus-styles) #{{name}}.in-btn__wrap {
+        text-align: {{ module.style.alignment.mobile_alignment.horizontal_align }};
+      }
+    }
+  </style>
+{% end_require_css %}
+
+<div id="{{name}}" class="in-btn__wrap">
+  {{ button(module.button) }}
+</div>
+
+

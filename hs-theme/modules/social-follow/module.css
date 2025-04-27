@@ -1,0 +1,14 @@
+.in-social-icon.no-list li {
+    display: inline-block;
+    text-align: center;
+  }
+  
+  .in-social-icon li a svg {
+    height: 25px;
+    width: 25px;
+  }
+  
+  .in-social-icon.no-list li a {
+    display: inline-block;
+    margin: 0 5px;
+  }

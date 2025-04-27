@@ -1,0 +1,124 @@
+{%  @import '../macros.html' %}
+
+{% require_css %}
+<style>
+  {% scope_css %}
+    .in-partner__img {
+      {{ module.style.spacing.mobile_spacing.css }}
+    }
+
+  {% if module.slider_settings.enable_arrows %}
+    .in-partner {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  
+   {% if module.style.navigation.overwrite_style %}
+      .slick-arrow:before {
+        color: {{ module.style.navigation.icon.color_field.color }};
+      }
+    {% else %}
+    .slick-arrow:before {
+        color: {{theme.primary_color.color}};
+      }
+    {% endif %}
+  {% endif %}
+  
+  @media (min-width: 768px) {
+    .in-partner__img {
+      {{ module.style.spacing.desktop_spacing.css }}
+    }
+  }
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<div id="{{name}}" class="in-partner {% if module.layout.select_layout == 'slider'%} in-partner__slider {% else %} in-parnter__grid {% endif %}">
+  {% for item in module.partners %}
+    <div class="in-partner__img" role="group">
+      {% if item.image.src %}
+        {% set sizeAttrs = 'width="{{ item.image.width|escape_attr }}" height="{{ item.image.height|escape_attr }}"' %}
+        {% if item.image.size_type == 'auto' %}
+          {% set sizeAttrs = 'width="{{ item.image.width|escape_attr }}" height="{{ item.image.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+        {% elif item.image.size_type == 'auto_custom_max' %}
+          {% set sizeAttrs = 'width="{{ item.image.max_width|escape_attr }}" height="{{ item.image.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+        {% endif %}
+         {% set loadingAttr = item.image.loading != 'disabled' ? 'loading="{{ item.image.loading|escape_attr }}"' : '' %} 
+        <img src="{{ item.image.src|escape_url }}" alt="{{ item.image.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+      {% endif %}
+      {% if module.enable_link %}
+      {% set href = item.link.url.href %}
+      {% if item.link.url.type is equalto "EMAIL_ADDRESS" %}
+        {% set href = "mailto:" + href %}
+      {% endif %}
+      <a href="{{ href }}" class="in-partner__link"
+        {% if item.link.open_in_new_tab %}target="_blank"{% endif %}
+        {% if item.link.rel %}rel="{{ item.link.rel }}"{% endif %}
+       >
+      </a>
+     {% endif %}
+    </div>
+  {% endfor %}
+</div>
+
+{% if module.layout.select_layout == 'slider'%}
+{{ require_css('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css') }}
+{{ require_css('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css') }}
+{{ require_js('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js') }}
+
+{% require_js %} 
+<script>
+  $(document).ready(function(){
+    $('#{{name}}.in-partner__slider').slick({
+      infinite: true,
+      slidesToScroll: 1,
+      adaptiveHeight: true,
+      dots: false,
+      slidesToShow: '{{ module.slider_settings.slides_to_show.shows_on_desktop }}',
+      
+      {% if module.slider_settings.enable_arrows %}
+        arrows: true,
+      {% else %}
+        arrows: false,
+      {% endif %}
+          {% if module.slider_settings.autoplay.enable_autoplay %}       
+      'autoplay': true,
+      
+       {% if module.slider_settings.autoplay.enable_transition %}
+         cssEase: 'linear',
+         'autoplaySpeed': 0,
+         'speed': {{ module.slider_settings.autoplay.speed }},
+        {% else %}
+        'AutoplaySpeed': {{ module.slider_settings.autoplay.speed }},
+        {% endif %}
+      {% endif %}
+      
+     responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: '{{ module.slider_settings.slides_to_show.shows_on_desktop }}',
+        slidesToScroll: 1,
+      }
+    },
+    {
+      breakpoint: 900,
+      settings: {
+        slidesToShow: '{{ module.slider_settings.slides_to_show.shows_on_tab }}',
+        slidesToScroll: 1
+      }
+    },
+    {
+      breakpoint: 576,
+      settings: {
+        slidesToShow: '{{ module.slider_settings.slides_to_show.shows_on_mobile }}',
+        slidesToScroll: 1
+      }
+    }
+  ]
+    });
+  });
+</script>
+
+{% end_require_js %}
+{% endif %}

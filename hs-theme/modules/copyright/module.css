@@ -1,0 +1,19 @@
+.in-footer-copyright {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+  }
+  
+  .in-footer-copyright span,
+  .in-footer-copyright__links a {
+    display: inline-block;
+  }
+  
+  @media only screen and (max-width: 767px){
+    .in-footer-copyright {
+      text-align: center;
+      justify-content: center;
+    }
+  }
+  

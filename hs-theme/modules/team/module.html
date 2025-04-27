@@ -1,0 +1,271 @@
+{% import '../macros.html' %}
+
+<!-- Column -->
+{% if module.column_count.column_count == 'two_column' %}
+{% set columnClass = 'in-card__col-two' %}
+{% elif module.column_count.column_count == 'three_column' %}
+{% set columnClass = 'in-card__col-three' %}
+{% endif %}
+
+<!-- module css -->
+{% require_css %}
+<style>
+  {% scope_css %}
+
+  /*   slider nav and dots css */
+  .in-team .nav-btn.prev-slide {
+    content: url("{{ module.slider_arrow_image.previous_arrow.src }}");
+      }
+
+  .in-team .nav-btn.next-slide {
+    content: url("{{ module.slider_arrow_image.next_arrow.src }}");
+      }
+
+  .in-team-card__column {
+    {{ module.style.card.spacing.mobile.spacing_field.css }};
+    {% if module.style.card.background_color.overwrite_background_color %}
+    background: rgba({{ module.style.card.background_color.normal_background_color.background_color.color|convert_rgb }},{{ module.style.card.background_color.normal_background_color.background_color.opacity/100 }});
+    {% else %}
+    background-color: rgba({{theme.global_colors.primary.color|convert_rgb }},0.1);
+    {% endif %}
+    border-radius: {{ module.style.card.border_radius.radius ~ 'px' }};
+    {% if module.style.alignment_choice.mobile.text_alignment == "left"  %}
+    text-align: left;
+    {% elif module.style.alignment_choice.mobile.text_alignment == "center"  %}
+    text-align: center;
+    {% elif module.style.alignment_choice.mobile.text_alignment == "right"  %}
+    text-align: right;
+    {% endif %}
+  }
+
+  {% if module.style.alignment_choice.mobile.text_alignment == "center"  %}
+  @media (max-width: 991px) {
+    .in-team-card__column  .in-team-card__header {
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+  {% elif module.style.alignment_choice.mobile.text_alignment == "right"  %}
+  @media  (max-width: 991px) {
+    .in-team-card__column  .in-team-card__header {
+      justify-content: flex-end;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+  }
+  {% endif %}
+
+  .in-team__column {
+    {{ module.style.card.spacing.mobile.spacing_field.css }};
+  }
+
+  .in-team-card__column:hover {
+    {% if module.style.card.background_color.card_background_hover_.overwrite %}
+    background: rgba({{ module.style.card.background_color.card_background_hover_.background_color.color|convert_rgb }},{{ module.style.card.background_color.card_background_hover_.background_color.opacity/100 }});
+    {% else %}
+    background: {{ theme.global_colors.primary.color }};
+    {% endif %}
+  }
+
+  .in-team-card__column img,
+  .in-team__column img {
+    border-radius: {{ module.style.image_corners.radius ~ 'px' }};
+  }
+
+  {% if module.style.overwrite_content_color %}
+  .in-team-card__name a {
+    color: rgba({{ module.style.content_color.normal.title_color.color|convert_rgb }},{{ module.style.content_color.normal.title_color.opacity/100 }});
+  }
+
+  .in-team-card__designation,
+  .in-team-card__milestone {
+    color: rgba({{ module.style.content_color.normal.designation_milestone_text_color.color|convert_rgb }},{{ module.style.content_color.normal.designation_milestone_text_color.opacity/100 }});
+  }
+
+  .in-team-card__column:hover .in-team-card__name a {
+    color: rgba({{ module.style.content_color.hover.title_color.color|convert_rgb }},{{ module.style.content_color.hover.title_color.opacity/100 }});
+  }
+
+  .in-team-card__column:hover .in-team-card__designation,
+  .in-team-card__column:hover .in-team-card__milestone {
+    color: rgba({{ module.style.content_color.hover.designation_milestone_text_color.color|convert_rgb }},{{ module.style.content_color.hover.designation_milestone_text_color.opacity/100 }});
+  }
+
+  {% endif %}
+
+  .in-team-slider .tns-nav button,
+  .in-team-slider .tns-nav .tns-nav-active {
+    background: {{ theme.global_colors.primary.color }};
+    {% if module.style.slider_controls.dots.overwrite %}
+    background: rgba({{ module.style.slider_controls.dots.background_color.color|convert_rgb }},{{ module.style.slider_controls.dots.background_color.opacity/100 }});
+    {% endif %}
+  }
+
+  .in-team-slider .tns-controls button {
+    {% if module.style.slider_controls.arrow.overwrite_style %}
+    background-color: rgba({{ module.style.slider_controls.arrow.background_color.color|convert_rgb }},{{ module.style.slider_controls.arrow.background_color.opacity/100 }});
+    {% else %}
+    background-color: {{theme.secondary_color.color}}
+      {% endif %}
+  }
+
+  @media (min-width: 992px) {
+    .in-team-card__column {
+      {{ module.style.card.spacing.desktop.spacing_field.css }};
+      {% if module.style.alignment_choice.desktop.text_alignment == "left"  %}
+      text-align: left;
+      {% elif module.style.alignment_choice.desktop.text_alignment == "center"  %}
+      text-align: center;
+      {% elif module.style.alignment_choice.desktop.text_alignment == "right"  %}
+      text-align: right;
+      {% endif %}
+    }
+
+    {% if module.style.alignment_choice.desktop.text_alignment == "center"  %}
+    .in-team-card__column  .in-team-card__header {
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    {% elif module.style.alignment_choice.desktop.text_alignment == "right"  %}
+    .in-team-card__column  .in-team-card__header {
+      justify-content: flex-end;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    {% endif %}
+
+    .in-team__column {
+      {{ module.style.card.spacing.desktop.spacing_field.css }};
+    }
+  }
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<div id="{{name}}" class="in-team">
+  {% if module.layout_choice.select_layout =='card' %}
+  <!--   card  -->
+  <div class="in-team in-team-card">
+    <div class="in-team-card__row">
+      {% for item in module.team %}
+      <div class="in-team-card__column {{ columnClass }}">
+        {% if item.image.src %}
+        <div class="in-team-card__image">
+          {{ image(item.image) }}
+        </div>
+        {% endif %}
+        <h5 class="in-team-card__name">
+          {% set href = item.profile_link.url.href %}
+          {% if item.profile_link.url.type is equalto "EMAIL_ADDRESS" %}
+          {% set href = "mailto:" + href %}
+          {% endif %}
+          <a href="{{ href }}"
+             {% if item.profile_link.open_in_new_tab %}target="_blank"{% endif %}
+             {% if item.profile_link.rel %}rel="{{ item.profile_link.rel }}"{% endif %}
+             >
+            {{ item.member_name }}
+          </a>
+        </h5>
+        <span class="in-team-card__designation">
+          {{ item.designation }}
+        </span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% elif module.layout_choice.select_layout =='slider' %}
+  <!--   Slider Layout -->
+  <div class="in-team-slider in-team-card">
+    <div class="in-team-slider__slide tns-slider tns-carousel tns-horizontal">
+      {% for item in module.team %}
+      <div class="in-team-card__column-wrap">
+        <div class="in-team-card__column">
+          {% if item.image.src %}
+          <div class="in-team-card__image">
+            {{ image(item.image) }}
+          </div>
+          {% endif %}
+          <div class="in-team-card__header">
+            <h3 class="in-team-card__name">
+              {% set href = item.profile_link.url.href %}
+              {% if item.profile_link.url.type is equalto "EMAIL_ADDRESS" %}
+              {% set href = "mailto:" + href %}
+              {% endif %}
+              <a href="{{ href }}"
+                 {% if item.profile_link.open_in_new_tab %}target="_blank"{% endif %}
+                 {% if item.profile_link.rel %}rel="{{ item.profile_link.rel }}"{% endif %}
+                 >
+                {{ item.member_name }}
+              </a>
+            </h3>
+            <span class="in-team-card__designation">
+              {{ item.designation }}
+            </span>
+          </div>
+          <span class="in-team-card__milestone">
+            {{ item.milestone }}
+          </span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% elif module.layout_choice.select_layout =='image' %}
+  <!--   Image Layout -->
+  <div class="in-team">
+    <div class="in-team__row">
+      {% for item in module.team %}
+      <div class="in-team__column {{ columnClass }}">
+        {% if item.image.src %}
+        <div class="in-team__image">
+          {{ image(item.image) }}
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+
+{% if module.layout_choice.select_layout =='slider' %}
+<!-- module js -->
+{% require_js %}
+<script defer="defer">
+
+  var slider = tns({
+    "controls": true,
+    "lazyload": true,
+    "gutter": 60,
+    "controlsPosition": 'bottom',
+    "navPosition": 'bottom',
+    "mouseDrag": true,
+    "controlsText": ['<div class="nav-btn prev-slide" aria-label="Previous arrow"></div>','<div class="nav-btn next-slide" aria-label="Next arrow"></div>'],
+    "responsive": {
+      "0": {
+        "items": {{ module.slider_items.items_on_mobile }},
+        "controls": true
+      },
+      "768": {
+        "items": {{ module.slider_items.items_on_tablet }},
+        "controls": true
+      },
+      "992": {
+        "items": {{ module.slider_items.items_on_desktop }},
+      }
+    },
+    "container": "#{{name}} .in-team-slider__slide",
+    "speed": 700
+  }); 
+
+</script>
+{% end_require_js %}
+
+{% endif %}

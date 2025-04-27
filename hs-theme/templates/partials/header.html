@@ -1,0 +1,123 @@
+<!--
+  templateType: global_partial
+  label: Website header
+-->
+<header class="header in-header-wrap {% if theme.header.box_shadow.is_box_shadow %}in-box-shadow--enable {% endif %}">
+
+    {# The link below is used for a navigation skipper which allows users navigating the site with their keyboard to skip over the site navigation. More information on the navigation skipper can be found here: https://github.com/HubSpot/cms-theme-boilerplate/wiki/Accessibility #}
+  
+    <a href="#main-content" class="header__skip">Skip to content</a>
+  
+    {# Top header drag and drop area #}
+  
+    {% if theme.header.header_top_bar.is_header_top_bar == true %}
+    <div class="in-header__top">
+      {% dnd_area "header-top"
+        label="Top header",
+        class="content-wrapper"
+      %}
+      {% end_dnd_area %}
+    </div>
+    {% endif %}
+    {# Main header #}
+  
+    <div class="in-header header__container">
+      {% dnd_area 'header-navigation' label='Header Navigation' class="content-wrapper" %}
+        {% dnd_section 
+      padding={
+          'top': 0,
+                  'bottom': 0,
+                  'left': 0,
+                  'right': 0
+         }, 
+       vertical_alignment='MIDDLE',  
+      full_width=true
+       %}
+      {# Header logo column #}
+      {% dnd_column
+      padding={
+          'top': 0,
+                  'bottom': 0,
+                  'left': 0,
+                  'right': 0
+         },    
+          offset=0,
+          width=2
+        %}
+      {% dnd_row %}
+      {% dnd_module path='../../modules/logo'
+      logo={
+            "logo" : {
+              "alt" : "infinity-logo",
+              "height" : 56,
+              "loading" : "lazy",
+              "max_height" : 56,
+              "max_width" : 203,
+              "size_type" : "exact",
+              "src" : get_asset_url('../../images/multipurpose/infinity-logo.png'),
+              "width" : 203
+            }
+          }
+       %}
+      {% end_dnd_module %}
+      {% end_dnd_row %}
+      
+      {% end_dnd_column %}
+      {# Header navigation column #}
+      {% dnd_column
+         padding={
+          'top': 0,
+                  'bottom': 0,
+                  'left': 0,
+                  'right': 0
+         },
+          offset=2,
+          width=6,
+        %}
+      {% dnd_row %}
+      {% dnd_module path='../../modules/menu' 
+      %}
+      {% end_dnd_module %}
+      {% end_dnd_row %}
+      {% dnd_row %}
+      {% dnd_module path='../../modules/header-toggler' 
+       %}
+      {% end_dnd_module %}
+      {% end_dnd_row %}
+      {% end_dnd_column %}
+      {% dnd_column
+         padding={
+          'top': 0,
+                  'bottom': 0,
+                  'left': 0,
+                  'right': 0
+         },
+          offset=8,
+          width=4,
+        %}
+      {% dnd_row %}
+      {% dnd_module path='../../modules/header-controls',
+       %}
+      {% end_dnd_module %}
+      {% end_dnd_row %}
+      
+      {% end_dnd_column %}
+      {% end_dnd_section %}
+      {# End of with-navigation-header #}
+      {% end_dnd_area %}
+  
+    </div>
+  
+    {# Bottom header drag and drop area #}
+  {% if theme.header.header_bottom_bar.is_header_bottom_bar == true %}
+    <div class="in-header__bottom">
+        {% dnd_area "header-bottom"
+        label="Bottom header",
+        class="content-wrapper"
+      %}
+      {% end_dnd_area %}
+    </div>
+  
+   {% endif %}
+  </header>
+  

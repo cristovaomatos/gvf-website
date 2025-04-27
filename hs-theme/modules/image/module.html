@@ -1,0 +1,39 @@
+{% import '../macros.html'  %}
+
+<!-- Style -->
+{% require_css %}
+<style>
+  {% scope_css %}
+   .in-img {
+    {% if module.style.alignment.mobile_alignment =="left" %}
+     text-align: left;
+    {% elif module.style.alignment.mobile_alignment =="center" %}
+     text-align: center;
+    {% elif module.style.alignment.mobile_alignment =="right" %}
+     text-align: right;
+    {% endif %}
+  }
+  
+  .in-img img {
+    border-radius: {{ module.style.corner.radius }}px;
+  }
+  
+  @media (min-width: 992px) {
+    .in-img {
+      {% if module.style.alignment.desktop_alignment =="left" %}
+       text-align: left;
+      {% elif module.style.alignment.desktop_alignment =="center" %}
+       text-align: center;
+      {% elif module.style.alignment.desktop_alignment =="right" %}
+       text-align: right;
+      {% endif %}
+    }
+  }
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<div id="{{name}}" class="in-img">
+  {{ image(module.image) }}
+</div>
+

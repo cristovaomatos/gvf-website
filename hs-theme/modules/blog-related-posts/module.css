@@ -1,0 +1,106 @@
+.blog-related-posts>.content-wrapper>h1,
+.blog-related-posts>.content-wrapper>h2,
+.blog-related-posts>.content-wrapper>h3,
+.blog-related-posts>.content-wrapper>h4,
+.blog-related-posts>.content-wrapper>h5,
+.blog-related-posts>.content-wrapper>h6 {
+  margin-bottom: 60px;
+}
+
+.blog-related-posts__list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.blog-related-posts__post {
+  flex: 0 0 100%;
+  max-width: 100%;
+  margin-bottom: 30px;
+  transition: transform 0.2s ease-in-out;
+  padding: 20px 16px 40px;
+}
+
+.blog-related-posts__post:hover {
+  transform: scale(1.02);
+}
+
+.blog-related-posts__image {
+  border-radius: 12px;
+  height: 228px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.blog-related-posts__title {
+  margin: 15px 0;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.in-blog__author-name {
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+.blog-related-posts__btn {
+  display: inline-block;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.blog-related-posts__btn-icon {
+  display: inline-block;
+  width: 24px;
+  margin-left: 6px;
+  height: 24px;
+  right: -30px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .blog-related-posts__post {
+    max-width: calc(50% - 20px);
+  }
+
+  .blog-related-posts__post:not(:nth-child(2n)) {
+    margin-right: 30px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .blog-related-posts__post {
+    max-width: calc(33.33% - 20px);
+    margin-bottom: 0;
+  }
+
+  .blog-related-posts__post:not(:nth-child(3n)) {
+    margin-right: 30px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .blog-related-posts>.content-wrapper>h1,
+  .blog-related-posts>.content-wrapper>h2,
+  .blog-related-posts>.content-wrapper>h3,
+  .blog-related-posts>.content-wrapper>h4,
+  .blog-related-posts>.content-wrapper>h5,
+  .blog-related-posts>.content-wrapper>h6 {
+    margin-bottom: 40px;
+  }
+  
+  .blog-header__inner, 
+  .blog-related-posts {
+    padding: 50px 15px;
+  }
+  
+  .blog-header__inner .content-wrapper, 
+  .blog-related-posts .content-wrapper {
+    padding: 0;
+  }
+  
+  .blog-related-posts__post {
+    padding: 14px 14px 30px;
+  }
+}

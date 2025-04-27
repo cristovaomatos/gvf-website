@@ -1,0 +1,445 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Homepage Digital Marketing 
+  screenshotPath: ../images/template-previews/homepage-digital.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+
+{# All templates are recommended to have an h1 present for both accessibility and SEO best practice. This should be at the top of the template before any other textual content. The h1 element below is within a dnd area to allow content editors the ability to adjust the content and alignment of the text. #}
+
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--home-digital"
+%}
+
+  {# Hero banner #}
+
+  {% dnd_section
+  padding={
+    "default" : {
+      "bottom" : "0px",
+      "left" : "0px",
+      "right" : "0px",
+      "top" : "0px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12,
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    }
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/banner",
+        offset=0,
+        width=12,
+        content={
+          "content" : '<h1>We create <span style=\"color: {{theme.primary_color.color}}\">amazing</span> digital products</h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet adipiscing nam suspendisse et lobortis. Adipiscing auctor lobortis in lorem cursus cursus eget duis massa. Diam sem volutpat turpis condimentum.</p>',
+          "enable_mini_title" : false
+        },
+        image={
+          "image" : {
+            "alt" : "Flying Girl",
+            "height" : 562,
+            "loading" : "lazy",
+            "max_height" : 562,
+            "max_width" : 525,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/banner-one.png'),
+            "width" : 525
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+<!-- Partner Section  -->
+{% dnd_section
+  background_color="{{theme.global_colors.tertiary.color}}",
+  padding={
+    "default" : {
+      "bottom" : "0px",
+      "left" : "0px",
+      "right" : "0px",
+      "top" : "0px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12,
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/partner",
+        offset=0,
+        width=12,
+        partners=[ {
+          "image" : {
+            "alt" : "Logoipsum Logo",
+            "height" : 46,
+            "loading" : "lazy",
+            "max_height" : 46,
+            "max_width" : 199,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/logoipsum-logo-one.png'),
+            "width" : 199
+          },
+          "link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://logoipsum.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }, {
+          "image" : {
+            "alt" : "Logoipsum Logo",
+            "height" : 46,
+            "loading" : "lazy",
+            "max_height" : 46,
+            "max_width" : 183,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/logoipsum-logo-three.png'),
+            "width" : 183
+          },
+          "link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://logoipsum.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }, {
+          "image" : {
+            "alt" : "Logoipsum Logo",
+            "height" : 46,
+            "loading" : "lazy",
+            "max_height" : 46,
+            "max_width" : 182,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/logoipsum-logo-four.png'),
+            "width" : 182
+          },
+          "link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://logoipsum.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }, {
+          "image" : {
+            "alt" : "Logoipsum Logo",
+            "height" : 46,
+            "loading" : "lazy",
+            "max_height" : 46,
+            "max_width" : 153,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/logoipsum-logo-five.png'),
+            "width" : 153
+          },
+          "link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://logoipsum.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }, {
+          "image" : {
+            "alt" : "Logoipsum Logo",
+            "height" : 51,
+            "loading" : "lazy",
+            "max_height" : 51,
+            "max_width" : 101,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/logoipsum-logo-two.png'),
+            "width" : 101
+          },
+          "link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://logoipsum.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        } ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+<!-- Two column content and imgae section -->
+
+{% include_dnd_partial path="../sections/two-column-content-image.html" %}
+
+<!-- Services setion  -->
+{% dnd_section
+  padding={
+    "default" : {
+      "bottom" : "20px"
+    },
+    "mobile" : {
+      "top" : "50px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/title-content",
+        offset=0,
+        width=12,
+        enable_mini_title=false,
+        style={
+          "container" : {
+            "alignment" : {
+              "mobile_alignment" : " left"
+            },
+            "enable_max_width" : true
+          }
+        }
+      %}
+        {% module_attribute "content" %}
+          <h2><span style="color: {{theme.primary_color.color}}">Services</span> with which we can support you.</h2>
+        {% end_module_attribute %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+{% include_dnd_partial path="../sections/service.html" %} 
+
+<!--  Testimonial Section  -->
+{% dnd_section
+  padding={
+    "mobile" : {
+      "bottom" : "50px",
+      "top" : "50px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/testimonial",
+        offset=0,
+        width=12,
+        layout_choice={
+          "select_layout" : "slider"
+        },
+        testimonial=[ {
+          "client_image" : {
+            "alt" : "Jenny",
+            "height" : 116,
+            "loading" : "lazy",
+            "max_height" : 116,
+            "max_width" : 116,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/bessie.png'),
+            "width" : 116
+          },
+          "client_logo" : {
+            "alt" : "Logo (3)",
+            "height" : 32,
+            "loading" : "lazy",
+            "max_height" : 32,
+            "max_width" : 138,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+            "width" : 138
+          },
+          "client_name" : "Jenny Wilson",
+          "client_review" : '<p>\"I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>',
+        }, {
+          "client_image" : {
+            "alt" : "Wade Warren",
+            "height" : 116,
+            "loading" : "lazy",
+            "max_height" : 116,
+            "max_width" : 116,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/cody.png'),
+            "width" : 116
+          },
+          "client_logo" : {
+            "alt" : "Logo (3)",
+            "height" : 32,
+            "loading" : "lazy",
+            "max_height" : 32,
+            "max_width" : 138,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+            "width" : 138
+          },
+          "client_name" : "Wade Warren",
+          "client_review" : '<p>\"I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>',
+        }, {
+          "client_image" : {
+            "alt" : "Kristin Watson",
+            "height" : 116,
+            "loading" : "lazy",
+            "max_height" : 116,
+            "max_width" : 116,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/kristin.png'),
+            "width" : 116
+          },
+          "client_logo" : {
+            "alt" : "Logo (3)",
+            "height" : 32,
+            "loading" : "lazy",
+            "max_height" : 32,
+            "max_width" : 138,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+            "width" : 138
+          },
+          "client_name" : "Kristin Watson",
+          "client_review" : '<p>\"I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>',
+        }, {
+          "client_image" : {
+            "alt" : "Jacob Jones",
+            "height" : 116,
+            "loading" : "lazy",
+            "max_height" : 116,
+            "max_width" : 116,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/jacob.png'),
+            "width" : 116
+          },
+          "client_logo" : {
+            "alt" : "Logo (3)",
+            "height" : 32,
+            "loading" : "lazy",
+            "max_height" : 32,
+            "max_width" : 138,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+            "width" : 138
+          },
+          "client_name" : "Jacob Jones",
+          "client_review" : '<p>\"I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>',
+        }, {
+          "client_image" : {
+            "alt" : "Cody Fisher",
+            "height" : 116,
+            "loading" : "lazy",
+            "max_height" : 116,
+            "max_width" : 116,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/jenny.png'),
+            "width" : 116
+          },
+          "client_logo" : {
+            "alt" : "Logo (3)",
+            "height" : 32,
+            "loading" : "lazy",
+            "max_height" : 32,
+            "max_width" : 138,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+            "width" : 138
+          },
+          "client_name" : "Cody Fisher",
+          "client_review" : '<p>\"I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>',
+        } ]
+      %}
+      {% module_attribute "content" %}
+          <h2>What The <span style="color: {{theme.primary_color.color}}">People</span> Thinks About Us</h2>
+        {% end_module_attribute %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+{% dnd_section
+  padding={
+    "default" : {
+      "bottom" : "0px",
+      "left" : "0px",
+      "right" : "0px",
+      "top" : "0px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/spacer",
+        offset=0,
+        width=12,
+        style={
+          "height_desktop_" :0,
+          "height_mobile_" : 60,
+          "height_tablet_" : 60
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+<!-- Call to action section -->
+{% include_dnd_partial path="../sections/call-to-action.html" %}
+
+{% dnd_section
+  padding={
+    "default" : {
+      "bottom" : "0px",
+      "left" : "0px",
+      "right" : "0px",
+      "top" : "0px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/spacer",
+        offset=0,
+        width=12,
+        style={
+          "height_desktop_" : 80,
+          "height_mobile_" : 50,
+          "height_tablet_" : 60
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+{% end_dnd_area %}
+{% endblock body %}

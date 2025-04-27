@@ -1,0 +1,51 @@
+/* Accordion Title */
+.in-accordion__title {
+    align-items: flex-start;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0;
+  }
+  
+  .in-accordion__title h6 {
+    flex: 0 0 calc(100% - 30px);
+    max-width: calc(100% - 30px);
+  }
+  
+  .in-accordion__accordion-title h6 {
+    margin: 0;
+  }
+  
+  /* Accordion Content */
+  
+  .in-accordion__content {
+    display: none;
+    width: 100% !important;
+  }
+  
+  .in-accordion__accordion-content.in-accordion__content p {
+    margin: 0;
+  }
+  
+  /* Accordion Icon */
+  
+  .in-accordion__icon {
+    flex: 0 0 100%;
+    max-width: 15px;
+    transition: 0.3s linear all;
+  }
+  
+  .in-accordion__title.active .in-accordion__icon {
+    transition: 0.3s linear all;
+  }
+  
+  .in-accordion__title.active .in-accordion__close-icon {
+    display: block;
+  }
+  
+  .in-accordion__close-icon ,
+  .in-accordion__title.active .in-accordion__open-icon {
+    display: none;
+  }
+  

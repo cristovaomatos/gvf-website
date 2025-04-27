@@ -1,0 +1,234 @@
+<!--
+  templateType: section
+  label: Two Column with Image and Content.
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/author-detail.png
+  description: "Section separated in two columns. Left column has an image and right column has content."
+-->
+{% dnd_section
+    class="in-tab-full-width"
+    padding={
+      'mobile' : {
+        'bottom' : '50px',
+        'top' : '50px'
+      }
+    }
+  %}
+    {% dnd_column
+      offset=0,
+      width=6
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path='../modules/image',
+          image={
+            'alt' : 'author',
+            'height' : 597,
+            'loading' : 'lazy',
+            'max_height' : 597,
+            'max_width' : 406,
+            'size_type' : 'exact',
+            'src' : get_asset_url('../images/multipurpose/author-two.png'),
+            'width' : 406
+          },
+          style={
+            'alignment' : {
+              'desktop_alignment' : 'center'
+            }
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+    {% dnd_column
+      offset=6,
+      width=6
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path='../modules/title-content',
+          mini_title='MARKETING EXPERT',
+          style={
+              'mini_title' : {
+                'desktop' : {
+                  'font' : {
+                    'color' : '#030303',
+                    'fallback' : 'sans-serif',
+                    'font' : 'Inter',
+                    'font_set' : 'GOOGLE',
+                    'size' : 24,
+                    'styles' : { },
+                    'variant' : '600'
+                  }
+                },
+                'overwrite_style' : true
+            }
+          }
+        %}
+          {% module_attribute 'content' %}
+            <h2>James Cameron</h2>
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+      {% dnd_row %}
+        {% dnd_module
+          path='../modules/spacer',
+          style={
+            'height_desktop_' : 15,
+            'height_mobile_' : 15,
+            'height_tablet_' : 15
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+      {% dnd_row %}
+        {% dnd_module
+          path='../modules/icon-box',
+          compact=[ {
+            'content' : '<p><strong>Lucknow, India</strong></p>',
+            'icon_field' : {
+              'name' : 'Alternate Phone',
+              'type' : 'SOLID',
+              'unicode' : 'f879'
+            },
+            'image' : {
+              'alt' : 'location',
+              'height' : 56,
+              'loading' : 'lazy',
+              'max_height' : 56,
+              'max_width' : 56,
+              'size_type' : 'exact',
+              'src' : get_asset_url('../images/multipurpose/location.png'),
+              'width' : 56
+            }
+          }, {
+            'content' : '<p><strong>Born on 14/05/1978</strong></p>',
+            'icon_field' : {
+              'name' : 'Alternate Phone',
+              'type' : 'SOLID',
+              'unicode' : 'f879'
+            },
+            'image' : {
+              'alt' : 'cake',
+              'height' : 32,
+              'loading' : 'lazy',
+              'max_height' : 32,
+              'max_width' : 32,
+              'size_type' : 'exact',
+              'src' : get_asset_url('../images/multipurpose/cake.png'),
+              'width' : 32
+            }
+          }, {
+            'content' : '<p><strong>Worked as Senior Associate - India Fellows Program</strong></p>',
+            'icon_field' : {
+              'name' : 'Alternate Phone',
+              'type' : 'SOLID',
+              'unicode' : 'f879'
+            },
+            'image' : {
+              'alt' : 'designation',
+              'height' : 32,
+              'loading' : 'lazy',
+              'max_height' : 32,
+              'max_width' : 32,
+              'size_type' : 'exact',
+              'src' : get_asset_url('../images/multipurpose/designation.png'),
+              'width' : 32
+            }
+          } ],
+          select_image_icon='image',
+          style={
+            'compact' : {
+              'desktop_spacing' : {
+                'margin' : {
+                  'bottom' : {
+                    'units' : 'px',
+                    'value' : 10
+                  },
+                  'top' : { }
+                },
+                'padding' : {
+                  'bottom' : {
+                    'units' : 'px',
+                    'value' : 10
+                  },
+                  'left' : {
+                    'units' : 'px',
+                    'value' : 10
+                  },
+                  'right' : {
+                    'units' : 'px',
+                    'value' : 10
+                  },
+                  'top' : {
+                    'units' : 'px',
+                    'value' : 10
+                  }
+                }
+              },
+              'mobile_spacing' : {
+                'margin' : {
+                  'bottom' : {
+                    'units' : 'px',
+                    'value' : 10
+                  },
+                  'top' : { }
+                },
+                'padding' : {
+                  'bottom' : {
+                    'units' : 'px',
+                    'value' : 10
+                  },
+                  'left' : {
+                    'units' : 'px',
+                    'value' : 10
+                  },
+                  'right' : {
+                    'units' : 'px',
+                    'value' : 10
+                  },
+                  'top' : {
+                    'units' : 'px',
+                    'value' : 10
+                  }
+                }
+              }
+            },
+            'icon_box' : {
+              'background_color' : {
+                'color' : '#FBFBFB',
+                'opacity' : 0
+              }
+            }
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+      {% dnd_row %}
+        {% dnd_module
+          path='../modules/spacer',
+          offset=0,
+          width=12,
+          style={
+            'height_desktop_' : 15,
+            'height_mobile_' : 15,
+            'height_tablet_' : 15
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+      {% dnd_row %}
+        {% dnd_module
+          path='../modules/title-content',
+          offset=0,
+          width=12,
+          enable_mini_title=False
+        %}
+          {% module_attribute 'content' %}
+            <p>As the India Fellows Program Lead, Abbas manages operational and strategic aspects of the India Fellows Program, and works closely with the India Fellows Manager to build a robust and active Fellows community in India.<br>In 2014, Abbas was selected as an Acumen India Fellow, and has ever since been closely involved with the Fellows community in India.</p>
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+  

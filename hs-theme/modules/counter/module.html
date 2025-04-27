@@ -1,0 +1,205 @@
+{% @import '../macros.html' %}
+
+<!-- Style -->
+{% require_css %}
+<style>
+  {% scope_css %}
+  .in-counter__container {
+    max-width: {{ module.style.container.max_width }}px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .in-counter__row {
+    margin-top: {{ module.style.card.spacing.mobile_spacing.margin.top.value }}px;
+    row-gap: {{ module.style.card.spacing.mobile_spacing.margin.bottom.value }}px;
+  }
+
+  .in-counter__col {
+    {% if module.style.card.alignment.mobile_alignment == "left"  %}
+    text-align: left;
+    {% elif module.style.card.alignment.mobile_alignment == "center"  %}
+    text-align: center;
+    {% elif module.style.card.alignment.mobile_alignment == "right"  %}
+    text-align: right;
+    {% endif %}
+  }
+
+  .in-counter__card {
+    {% if module.enable_box_shadow %}
+    box-shadow: {% if module.box_shadow.shade.inset %} inset {% endif %} {{ module.box_shadow.shade.vertical_value }}px {{ module.box_shadow.shade.horizontal_value }}px {{ module.box_shadow.shade.blur }}px {{ module.box_shadow.shade.spread }}px rgba({{ module.box_shadow.shade.color.color | convert_rgb }},{{ module.box_shadow.shade.color.opacity }}%);
+    {% endif %}
+    background-color: rgba({{ module.style.card.background_color.color | convert_rgb }},{{ module.style.card.background_color.opacity }}%);
+    border-radius: {{ module.style.card.corner }}px;
+    padding: {{ module.style.card.spacing.mobile_spacing.padding.top.value }}px {{ module.style.card.spacing.mobile_spacing.padding.right.value }}px {{ module.style.card.spacing.mobile_spacing.padding.bottom.value }}px {{ module.style.card.spacing.mobile_spacing.padding.right.value }}px;
+  }
+
+  .in-counter__card-content {
+    text-align: left;
+  }
+
+  {% if module.style.card.overwrite_style %}
+  .in-counter__value,
+  .in-counter__unit {
+    font-family: {{ module.style.card.value.desktop.value.font }}; {{ module.style.card.value.desktop.value.style }};
+    color: {{ module.style.card.value.desktop.value.color }};
+    font-size: {{ module.style.card.value.desktop.value.size }}px;
+    line-height: 1.1;
+  }
+  {% else %} 
+  .in-counter__value,
+  .in-counter__unit {
+    color: {{theme.global_colors.primary.color}};
+  }
+  {% endif %}
+
+  {% if module.style.card.overwrite_style %}
+  .in-counter__text {
+    font-family: {{ module.style.card.text.desktop.text.font }}; {{ module.style.card.text.desktop.text.style }};
+    color: {{ module.style.card.text.desktop.text.color }};
+    font-size: {{ module.style.card.text.desktop.text.size }}px;
+    line-height: 1.5;
+  }
+  {% endif %}
+
+  @media (min-width: 768px) {
+    .in-counter__row {
+      margin-top: {{ module.style.card.spacing.desktop_spacing.margin.top.value }}px;
+      row-gap: {{ module.style.card.spacing.desktop_spacing.margin.bottom.value }}px;
+    }
+
+    .in-counter__col {
+      {% if module.style.card.alignment.desktop_alignment == "left"  %}
+      text-align: left;
+      {% elif module.style.card.alignment.desktop_alignment == "center"  %}
+      text-align: center;
+      {% elif module.style.card.alignment.desktop_alignment == "right"  %}
+      text-align: right;
+      {% endif %}
+    }
+
+    .in-counter__direction--zig-zag > .in-counter__col:nth-child(2n) {
+      {% if module.style.card.alignment.desktop_alignment == "left" %}
+      text-align: right;
+      {% elif module.style.card.alignment.desktop_alignment == "center" %}
+      text-align: center;
+      {% elif module.style.card.alignment.desktop_alignment == "right" %}
+      text-align: left;
+      {% endif %}
+    }
+
+    .in-counter__card  {
+      padding: {{ module.style.card.spacing.desktop_spacing.padding.top.value }}px {{ module.style.card.spacing.desktop_spacing.padding.right.value }}px {{ module.style.card.spacing.desktop_spacing.padding.bottom.value }}px {{ module.style.card.spacing.desktop_spacing.padding.right.value }}px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    {% if module.style.card.overwrite_style %}
+    .in-counter__value,
+    .in-counter__unit {
+      font-size: {{ module.style.card.value.mobile.font_size }}px;
+    }
+
+    .in-counter__text {
+      font-size: {{ module.style.card.text.mobile.font_size }}px;
+    }
+    {% endif %}
+  }
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+{% if module.column.select_column == 'one' %}
+{% set ColumnClass = 'in-counter__col--one' %}
+{% elif module.column.select_column == 'two' %}
+{% set ColumnClass = 'in-counter__col--two' %}
+{% elif module.column.select_column == 'three' %}
+{% set ColumnClass = 'in-counter__col--three' %}
+{% endif %}
+
+{% if module.column.select_column == 'one' %}
+
+{% if module.column_direction.select_direction == 'zig_zag'%}
+{% set DirectionClass = 'in-counter__direction--zig-zag' %}
+{% endif %}
+
+{% endif %}
+
+<div id="{{name}}" class="in-counter" role="region" aria-labelledby="{{name}}-heading">
+  <div class="in-counter__container">
+    <div class="in-counter__row {{ColumnClass}} {{DirectionClass}}">
+      {% for item in module.counter %}
+      <div class="in-counter__col">
+        <div class="in-counter__card" role="group" aria-label="Counter card for {{ item.text }}">
+          {% if item.image.src %}
+          <div class="in-counter__card-img">
+            {{ image(item.image) }}
+          </div>
+          {% endif %}
+          <div class="in-counter__card-content">
+            <div class="in-counter__wrap">
+              <h3 class="in-counter__value"
+                  id="{{name}}-counter-{{ loop.index }}"
+                  data-from="0"
+                  data-to="{{ item.value }}"
+                  role="status"
+                  aria-live="polite"
+                  aria-label="{{ item.value }} {{ item.unit }}">
+                {{ item.value }}
+              </h3>
+              <h3 class="in-counter__unit">{{ item.unit }}</h3>
+            </div>
+            <span class="in-counter__text">{{ item.text }}</span>
+          </div>
+        </div>  
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+{% require_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countto/1.1.0/jquery.countTo.min.js" integrity="sha512-ZbM86dAmjIe3nPA2k8j3G//NO/zBYNnZ8wi+yUKh8VH24CHr0aDhDHoEM4IvGl+Sz6ga7ONnGBDxS+BTVJ+K2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inview/1.0.0/jquery.inview.min.js" integrity="sha512-dy8Q+KMsxJmEgLqvZA7kk/Pcaij/OhCK1LPj+oGuxfd/tcbbqrDSGOtiXNfzKbMun+ZBnQsTWUnhuXhVkISDOA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script defer="defer">
+  $(document).ready(function() {
+    var counters = $("#{{name}} .in-counter__value");
+                     var countersQuantity = counters.length;
+                     var counter = [];
+
+    // Get final values
+    for (var i = 0; i < countersQuantity; i++) {
+      counter[i] = parseInt(counters[i].innerHTML.replace(/,/g, ""));
+    }
+
+    // Counter function
+    var count = function(value, id) {
+      var duration = 1500; // total animation time in ms
+      var steps = 60; // number of frames
+      var increment = Math.ceil(value / steps);
+      var current = 0;
+
+      var intervalId = setInterval(function() {
+        current += increment;
+        if (current >= value) {
+          current = value;
+          clearInterval(intervalId);
+        }
+        counters[id].innerHTML = current.toLocaleString(); // add comma separator
+      }, duration / steps);
+    };
+
+    // When in view, start counting
+    $('#{{name}} .in-counter__value').bind('inview', function(event, visible) {
+      if (visible) {
+      var index = counters.index(this);
+      count(counter[index], index);
+      $(this).unbind('inview');
+    }
+  });
+  });
+</script>
+{% end_require_js %}

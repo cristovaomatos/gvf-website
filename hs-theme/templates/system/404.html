@@ -1,0 +1,27 @@
+<!--
+templateType: error_page
+isAvailableForNewContent: true
+label: Infinity - 404 Error
+screenshotPath: ../../images/template-previews/404.png
+-->
+{% set template_css = '../../css/templates/system.css' %}
+{% extends '../layouts/base.html' %}
+{# pageTitle is used on system templates for setting a value for the title tag #}
+{% set pageTitle = "Error 404 | Page not found" %}
+
+{% block body %}
+<section class="error-page" data-error="404">
+  <div class="error-page__banner system-page__banner">    
+    {% if theme.system_page_setting.error_page_not_found_setting.is_error_page_not_found_banner_img %}
+    {% set loadingAttr = theme.system_page_setting.error_page_not_found_setting.error_page_not_found_banner.error_page_not_found_banner_image.loading != 'disabled' ? 'loading="{{ theme.system_page_setting.error_page_not_found_setting.error_page_not_found_banner.error_page_not_found_banner_image.loading }}"' : '' %}
+    <img src="{{ theme.system_page_setting.error_page_not_found_setting.error_page_not_found_banner.error_page_not_found_banner_image.src }}" alt="{{ theme.system_page_setting.error_page_not_found_setting.error_page_not_found_banner.error_page_not_found_banner_image.alt }}" {{ loadingAttr }}>  
+    {% endif %}
+  </div>
+  <div class="in-error__content-404">
+    {% module 'content'
+      path='@hubspot/rich_text',
+      html='<h1>Page not found.</h1><p>The page you were searching for on this URL could not be found.</p>'
+    %}
+  </div>
+</section>
+{% endblock body %}

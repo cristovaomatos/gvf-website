@@ -1,0 +1,635 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Homepage Social Media Marketing 
+  screenshotPath: ../images/template-previews/homepage-social.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+
+{# All templates are recommended to have an h1 present for both accessibility and SEO best practice. This should be at the top of the template before any other textual content. The h1 element below is within a dnd area to allow content editors the ability to adjust the content and alignment of the text. #}
+
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--home-social"
+%}
+<!-- Hero banner -->
+
+{% dnd_section
+  padding={
+    "default" : {
+      "bottom" : "0px",
+      "left" : "0px",
+      "right" : "0px",
+      "top" : "0px"
+    }
+  }
+%}
+  {% dnd_column 
+    offset=0,
+    width=12,
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    }
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/banner",
+        offset=0,
+        width=12,
+        content={
+          "button" : {
+            "enable_secondary_button" : true,
+            "secondary_button" : {
+              "type" : "filled_light"
+            }
+          },
+          "content" : '<h1>A great way for <span style="color: {{theme.global_colors.primary.color}};">social</span> marketing.</h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet adipiscing nam suspendisse et lobortis. Adipiscing auctor lobortis in lorem cursus cursus eget duis massa. Diam sem volutpat turpis condimentum.</p>',
+          "enable_mini_title" : false
+        },
+        image={
+          "image" : {
+            "alt" : "Girl",
+            "height" : 489,
+            "loading" : "lazy",
+            "max_height" : 489,
+            "max_width" : 503,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/banner-three.png'),
+            "width" : 503
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+<!--  Offer section-->
+{% dnd_section
+  padding={
+    "mobile" : {
+      "bottom" : "50px",
+      "top" : "50px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/title-content",
+        offset=0,
+        width=12,
+        enable_mini_title=false,
+        style={
+          "container" : {
+            "enable_max_width" : true
+          }
+        }
+      %}
+        {% module_attribute "content" %}
+          <h2>We <span style="color: {{theme.global_colors.primary.color}};">Offer</span> Full Social Media Marketing Services</h2>
+        {% end_module_attribute %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/spacer",
+        offset=0,
+        width=12,
+        style={
+          "height_desktop_" : 50,
+          "height_mobile_" : 60,
+          "height_tablet_" : 50
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/icon-box",
+        offset=0,
+        width=12,
+        card=[ {
+          "button" : {
+            "icon" : {
+              "name" : "Arrow Right",
+              "type" : "SOLID",
+              "unicode" : "f061"
+            },
+            "link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://www.hubspot.com/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "text" : "VIEW MORE"
+          },
+          "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi rhoncus magna aenean ac vitae interdum.&nbsp;</p>",
+          "image" : {
+            "alt" : "Dart Board",
+            "height" : 180,
+            "loading" : "lazy",
+            "max_height" : 180,
+            "max_width" : 170,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/target.png'),
+            "width" : 170
+          },
+          "title" : {
+            "icon" : {
+              "name" : "Arrow Right",
+              "type" : "SOLID",
+              "unicode" : "f061"
+            },
+            "title" : "<h4>Target Audience</h4>"
+          }
+        }, {
+          "button" : {
+            "icon" : {
+              "name" : "Arrow Right",
+              "type" : "SOLID",
+              "unicode" : "f061"
+            },
+            "link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://www.hubspot.com/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "text" : "VIEW MORE"
+          },
+          "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi rhoncus magna aenean ac vitae interdum.&nbsp;</p>",
+          "image" : {
+            "alt" : "Profits",
+            "height" : 161,
+            "loading" : "lazy",
+            "max_height" : 161,
+            "max_width" : 162,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/profits.png'),
+            "width" : 162
+          },
+          "title" : {
+            "icon" : {
+              "name" : "Arrow Right",
+              "type" : "SOLID",
+              "unicode" : "f061"
+            },
+            "title" : "<h4>Improved Profits</h4>"
+          }
+        }, {
+          "button" : {
+            "icon" : {
+              "name" : "Arrow Right",
+              "type" : "SOLID",
+              "unicode" : "f061"
+            },
+            "link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://www.hubspot.com/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "text" : "VIEW MORE"
+          },
+          "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi rhoncus magna aenean ac vitae interdum.&nbsp;</p>",
+          "image" : {
+            "alt" : "Customer Reach",
+            "height" : 171,
+            "loading" : "lazy",
+            "max_height" : 171,
+            "max_width" : 166,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/customer-reach.png'),
+            "width" : 166
+          },
+          "title" : {
+            "icon" : {
+              "name" : "Arrow Right",
+              "type" : "SOLID",
+              "unicode" : "f061"
+            },
+            "title" : "<h4>Customer Reach</h4>"
+          }
+        }, {
+          "button" : {
+            "icon" : {
+              "name" : "Arrow Right",
+              "type" : "SOLID",
+              "unicode" : "f061"
+            },
+            "link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://www.hubspot.com/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "text" : "VIEW MORE"
+          },
+          "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi rhoncus magna aenean ac vitae interdum.&nbsp;</p>",
+          "image" : {
+            "alt" : "Research Analytics",
+            "height" : 148,
+            "loading" : "lazy",
+            "max_height" : 148,
+            "max_width" : 162,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/research-analytics.png'),
+            "width" : 162
+          },
+          "title" : {
+            "icon" : {
+              "name" : "Arrow Right",
+              "type" : "SOLID",
+              "unicode" : "f061"
+            },
+            "title" : "<h4>Research Analytics</h4>"
+          }
+        } ],
+        column={
+          "select_column" : "two"
+        },
+        enable_box_shadow=true,
+        layout={
+          "select_layout" : "card"
+        },
+        enable_title_icon=false
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+<!-- Video Section  -->
+{% include_dnd_partial path="../sections/two-column-content-video.html" %}
+
+<!--  Team Section -->
+{% dnd_section
+  padding={
+    "mobile" : {
+      "bottom" : "50px",
+      "top" : "50px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/title-content",
+        offset=0,
+        width=12,
+        enable_mini_title=false,
+        style={
+          "container" : {
+            "enable_max_width" : true,
+            "max_width" : 850
+          }
+        }
+      %}
+        {% module_attribute "content" %}
+          <h2>The <span style="color: {{theme.global_colors.primary.color}};">team behind</span> Infinity are spread world around</h2>
+        {% end_module_attribute %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/spacer",
+        offset=0,
+        width=12,
+        style={
+          "height_desktop_" : 60,
+          "height_mobile_" : 50,
+          "height_tablet_" : 50
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/team",
+        offset=0,
+        width=12,
+        layout_choice={
+          "select_layout" : "slider"
+        },
+        team=[ {
+          "designation" : "CEO",
+          "image" : {
+            "alt" : "Mathew James",
+            "height" : 318,
+            "loading" : "lazy",
+            "max_height" : 318,
+            "max_width" : 357,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/mathew-james.jpg'),
+            "width" : 357
+          },
+          "member_name" : "Mathew James",
+          "milestone" : "8k Projects Done",
+          "profile_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://blog.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }, {
+          "designation" : "CEO",
+          "image" : {
+            "alt" : "Emma Jones",
+            "height" : 318,
+            "loading" : "lazy",
+            "max_height" : 318,
+            "max_width" : 357,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/emma-jones.jpg'),
+            "width" : 357
+          },
+          "member_name" : "Emma Jones",
+          "milestone" : "8k Projects Done",
+          "profile_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://blog.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }, {
+          "designation" : "CEO",
+          "image" : {
+            "alt" : "Jacob Smith",
+            "height" : 318,
+            "loading" : "lazy",
+            "max_height" : 318,
+            "max_width" : 357,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/jacob-smith.jpg'),
+            "width" : 357
+          },
+          "member_name" : "Jacob Smith",
+          "milestone" : "8k Projects Done",
+          "profile_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://blog.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }, {
+          "designation" : "CEO",
+          "image" : {
+            "alt" : "Wade Warner",
+            "height" : 318,
+            "loading" : "lazy",
+            "max_height" : 318,
+            "max_width" : 357,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/wade-warner.jpg'),
+            "width" : 357
+          },
+          "member_name" : "Wade Warner",
+          "milestone" : "8k Projects Done",
+          "profile_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://blog.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }, {
+          "designation" : "CEO",
+          "image" : {
+            "alt" : "Esther Howard",
+            "height" : 318,
+            "loading" : "lazy",
+            "max_height" : 318,
+            "max_width" : 357,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/esther-howard.jpg'),
+            "width" : 357
+          },
+          "member_name" : "Mathew James",
+          "milestone" : "8k Projects Done",
+          "profile_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://blog.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        } ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+ 
+<!--  Testimonial-section -->
+
+{% dnd_section
+  padding={
+    "mobile" : {
+      "bottom" : "50px",
+      "top" : "50px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/testimonial",
+        offset=0,
+        width=12,
+        layout_choice={
+          "select_layout" : "slider"
+        },
+        style={
+          "styles" : {
+            "background_color" : {
+              "color" : "#FEF2FF",
+              "opacity" : 100
+            }
+          }
+        },
+        testimonial=[ {
+          "client_image" : {
+            "alt" : "Jenny",
+            "height" : 116,
+            "loading" : "lazy",
+            "max_height" : 116,
+            "max_width" : 116,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/bessie.png'),
+            "width" : 116
+          },
+          "client_logo" : {
+            "alt" : "Logo (3)",
+            "height" : 32,
+            "loading" : "lazy",
+            "max_height" : 32,
+            "max_width" : 138,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+            "width" : 138
+          },
+          "client_name" : "Jenny Wilson",
+          "client_review" : '<p>\"I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>',
+        }, {
+          "client_image" : {
+            "alt" : "Wade Warren",
+            "height" : 116,
+            "loading" : "lazy",
+            "max_height" : 116,
+            "max_width" : 116,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/cody.png'),
+            "width" : 116
+          },
+          "client_logo" : {
+            "alt" : "Logo (3)",
+            "height" : 32,
+            "loading" : "lazy",
+            "max_height" : 32,
+            "max_width" : 138,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+            "width" : 138
+          },
+          "client_name" : "Wade Warren",
+          "client_review" : '<p>\"I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>',
+        }, {
+          "client_image" : {
+            "alt" : "Kristin Watson",
+            "height" : 116,
+            "loading" : "lazy",
+            "max_height" : 116,
+            "max_width" : 116,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/kristin.png'),
+            "width" : 116
+          },
+          "client_logo" : {
+            "alt" : "Logo (3)",
+            "height" : 32,
+            "loading" : "lazy",
+            "max_height" : 32,
+            "max_width" : 138,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+            "width" : 138
+          },
+          "client_name" : "Kristin Watson",
+          "client_review" : '<p>\"I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>',
+        }, {
+          "client_image" : {
+            "alt" : "Jacob Jones",
+            "height" : 116,
+            "loading" : "lazy",
+            "max_height" : 116,
+            "max_width" : 116,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/jacob.png'),
+            "width" : 116
+          },
+          "client_logo" : {
+            "alt" : "Logo (3)",
+            "height" : 32,
+            "loading" : "lazy",
+            "max_height" : 32,
+            "max_width" : 138,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+            "width" : 138
+          },
+          "client_name" : "Jacob Jones",
+          "client_review" : '<p>\"I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>',
+        }, {
+          "client_image" : {
+            "alt" : "Cody Fisher",
+            "height" : 116,
+            "loading" : "lazy",
+            "max_height" : 116,
+            "max_width" : 116,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/jenny.png'),
+            "width" : 116
+          },
+          "client_logo" : {
+            "alt" : "Logo (3)",
+            "height" : 32,
+            "loading" : "lazy",
+            "max_height" : 32,
+            "max_width" : 138,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+            "width" : 138
+          },
+          "client_name" : "Cody Fisher",
+          "client_review" : '<p>\"I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>',
+        } ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+{% dnd_section
+  padding={
+    "default" : {
+      "bottom" : "0px",
+      "left" : "0px",
+      "right" : "0px",
+      "top" : "0px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/spacer",
+        offset=0,
+        width=12,
+        style={
+          "height_desktop_" : 0,
+          "height_mobile_" : 60,
+          "height_tablet_" : 50
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+{% end_dnd_area %}
+{% endblock body %}

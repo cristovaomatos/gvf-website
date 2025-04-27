@@ -1,0 +1,273 @@
+{% @import '../macros.html'  %}
+{{ require_css('//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css') }}
+
+{% require_css %}
+<style>
+  {% scope_css %}  
+  {% if module.slider_arrow_image.arrow_type == 'image' %}
+  .in-testimonial .nav-btn.prev-slide {
+    content: url("{{ module.slider_arrow_image.previous_arrow.src }}");
+   }
+
+  .in-testimonial .nav-btn.next-slide {
+    content: url("{{ module.slider_arrow_image.next_arrow.src }}");
+   }
+  {% endif %}
+
+  {% if module.slider_arrow_image.arrow_type == 'icon' %}
+  .nav-btn.slick-arrow svg {
+    fill: rgba({{ module.style.icon.color_field.color | convert_rgb}},{{ module.style.icon.color_field.opacity }}%);
+  }
+  
+  .in-testimonial .nav-btn {
+    width: 54px;
+    height: 54px;
+  }
+  @media only screen and (min-width: 992px) {
+    .in-testimonial .next-slide {
+      right: 30px;
+    }
+  }
+  {% endif %}
+
+  .in-testimonial__client-name {
+    background: {{ theme.global_colors.primary.color }};
+  }
+
+  .in-testimonial-slider__client-profile {
+    color: {{ theme.global_colors.primary.color }};
+  }
+
+  .in-testimonial-slider__client-img,
+  .in-testimonial__image {
+    {% if module.style.client_profile.overwrite_border %}
+    border: 4px solid rgba({{ module.style.client_profile.border_color.color | convert_rgb }},{{ module.style.client_profile.border_color.opacity }}%);
+    {% else %}
+    border: 4px solid {{theme.primary_color.color}};    
+    {% endif %}
+  }
+
+  {% if module.style.overwrite_styles %}
+  .in-testimonial__review,
+  .in-testimonial__review p,
+  .in-testimonial-slider__review p,
+  .in-testimonial-slider__review {
+    {{ module.style.styles.content.typography_desktop.font.style }}; 
+    color: {{ module.style.content.typography_desktop.font.color }}; 
+    font-size: {{ module.style.content.typography_desktop.font.size }}px;
+    line-height: {{ module.style.content.typography_desktop.line_height }}px;
+  }
+
+  {% endif %}
+
+  .in-testimonial-slider__wrap,
+  .in-testimonial__column {
+    background-color: {{theme.secondary_color.color}};
+    {% if module.style.styles.overwrite_background_color %}
+    background-color: rgba({{ module.style.styles.background_color.color|convert_rgb }},{{ module.style.styles.background_color.opacity/100 }});
+    {% endif %}
+    border-radius: {{ module.style.styles.border_radius }}px;
+    {{ module.style.styles.border.border.css }};
+    {{ module.style.styles.box_spacing.mobile.spacing_field.css }};
+  }
+
+  .in-testimonial__column {
+    box-shadow: 0px 30px 50px rgba({{ module.style.styles.box_shadow_color.color|convert_rgb }},{{ module.style.styles.box_shadow_color.opacity/100 }});
+  }
+
+  .in-testimonial__client-name {
+    {% if module.style.client_name.overwrite_style %}
+    background: rgba({{ module.style.client_name.background.color|convert_rgb }},{{ module.style.client_name.background.opacity/100 }});
+    color: rgba({{ module.style.client_name.text_color.color|convert_rgb }},{{ module.style.client_name.text_color.opacity/100 }});
+    {% endif %}
+    border-radius: {{ module.style.client_name.corners ~ 'px' }};
+  }
+
+  {% if module.style.client_name.overwrite_style %}
+  .in-testimonial-slider__client-profile {
+    color: rgba({{ module.style.client_name.text_color.color | convert_rgb }},{{ module.style.client_name.text_color.opacity/100 }});
+  }
+  {% endif %}
+
+  .in-testimonial-slider__wrap {
+    {% if module.style.content_alignment.mobile.text_alignment == "left"  %}
+    text-align: left;
+    {% elif module.style.content_alignment.mobile.text_alignment == "center"  %}
+    text-align: center;
+    {% elif module.style.content_alignment.mobile.text_alignment == "right"  %}
+    text-align: right;
+    {% endif %}
+  }
+
+  .in-testimonial-slider__review {
+    {% if module.style.content_alignment.mobile.text_alignment == "left"  %}
+    margin: 30px auto 25px 0;
+    {% elif module.style.content_alignment.mobile.text_alignment == "center"  %}
+    margin: 30px auto 25px auto;
+    {% elif module.style.content_alignment.mobile.text_alignment == "right"  %}
+    margin: 30px 0 25px auto;
+    {% endif %}
+  }
+
+  @media (min-width: 992px) {
+    .in-testimonial__column {
+      {{ module.style.styles.box_spacing.desktop.spacing_field.css }};
+    }
+
+    .in-testimonial-slider__wrap {
+      {% if module.style.content_alignment.desktop.text_alignment == "left"  %}
+      text-align: left;
+      {% elif module.style.content_alignment.desktop.text_alignment == "center"  %}
+      text-align: center;
+      {% elif module.style.content_alignment.desktop.text_alignment == "right"  %}
+      text-align: right;
+      {% endif %}
+      {{ module.style.box_spacing.desktop.spacing_field.css }};
+    }
+
+    .in-testimonial-slider__review {
+      {% if module.style.content_alignment.desktop.text_alignment == "left"  %}
+      margin: 30px auto 25px 0;
+      {% elif module.style.content_alignment.desktop.text_alignment == "center"  %}
+      margin: 30px auto 25px auto;
+      {% elif module.style.content_alignment.desktop.text_alignment == "right"  %}
+      margin: 30px 0 25px auto;
+      {% endif %}
+    }
+  }
+
+  @media (max-width: 767px) {
+    .in-testimonial__review,
+    .in-testimonial__review p,
+    .in-testimonial-slider__review p,
+    .in-testimonial-slider__review {
+      font-size: {{ module.style.content.typography_mobile.font_size }}px;
+      line-height: {{ module.style.content.typography_mobile.line_height }}px;
+    }
+  }
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<!-- Testimonial -->
+<div id="{{ name }}" class="in-testimonial">
+  {% if module.layout_choice.select_layout  == 'card' %}
+  <div class="in-testimonial__row">
+    {% for item in module.testimonial %}
+    <div class="in-testimonial__column">
+      {% if item.client_image.src %}
+      <div class="in-testimonial__image">
+        {{ image(item.client_image) }}
+      </div>
+      {% endif %}
+      <div class="in-testimonial__review">
+        {{ item.client_review }}
+      </div>
+      <div class="in-testimonial__star-rating">
+        {% for item2 in item.review_rating %}
+        <div class="in-testimonial__star">
+          {{ image(item2.image_field) }}
+        </div>
+        {% endfor %}
+      </div>
+      <div class="in-testimonial__client-name">
+        {{ item.client_name }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% elif module.layout_choice.select_layout  == 'slider' %}
+  <div class="in-testimonial-slider-title">
+    {{title_content(module)}}
+  </div>
+  <div class="in-testimonial-slider">
+    {% for item in module.testimonial %}
+    <div class="in-testimonial-slider__slide">
+      <div class="in-testimonial-slider__wrap">
+        {% if item.client_image.src %}
+        <div class="in-testimonial-slider__client-img">
+          {{ image(item.client_image) }}
+        </div>
+        {% endif %}
+        <div class="in-testimonial-slider__review">
+          {{ item.client_review }}
+        </div>
+        <div class="in-testimonial-slider__client-profile">
+          {{ item.client_name }}
+        </div>
+        {% if item.client_logo.src %}
+        <div class="in-testimonial-slider__logo">
+          {{ image(item.client_logo) }}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+
+<!-- Module JS -->
+
+{% if module.layout_choice.select_layout  == 'slider' %}
+{{ require_js('//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js') }}
+{% require_js %}
+<script defer="defer">
+  $('#{{name}} .in-testimonial-slider').slick({
+    infinite: true,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    arrows: true,
+    autoplay: false,
+    centerMode: true,
+    centerPadding: '15%',
+    autoplaySpeed: 2000,
+    {% if module.slider_arrow_image.arrow_type == 'image' %}
+    prevArrow:`<div class="nav-btn prev-slide"></div>`,
+    nextArrow: `<div class="nav-btn next-slide"></div>`,
+    {% else %}
+    prevArrow:`<div class="nav-btn prev-slide">{% icon
+	      name="{{ module.slider_arrow_image.previous_icon.name }}"
+	      style="{{ module.slider_arrow_image.previous_icon.type }}"
+	      unicode="{{ module.slider_arrow_image.previous_icon.unicode }}"
+	      icon_set="{{ module.slider_arrow_image.previous_icon.icon_set }}"
+      %}</div>`,
+    nextArrow: `<div class="nav-btn next-slide">{% icon
+	      name="{{ module.slider_arrow_image.next_icon.name }}"
+	      style="{{ module.slider_arrow_image.next_icon.type }}"
+	      unicode="{{ module.slider_arrow_image.next_icon.unicode }}"
+	      icon_set="{{ module.slider_arrow_image.next_icon.icon_set }}"
+      %}</div>`,
+    {% endif %}
+    responsive: [
+      {
+        breakpoint: 1400,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerPadding: '12%',
+        }
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerPadding: '12%',
+        }
+      },
+      {
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: false,
+          centerPadding: 0,
+        }
+      }
+    ],
+  });
+</script>
+{% end_require_js %}
+
+{% endif %}

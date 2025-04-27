@@ -1,0 +1,27 @@
+<!-- Module Style -->
+{% require_css %}
+<style>
+{% scope_css %}
+  .in-spacer {
+    height: {{ module.style.height_mobile_ }}px;
+    background-color: rgba({{ module.style.background_color.color|convert_rgb }},{{ module.style.background_color.opacity }}%)
+  }
+
+  @media (min-width: 768px) {
+    .in-spacer {
+      height: {{  module.style.height_tablet_ }}px;      
+    }
+  }
+  
+  @media  (min-width: 992px) {
+    .in-spacer {
+      height: {{ module.style.height_desktop_ }}px;
+    }
+  }
+{% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<!-- Spacer -->
+<div id="{{name}}" class="in-spacer">
+</div>

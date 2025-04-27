@@ -1,0 +1,69 @@
+<!-- Style -->
+
+{% require_css %}
+  <style>
+    {% scope_css %}
+      {% if module.style.overwrite_style %}
+        .in-footer__menu-heading>h6 {
+          color: rgba({{ module.style.title_color.color | convert_rgb }},{{ module.style.title_color.opacity }}%);
+        }
+    
+        .in-footer__link .menu__link {
+          color: rgba({{ module.style.menu_link_color.color | convert_rgb }},{{ module.style.menu_link_color.opacity }}%);
+        }
+    
+        .in-footer__link .menu__link:hover,
+        .in-footer__link .menu__link:focus,
+        .in-footer__link .menu__link:active {
+          color: rgba({{ module.style.menu_link_color_on_hover.color | convert_rgb }},{{ module.style.menu_link_color_on_hover.opacity }}%);
+        }
+      {% endif %}
+     
+    {% end_scope_css %}
+  </style>
+{% end_require_css %}
+
+
+{% macro menu_items() %}
+{% set menu = menu(module.menu, 'site_root').children %}
+
+{% macro render_link_item(link, depth) %}
+<li class="menu__item menu__item--depth-{{ depth }} {{ 'menu__item--has-submenu' if link.children && depth < module.max_levels }} hs-skip-lang-url-rewrite">
+  {% if link.url %}
+  <a class="menu__link {{ 'menu__link--toggle' if link.children && depth < module.max_levels }} {{ 'menu__link--active-branch' if link.activeBranch }} {{ 'menu__link--active-link' if link.activeNode }}" href="{{ link.url }}" {{ 'aria-haspopup="true" aria-expanded="false"' if link.children && depth < module.max_levels }} {{ 'aria-current="page"' if link.activeNode }} {{ 'target="_blank" rel="noopener"' if link.linkTarget }}>{{ link.label }}</a>
+  {% else %}
+  <span class="menu__link">{{ link.label }}</span>
+  {% endif %}
+  {% if link.children %}
+  {% if depth && depth < module.max_levels %}
+    <ul class="menu__submenu menu__submenu--level-{{ depth + 1 }} no-list">
+      {% set depth = depth + 1 %}
+      {% for sublink in link.children %}
+      {{ render_link_item(sublink, depth) }}
+      {% endfor %}
+    </ul>
+  {% endif %}
+  {% endif %}
+</li>
+{% endmacro %}
+
+{% for link in menu %}
+{{ render_link_item(link, 1) }}
+{% endfor %}
+
+{% endmacro %}
+
+<div class="in-footer__link">
+  <div class="in-footer__menu-heading">
+    <h3 id="{{ name }}-heading">{{ module.title }}</h3>
+  </div>
+  <div class="in-footer__link-wrap">
+    <nav class="menu" aria-labelledby="{{ name }}-heading">
+      <ul class="menu__wrapper no-list">
+        {{ menu_items() }}
+      </ul>
+    </nav>
+  </div>
+</div>
+
+

@@ -1,0 +1,80 @@
+<!-- Module styles -->
+{% require_css %}
+<style>
+  {% scope_css %}
+
+  {% if module.styles.background.enable %}
+  .in-social-icon.no-list li a {
+    background-color: rgba({{ module.styles.background.background_color.color.color|convert_rgb }},{{ module.styles.background.background_color.color.opacity/100 }});
+    border-radius: {{ module.styles.corner.radius ~ 'px' }};
+  }
+
+  .in-social-icon.no-list li a {
+    height: 45px;
+    line-height: 60px;
+    width: 45px;
+  }
+  {% endif %}
+
+  .in-social-icon li a svg {
+    fill: {{ theme.global_colors.primary.color }};
+    {% if module.styles.fill.overwrite %}
+    fill: rgba({{ module.styles.fill.color.color|convert_rgb }},{{ module.styles.fill.color.opacity/100 }});
+    {% endif %}
+  }
+
+  .in-social-icon {
+    {% if module.styles.alignment.alignment_mobile.horizontal_align %}
+    {% if module.styles.alignment.alignment_mobile.horizontal_align == 'LEFT' %}
+    justify-content: flex-start;
+    text-align: left;
+    {% elif module.styles.alignment.alignment_mobile.horizontal_align == 'CENTER' %}
+    justify-content: center;
+    text-align: center;
+    {% elif module.styles.alignment.alignment_mobile.horizontal_align == 'RIGHT' %}
+    justify-content: flex-end;
+    text-align: right;
+    {% endif %}
+    {% endif %}
+  }
+
+  @media  (min-width: 992px) {
+    .in-social-icon {
+      {% if module.styles.alignment.alignment.horizontal_align %}
+      {% if module.styles.alignment.alignment.horizontal_align == 'LEFT' %}
+      justify-content: flex-start;
+      text-align: left;
+      {% elif module.styles.alignment.alignment.horizontal_align == 'CENTER' %}
+      justify-content: center;
+      text-align: center;
+      {% else module.styles.alignment.alignment.horizontal_align == 'RIGHT' %}
+      justify-content: flex-end;
+      text-align: right;
+      {% endif %}
+      {% endif %}
+    }
+  }
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<!-- Social links -->
+<div class="in-social-follow">
+  <ul class="in-social-icon no-list">
+    {% for item in module.social_icons %}
+    <li>
+      {% set href = item.social_link.url.href %}
+      {% if item.social_link.url.type is equalto "EMAIL_ADDRESS" %}
+      {% set href = "mailto:" + href %}
+      {% endif %}
+      <a href="{{ href }}" aria-label="{{ item.social_icon.name }}"
+         {% if item.social_link.open_in_new_tab %}target="_blank"{% endif %}
+         {% if item.social_link.rel %}rel="{{ item.social_link.rel }}"{% endif %}
+         >
+        {% icon name="{{ item.social_icon.name }}" style="{{ item.social_icon.type }}" unicode="{{ item.social_icon.unicode }}" icon_set="{{ item.social_icon.icon_set }}" %}
+      </a>
+      {% endfor %}
+  </ul>
+</div>
+
+

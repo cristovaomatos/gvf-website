@@ -1,0 +1,254 @@
+{% @import '../macros.html'  %}
+
+{% require_css %}
+ <style>
+{% scope_css %}
+  .in-icon-box__col {
+    background-color: rgba({{ module.style.icon_box.background_color.color | convert_rgb }},{{ module.style.icon_box.background_color.opacity }}%);
+    border-radius: {{ module.style.icon_box.corner }}px;
+  }
+  
+  {% if module.enable_box_shadow %}
+    .in-icon-box__col:hover {
+        box-shadow:  {% if module.box_shadow.shade.inset %} inset {% endif %} {{ module.box_shadow.shade.vertical_value }}px {{ module.box_shadow.shade.horizontal_value }}px {{ module.box_shadow.shade.blur }}px {{ module.box_shadow.shade.spread }}px rgba({{ module.box_shadow.shade.color.color | convert_rgb }},{{ module.box_shadow.shade.color.opacity }}%);
+    }
+   {% endif %}
+  
+  .in-icon-box__col-card {
+    {{ module.style.card.mobile_spacing.css }};
+  }
+   
+   {% if module.enable_title_icon %}  
+     .in-icon-box__title {
+        padding-right: 40px;
+        display: inline-block;
+        position: relative;
+     }
+
+     .in-icon-box__title-icon svg path {
+        fill: {{ theme.global_colors.heading.color }};
+      }
+   {% endif %}
+  
+ 
+  
+  {% if module.enable_image == 'false' %}
+  .in-icon-box__col-card {
+    {% if module.style.card.alignment.mobile_alignment == 'left' %}
+    text-align: left;
+    {% elif module.style.card.alignment.mobile_alignment == 'center' %}
+    text-align: center;
+    {% elif module.style.card.alignment.mobile_alignment == 'right' %}
+    text-align: right;
+    {% endif %}
+  }
+  {% endif %}
+  
+  {% if module.style.icon_box.content_color.overwrite_color %}
+  .in-icon-box h2,
+  .in-icon-box h3,
+  .in-icon-box h4,
+  .in-icon-box h5,
+  .in-icon-box h6 {
+    color: rgba({{ module.style.icon_box.content_color.title.color | convert_rgb }},{{ module.style.icon_box.content_color.title.opacity }}%);
+  }
+  
+  .in-icon-box__title-icon svg path {
+    fill: rgba({{ module.style.icon_box.content_color.title.color | convert_rgb }},{{ module.style.icon_box.content_color.title.opacity }}%);
+  }
+  
+  .in-icon-box__content p {
+    color: rgba({{ module.style.icon_box.content_color.description.color | convert_rgb }},{{ module.style.icon_box.content_color.description.opacity }}%);
+  }
+  {% endif %}
+  
+  .in-icon-box__btn-wrap svg path,
+  .in-icon-box__compact-icon svg path {
+    fill: {{ theme.global_colors.primary.color }};
+  } 
+   
+  .in-icon-box__btn {
+     color: {{theme.primary_color.color }}
+   }
+  
+  {% if module.style.card.button.overwrite_color %}
+    .in-icon-box__btn {
+      color: rgba({{ module.style.card.button.text_color.color | convert_rgb }},{{ module.style.card.button.text_color.opacity }}%);
+    }
+  
+    .in-icon-box__btn-wrap svg path {
+      fill: rgba({{ module.style.card.button.text_color.color | convert_rgb }},{{ module.style.card.button.text_color.opacity }}%);
+    }
+  {% endif %}
+   
+  .in-icon-box__col-compact.in-img {
+     grid-template-columns: {{ module.style.compact.image_max_width }}px auto;
+  }
+  
+  .in-icon-box__col-compact {
+    {{ module.style.compact.mobile_spacing.css }};
+  }
+  
+  {% if module.style.compact.icon.overwrite_icon_color %}
+    .in-icon-box__compact-icon svg path {
+      fill: rgba({{ module.style.compact.icon.icon_color.color | convert_rgb }},{{ module.style.compact.icon.icon_color.opacity }}%);
+    }
+  {% endif %}
+  
+  .in-icon-box__col-compact .in-icon-box__content p {
+    margin-bottom: 0;
+  }
+  
+  @media (min-width: 992px) {
+     {% if module.style.card.image_position == "top" %}
+      .in-icon-box__img {
+        top: 20px;
+        text-align: right;
+      }
+
+      {% elif module.style.card.image_position == "bottom" %}
+      .in-icon-box__img {
+        bottom: 10px;
+      }
+      {% endif %}
+    
+    {% if module.enable_image %}
+      .in-icon-box__col-card {
+        column-gap: 10px;
+        grid-auto-flow: unset;
+        grid-template-columns: 65% 35%;
+        row-gap: unset;
+      }
+    {% endif %}
+    
+    .in-icon-box__col-card {
+      {{ module.style.card.desktop_spacing.css }};
+    }
+    
+    .in-icon-box__col-compact {
+      {{ module.style.compact.desktop_spacing.css }};
+    }
+  }
+  
+  @media (min-width: 768px) {
+     {% if module.enable_image == 'false' %}
+      .in-icon-box__col-card {
+        {% if module.style.card.alignment.desktop_alignment == 'left' %}
+        text-align: left;
+        {% elif module.style.card.alignment.desktop_alignment == 'center' %}
+        text-align: center;
+        {% elif module.style.card.alignment.desktop_alignment == 'right' %}
+        text-align: right;
+        {% endif %}
+      }
+      {% endif %}
+  }
+  
+  @media (max-width: 767px) {
+    .in-icon-box__col:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+{% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<!-- Layout -->
+{% if module.layout.select_layout == 'card' %}
+{% set layoutClass = 'in-icon-box__card' %}
+{% elif module.layout.select_layout == 'compact' %}
+{% set layoutClass = 'in-icon-box__compact' %}
+{% endif %}
+
+<!-- Column -->
+{% if  module.column.select_column == 'one' %}
+{% set ColumnClass = 'in-icon-box__col--one' %}
+{% elif module.column.select_column == 'two' %}
+{% set ColumnClass = 'in-icon-box__col--two' %}
+{% elif module.column.select_column == 'three' %}
+{% set ColumnClass = 'in-icon-box__col--three' %}
+{% endif %}
+
+<!-- Image Icon -->
+{% if module.select_image_icon  == 'icon' %}
+{% set ImgClass = 'in-icon' %}
+{% elif module.select_image_icon == 'image' %}
+{% set ImgClass = 'in-img' %}
+{% endif %}
+
+<div id="{{name}}" class="in-icon-box {{layoutClass}} {{ColumnClass}}" role="region" aria-label="Icon Box Section">
+  <div class="in-icon-box__container">
+    <div class="in-icon-box__row">
+      {% if module.layout.select_layout == 'card' %}
+        {% for item in module.card %}
+          <div class="in-icon-box__col in-icon-box__col-card" role="group" aria-labelledby="icon-box-title-{{ loop.index }}">
+            <div class="in-icon-box__content">
+              <div class="in-icon-box__title" id="icon-box-title-{{ loop.index }}">
+                {{ item.title.title }}
+                {% if module.enable_title_icon %}
+                  <span class="in-icon-box__title-icon" aria-hidden="true">
+                    {% icon
+                      name="{{ item.title.icon.name }}"
+                      style="{{ item.title.icon.type }}"
+                      unicode="{{ item.title.icon.unicode }}"
+                      icon_set="{{ item.title.icon.icon_set }}"
+                    %}
+                  </span>
+                {% endif %}
+              </div>
+              {{ item.description }}
+              {% if module.enable_button %}
+                <div class="in-icon-box__btn-wrap">
+                  {% set href = item.button.link.url.href %}
+                  {% if item.button.link.url.type is equalto "EMAIL_ADDRESS" %}
+                    {% set href = "mailto:" + href %}
+                  {% endif %}
+                  <a href="{{ href }}" class="in-icon-box__btn"
+                     {% if item.button.link.open_in_new_tab %}target="_blank"{% endif %}
+                     {% if item.button.link.rel %}rel="{{ item.button.link.rel }}"{% endif %}
+                     aria-label="{{ item.button.text }}">
+                    {{ item.button.text }}
+                    <span class="in-icon-box__btn-icon" aria-hidden="true">
+                      {% icon
+                        name="{{ item.button.icon.name }}"
+                        style="{{ item.button.icon.type }}"
+                        unicode="{{ item.button.icon.unicode }}"
+                        icon_set="{{ item.button.icon.icon_set }}"
+                      %}
+                    </span>
+                  </a>
+                </div>
+              {% endif %}
+            </div>
+            {% if module.enable_image %}
+              <div class="in-icon-box__img" aria-hidden="true">
+                {{ image(item.image) }}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% elif module.layout.select_layout == 'compact' %}
+        {% for item in module.compact %}
+          <div class="in-icon-box__col in-icon-box__col-compact {{ImgClass}}" role="group" aria-label="Icon item {{ loop.index }}">
+            <span class="in-icon-box__compact-icon" aria-hidden="true">
+              {% if module.select_image_icon == 'icon' %}
+                {% icon
+                  name="{{ item.icon.name }}"
+                  style="{{ item.icon.type }}"
+                  unicode="{{ item.icon.unicode }}"
+                  icon_set="{{ item.icon.icon_set }}"
+                %}
+              {% elif module.select_image_icon == 'image' %}
+                {{ image(item.image) }}
+              {% endif %}
+            </span>
+            <div class="in-icon-box__content">
+              {{ item.content }}
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>

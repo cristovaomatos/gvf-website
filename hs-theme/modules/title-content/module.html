@@ -1,0 +1,159 @@
+{% import '../macros.html' %}
+
+<!-- Style -->
+{% require_css %}
+<style>
+  {% scope_css %}
+  .in-tc {
+      {{ module.style.container.spacing.desktop_spacing.css }};
+      {% if module.style.container.enable_max_width %}
+         max-width: {{ module.style.container.max_width }}px;
+        {% if module.style.alignment.desktop_alignment == 'left' %}
+          margin-left: unset;
+          margin-right: auto;
+          {% elif module.style.alignment.desktop_alignment == 'center' %}
+          margin-left: auto;
+          margin-right: auto;
+          {% elif module.style.alignment.desktop_alignment == 'right' %}
+          margin-left: auto;
+          margin-right: unset;
+        {% endif %}
+      {% endif %}
+    
+      {% if module.style.alignment.desktop_alignment == 'left' %}
+      text-align: left;
+      {% elif module.style.alignment.desktop_alignment == 'center' %}
+      text-align: center;
+      {% elif module.style.alignment.desktop_alignment == 'right' %}
+      text-align: right;
+      {% endif %}
+    }    
+  
+  .in-tc {
+    background-color: rgba({{ module.style.container.background_color.color | convert_rgb }},{{ module.style.container.background_color.opacity }}%);
+    border-radius: {{ module.style.container.corner }}px;
+  }
+
+  {% if module.style.title.overwrite_style %}
+  .in-tc__content h1,
+  .in-tc__content h2,
+  .in-tc__content h3,
+  .in-tc__content h4,
+  .in-tc__content h5,
+  .in-tc__content h6 {
+    font-family: {{ module.style.title.desktop.font.font }}; 
+    {{ module.style.title.desktop.font.style }}; 
+    color: {{ module.style.title.desktop.font.color }};
+    font-size: {{ module.style.title.desktop.font.size }}px;
+    line-height: {{ module.style.title.desktop.line_height }}px;
+  }
+  {% endif %}
+  
+  {% if module.style.mini_title.overwrite_style %}
+  .in-tc__mini-title {
+    font-family: {{ module.style.mini_title.desktop.font.font }}; 
+    {{ module.style.mini_title.desktop.font.style }}; 
+    color: {{ module.style.mini_title.desktop.font.color }};
+    font-size: {{ module.style.mini_title.desktop.font.size }}px;
+    line-height: {{ module.style.mini_title.desktop.line_height }}px;
+  }
+  {% endif %}
+
+  {% if module.style.desc.overwrite_style %}
+  .in-tc__content p {
+    font-family: {{ module.style.desc.desktop.font.font }}; 
+    {{ module.style.desc.desktop.font.style }}; 
+    color: {{ module.style.desc.desktop.font.color }};
+    font-size: {{ module.style.desc.desktop.font.size }}px;
+    line-height: {{ module.style.desc.desktop.line_height }}px;
+  }
+  {% endif %}
+  
+  {% if module.button.enable_secondary_button %}
+    .in-tc__btn-wrap .in-btn:first-child {
+      margin-right: 15px;
+    }
+  {% endif %}
+  
+  {% if module.button.enable_primary_button =='true' ||  module.button.enable_secondary_button =='true' %}
+  .in-tc__content {
+    margin-bottom: 30px;
+  }
+  {% endif %}
+
+  
+
+  @media (max-width: 767px) {
+    .in-tc {
+      {{ module.style.container.spacing.mobile_spacing.css }};
+    }
+    
+    {% if module.style.title.overwrite_style %}
+    .in-tc__content h1,
+    .in-tc__content h2,
+    .in-tc__content h3,
+    .in-tc__content h4,
+    .in-tc__content h5,
+    .in-tc__content h6 {
+      font-size: {{ module.style.title.mobile.font_size }}px;
+      line-height: {{ module.style.title.mobile.line_height }}px;
+    }
+    {% endif %}
+    
+    {% if module.style.mini_title.overwrite_style %}
+    .in-tc__mini-title {
+      font-size: {{ module.style.mini_title.mobile.font_size }}px;
+      line-height: {{ module.style.mini_title.mobile.line_height }}px;
+    }
+    {% endif %}
+
+    {% if module.style.desc.overwrite_style %}
+    .in-tc__content p {
+      font-size: {{ module.style.desc.mobile.font_size }}px;
+      line-height: {{ module.style.desc.mobile.line_height }}px;
+    }
+    {% endif %}
+  }
+  
+  @media (max-width: 576px) {
+    {% if module.button.enable_secondary_button %}
+      .in-tc__btn-wrap .in-btn:first-child {
+        margin-right: 0px;
+        margin-bottom: 20px;
+      }
+    {% endif %}
+  }
+  {% end_scope_css %}
+
+ @media (max-width: 992px) {
+  body:not(.hubspot-disable-focus-styles) #{{name}} .in-tc {
+    {% if module.style.container.enable_max_width %}
+    {% if module.style.alignment.mobile_alignment == 'left' %}
+    margin-right: auto;
+    margin-left: unset;
+    {% elif module.style.alignment.mobile_alignment == 'center' %}
+     margin-right: auto;
+    margin-left: auto;
+    {% elif module.style.alignment.mobile_alignment == 'right' %}
+    margin-right: unset;
+    margin-left: auto;
+    {% endif %}
+    {% endif %}
+
+    {% if module.style.alignment.mobile_alignment == 'left' %}
+    text-align: left;
+    {% elif module.style.alignment.mobile_alignment == 'center' %}
+    text-align: center;
+    {% elif module.style.alignment.mobile_alignment == 'right' %}
+    text-align: right;
+    {% endif %}
+    }
+  }
+</style>
+{% end_require_css %}
+
+<!-- Title Content -->
+<div id="{{name}}">
+  {{title_content(module)}}
+</div>
+

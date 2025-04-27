@@ -1,0 +1,102 @@
+{% set blog = module.blog %}
+{% set contents = blog_recent_posts(blog, 3 ) %}
+
+{% require_css %}
+<style>
+  {% scope_css %}
+  .in-blog-grid__column {
+    background-color: rgba({{ module.style.card.background_color.color.color | convert_rgb }},{{ module.style.card.background_color.color.opacity }}%);
+  }
+
+  .in-blog-grid__column:hover {
+    box-shadow: 0 30px 50px rgba({{ module.style.card.box_shadow_color.color | convert_rgb }},{{ module.style.card.box_shadow_color.opacity }}%);
+  }
+
+  .in-blog-grid__column,
+  .in-blog-grid__column img {
+    border-radius: {{ module.style.card.corner.radius }}px;
+  }
+
+  .in-blog-grid__title,
+  .in-blog-grid__title a {
+    color: rgba({{ module.style.title_color.color | convert_rgb}},{{ module.style.title_color.opacity }}%);
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 24px;
+  }
+
+  .in-blog-grid__btn {
+    color: {{theme.global_colors.primary.color}};
+    {% if module.style.button.overwrite %}
+    color: rgba({{ module.style.button.text_color.color | convert_rgb}},{{ module.style.button.text_color.opacity }}%);
+    {% endif %}
+  }
+
+  .in-blog-grid__author-detail a {
+    color: {{ theme.typography.body_text.desktop.font.color }};
+  }
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<div class="in-blog-grid">
+  <div class="in-blog-grid__row">
+    {% for content in contents|sort(false, false, 'updated') %}
+    <div class="in-blog-grid__column">
+      <div class="in-blog-grid__img">
+
+        <img 
+             src="{{ content.featured_image }}"  
+             alt="{{ content.name | escape }}" 
+             width="370" 
+             height="260" 
+             loading="lazy">
+
+      </div>
+      <div class="in-blog-grid__content">
+        <h5 class="in-blog-grid__title">
+          <a href="{{ content.absolute_url }}" aria-label="View post titled {{ content.name }}">{{ content.name }}</a>
+        </h5>
+
+        <div class="in-blog-grid__author">
+          <div class="in-blog-grid__author-detail">
+            <span class="in-blog-grid__author--name">
+              {{ module.author_text }}
+              <a href="{{ blog_author_url(group.id, content.blog_post_author.slug) }}" 
+                 aria-label="View all posts by {{ content.blog_post_author.display_name }}">
+                {{ content.blog_post_author.display_name }}
+              </a>
+            </span>
+            <span class="in-blog-grid__blog--date">
+              <time datetime="{{ content.publish_date_local_time|datetimeformat('%Y-%m-%d') }}">
+                {{ datetimeformat(content.publish_date_local_time, '%e %B %Y') }}
+              </time>
+            </span>
+          </div>
+        </div>
+
+        <div class="in-blog-grid__description">
+          {% if module.content_type == 'description' %}
+          {{ content.post_body | truncatehtml(100) }}
+          {% else %}
+          {{ content.meta_description | truncatehtml(100) }}
+          {% endif %}
+        </div>
+
+        <a href="{{ content.absolute_url }}" 
+           class="in-blog-grid__btn" 
+           aria-label="Read full post: {{ content.name }}">
+          {{ module.button_text }}
+          <span class="in-blog-grid__btn-icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 16H27" stroke="{{theme.global_colors.primary.color}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18 7L27 16L18 25" stroke="{{theme.global_colors.primary.color}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+

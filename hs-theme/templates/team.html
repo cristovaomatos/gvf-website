@@ -1,0 +1,414 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: false
+  label: Team
+  screenshotPath: ../images/template-previews/team.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--team"
+%}
+
+<!--Banner Section  -->
+{% dnd_section
+ full_width=true,
+  padding={
+    "default" : {
+      "bottom" : "0px",
+      "left" : "0px",
+      "right" : "0px",
+      "top" : "0px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12,
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    }
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/banner",
+        offset=0,
+        width=12,
+        button_breadcrumb_choice={
+          "select" : "breadcrumb"
+        },
+        content={
+          "content" : "<h1>Our Best People</h1>",
+          "enable_mini_title" : true,
+          "mini_title" : "TEAMS"
+        },
+        layout={
+          "select_layout" : "background_image"
+        },
+        style={
+          "background_image" : {
+            "image" : {
+              "background_position" : "MIDDLE_CENTER",
+              "background_size" : "cover",
+              "src" : get_asset_url('../images/multipurpose/banner-eleven.jpg')
+            }
+          },
+          "breadcrumb" : {
+            "overwrite_style" : true
+          },
+          "content" : {
+            "color" : {
+              "description" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              },
+              "mini_title" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              },
+              "title" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              }
+            },
+            "overwrite_content_color" : true
+          },
+          "spacing" : {
+            "desktop_spacing" : {
+              "margin" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 0
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 0
+                }
+              },
+              "padding" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 85
+                },
+                "left" : {
+                  "units" : "px",
+                  "value" : 15
+                },
+                "right" : {
+                  "units" : "px",
+                  "value" : 15
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 85
+                }
+              }
+            },
+            "mobile_spacing" : {
+              "margin" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 0
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 0
+                }
+              },
+              "padding" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 50
+                },
+                "left" : {
+                  "units" : "px",
+                  "value" : 15
+                },
+                "right" : {
+                  "units" : "px",
+                  "value" : 15
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 50
+                }
+              }
+            }
+          }
+        },
+        breadcrumbs={
+          "current" : {
+            "page_name" : "Team"
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+<!-- Team Listing  -->
+{% dnd_section
+  padding={
+    "mobile" : {
+      "bottom" : "50px",
+      "top" : "50px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/title-content",
+        offset=0,
+        width=12,
+        mini_title="OUR TEAM",
+        style={
+          "container" : {
+            "enable_max_width" : true
+          },
+            "alignment" : {
+              "desktop_alignment" : "center"
+          }
+        }
+      %}
+        {% module_attribute "content" %}
+          <h2>Our Helping Hand</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Leo nec felis at pellentesque. Sed amet dolor penatibus sed at posuere justo, lacinia neque.</p>
+        {% end_module_attribute %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/spacer",
+        offset=0,
+        width=12,
+        style={
+          "height_desktop_" : 60,
+          "height_mobile_" : 50,
+          "height_tablet_" : 50
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/team",
+        offset=0,
+        width=12,
+        team=[ {
+          "designation" : "Marketing manager",
+          "image" : {
+            "alt" : "Guy Hawkins",
+            "height" : 318,
+            "loading" : "lazy",
+            "max_height" : 318,
+            "max_width" : 357,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/guy-hawkins.jpg'),
+            "width" : 357
+          },
+          "member_name" : "Guy Hawkins",
+          "milestone" : "8k Projects Done",
+          "profile_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://blog.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }, {
+          "designation" : "Marketing coordinator",
+          "image" : {
+            "alt" : "Ralph Edwards",
+            "height" : 318,
+            "loading" : "lazy",
+            "max_height" : 318,
+            "max_width" : 357,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/ralph-edward.jpg'),
+            "width" : 357
+          },
+          "member_name" : "Ralph Edwards",
+          "milestone" : "8k Projects Done",
+          "profile_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://blog.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }, {
+          "designation" : "Marketing specialist",
+          "image" : {
+            "alt" : "Leslie Alexander",
+            "height" : 318,
+            "loading" : "lazy",
+            "max_height" : 318,
+            "max_width" : 357,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/leslie.jpg'),
+            "width" : 357
+          },
+          "member_name" : "Leslie Alexander",
+          "milestone" : "8k Projects Done",
+          "profile_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://blog.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }, {
+          "designation" : "Marketing and promotions manager",
+          "image" : {
+            "alt" : "Brian Tromp",
+            "height" : 318,
+            "loading" : "lazy",
+            "max_height" : 318,
+            "max_width" : 357,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/brain.png'),
+            "width" : 357
+          },
+          "member_name" : "Brian Tromp",
+          "milestone" : "8k Projects Done",
+          "profile_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://blog.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }, {
+          "designation" : "Project manager",
+          "image" : {
+            "alt" : "Robert Fox",
+            "height" : 318,
+            "loading" : "lazy",
+            "max_height" : 318,
+            "max_width" : 357,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/robert.jpg'),
+            "width" : 357
+          },
+          "member_name" : "Robert Fox",
+          "milestone" : "8k Projects Done",
+          "profile_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://blog.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }, {
+          "designation" : "Director of marketing",
+          "image" : {
+            "alt" : "Wade Warren",
+            "height" : 318,
+            "loading" : "lazy",
+            "max_height" : 318,
+            "max_width" : 357,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/wade-warner.jpg'),
+            "width" : 357
+          },
+          "member_name" : "Wade Warren",
+          "milestone" : "8k Projects Done",
+          "profile_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://blog.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }, {
+          "designation" : "Chief marketing officer",
+          "image" : {
+            "alt" : "Mathew James",
+            "height" : 318,
+            "loading" : "lazy",
+            "max_height" : 318,
+            "max_width" : 357,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/esther-howard.jpg'),
+            "width" : 357
+          },
+          "member_name" : "Mathew James",
+          "milestone" : "8k Projects Done",
+          "profile_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://blog.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }, {
+          "designation" : "Director of marketing",
+          "image" : {
+            "alt" : "Emma Jones",
+            "height" : 318,
+            "loading" : "lazy",
+            "max_height" : 318,
+            "max_width" : 357,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/emma-jones.jpg'),
+            "width" : 357
+          },
+          "member_name" : "Emma Jones",
+          "milestone" : "8k Projects Done",
+          "profile_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://blog.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }, {
+          "designation" : "Director of marketing",
+          "image" : {
+            "alt" : "Mathew James",
+            "height" : 318,
+            "loading" : "lazy",
+            "max_height" : 318,
+            "max_width" : 357,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/multipurpose/mathew-james.jpg'),
+            "width" : 357
+          },
+          "member_name" : "Mathew James",
+          "milestone" : "8k Projects Done",
+          "profile_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://blog.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        } ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+{% end_dnd_area %}
+{% endblock body %}

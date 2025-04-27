@@ -1,0 +1,137 @@
+.in-video__container {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .in-video__overlay {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  
+  .in-video img {
+    display: block;
+  }
+  
+  .in-video__btn {
+    border-radius: 50%;
+    left: 50%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .in-video__btn-icon, 
+  .in-video__btn-icon span {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    line-height: 1;
+    font-size: 0;
+  }
+  
+  .in-video__btn-icon  svg {
+    width: 60%;
+    margin-left: 4px;
+  }
+  
+  .in-video__btn-icon svg path {
+    fill: #ffffff;
+  }
+  
+  .in-video__btn::before {
+    align-items: center;
+    animation-delay: 0.5s;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-name: ripple;
+    animation-timing-function: cubic-bezier(0.65, 0, 0.34, 1);
+    border-radius: 100%;
+    bottom: 0;
+    content: "";
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+  }
+  
+  .in-video__btn::after {
+    align-items: center;
+    animation-delay: 0s;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-name: ripple;
+    animation-timing-function: cubic-bezier(0.65, 0, 0.34, 1);
+    border-radius: 50%;
+    bottom: 0;
+    content: "";
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+  }
+  
+  .in-video__content {
+    bottom: 20px;
+    left: 20px;
+    position: absolute;
+    text-align: left;
+    z-index: 99;
+  }
+  
+  .in-video__title {
+    margin-bottom: 12px;
+  }
+  
+  .in-video__icon {
+    cursor: pointer;
+    display: inline-block;
+  }
+  
+  .in-video__icon svg {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+  }
+  
+  .in-video__icon-text {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-left: 5px;
+    vertical-align: middle;
+  }
+  
+  @keyframes ripple {
+    from {
+      opacity: 1;
+      transform: scale3d(0.75, 0.75, 1);
+    }
+  
+    to {
+      opacity: 0;
+      transform: scale3d(1.5, 1.5, 1);
+    }
+  }

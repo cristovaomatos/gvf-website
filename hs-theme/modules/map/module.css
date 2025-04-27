@@ -1,0 +1,77 @@
+.in-map img:focus {
+    outline: none;
+  }
+  
+  .in-map div[role="button"] {
+    outline: none;
+  }
+  
+  .in-map-info--icon svg {
+    height: 22px;
+    width: 22px;
+  }
+  
+  .in-map div[role="dialog"]:focus {
+    outline: none;
+    padding: 0px !important;
+  }
+  
+  .in-map div[role="dialog"] {
+    background: none !important;
+    border-radius: 16px !important;
+    box-shadow: none !important;
+    padding: 0px !important;
+  }
+  
+  .in-map .gm-ui-hover-effect[aria-label="Close"]:focus {
+    outline: none;
+  }
+  
+  .in-map .gm-style img {
+    height: auto !important;
+    max-width: 100% !important;
+    object-fit: cover;
+  }
+  
+  /* Card CSS Start */
+  .in-map-info-card {
+    display: inline-block;
+    padding: 25px 0 40px 25px;
+  }
+  
+  .in-map .gm-style .gm-style-iw-d {
+    overflow: unset !important;
+  }
+  
+  .in-map .gm-style .gm-style-iw-d+button {
+    right: 0 !important;
+    top: 0 !important;
+  }
+  
+  .in-map-info-card__desc {
+    margin-bottom: 10px;
+  }
+  
+  .in-map-info-card__title {
+    background-color: #fff;
+    border-radius: 32px 0 0 32px;
+    margin: 15px 0 30px auto;
+    padding: 15px;
+  }
+  
+  .in-map-info-card__title h6 {
+    display: inline-block;
+    margin: 0;
+  }
+  
+  .in-map-info-card__label,
+  .in-map-info-card__text {
+    color: #ffffff;
+    display: block;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .in-map-info-card__label {
+    font-weight: bold;
+  }

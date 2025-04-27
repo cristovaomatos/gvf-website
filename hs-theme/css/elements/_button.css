@@ -1,0 +1,65 @@
+.in-btn {
+    cursor: pointer;
+    display: inline-block;
+    letter-spacing: 0.1px;
+    line-height: 1.5;
+    min-width: 140px;
+    text-align: center;
+    transition: 0.3s linear all;
+  }
+  
+  .in-btn__icon {
+    display: inline-block;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(calc(-50% - 2px));
+    width: 20px;
+  }
+  
+  .in-btn__text {
+    position: relative;
+  }
+  
+  .in-btn__text.icon--left {
+    padding: 0 10px 0 30px;
+  }
+  
+  .in-btn__text.icon--right {
+    padding: 0 30px 0 10px;
+  }
+  
+  .in-btn__text.icon--left .in-btn__icon {
+    left: 0;
+  }
+  
+  .in-btn__text.icon--right .in-btn__icon {
+    right: 0;
+  }
+  
+  /* Animation */
+  
+  .in-btn-animation {
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.1, 0.3, 0.3, 0.1);
+    z-index: 9;
+  }
+  
+  .in-btn-animation::before {
+    bottom: 0;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: all 0.3s cubic-bezier(0.1, 0.3, 0.3, 0.1);
+    width: 0;
+    z-index: -1;
+  }
+  
+  .in-btn-animation:hover::before {
+    right: 0;
+    transition: all 0.3s cubic-bezier(0.1, 0.3, 0.3, 0.1);
+    width: 100%;
+  }

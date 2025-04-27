@@ -1,0 +1,185 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Event Detail
+  screenshotPath: ../images/template-previews/event-detail.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--event-detail"
+%}
+
+<!-- Banner Section  -->
+ {% dnd_section
+ full_width=true,
+  padding={
+    "default" : {
+      "bottom" : "0px",
+      "left" : "0px",
+      "right" : "0px",
+      "top" : "0px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12,
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    }
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/banner",
+        offset=0,
+        width=12,
+        breadcrumbs={
+          "current" : {
+            "page_name" : "Event Detail"
+          }
+        },
+        button_breadcrumb_choice={
+          "select" : "breadcrumb"
+        },
+        content={
+          "content" : "<h1>Book your spot now</h1>",
+          "enable_mini_title" : true,
+          "mini_title" : "EVENTS"
+        },
+        layout={
+          "select_layout" : "background_image"
+        },
+        style={
+          "background_image" : {
+            "image" : {
+              "background_position" : "MIDDLE_CENTER",
+              "background_size" : "cover",
+              "src" : get_asset_url('../images/multipurpose/banner-thirteen.jpg')
+            }
+          },
+          "breadcrumb" : {
+            "overwrite_style" : true
+          },
+          "content" : {
+            "color" : {
+              "mini_title" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              },
+              "title" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              }
+            },
+            "overwrite_content_color" : true
+          },
+          "spacing" : {
+            "desktop_spacing" : {
+              "margin" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 0
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 0
+                }
+              },
+              "padding" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 85
+                },
+                "left" : {
+                  "units" : "px",
+                  "value" : 15
+                },
+                "right" : {
+                  "units" : "px",
+                  "value" : 15
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 85
+                }
+              }
+            },
+            "mobile_spacing" : {
+              "margin" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 0
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 0
+                }
+              },
+              "padding" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 50
+                },
+                "left" : {
+                  "units" : "px",
+                  "value" : 15
+                },
+                "right" : {
+                  "units" : "px",
+                  "value" : 15
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 50
+                }
+              }
+            }
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+<!-- Form Section -->
+{% include_dnd_partial path='../sections/two-column-content-form.html' %}
+
+<!-- Content Section  -->
+{% dnd_section
+  padding={
+    "mobile" : {
+      "bottom" : "50px",
+      "top" : "50px"
+    }
+  }
+%}
+  {% dnd_module
+    path="@hubspot/rich_text",
+    offset=0,
+    width=12
+  %}
+    {% module_attribute "html" %}
+      <h4>Hot Topics To Be Discussed In The Event</h4>
+      <ul>
+      <li>Young girls lie bedded soft or glide in their dreams, with rings and trousseaux, bridesmaided by glow-worms down the aisles of the organplaying wood.</li>
+      <li>the cobblestreets silent and the hunched, courters'-and- rabbits' wood limping invisible down to the sloeblack, slow, black, crowblack</li>
+      <li>Young girls lie bedded soft or glide in their dreams, with rings and trousseaux, bridesmaided by glow-worms down the aisles of the organplaying wood.</li>
+      </ul>
+      <p>&nbsp;</p>
+      <p><span>It is Spring, moonless night in the small town, starless and bible-black, the cobblestreets silent and the hunched, courters'-and- rabbits' wood limping invisible down to the sloeblack, slow, black, crowblack, fishingboat-bobbing sea. The houses are blind as moles (though moles see fine to-night in the snouting, velvet dingles) or blind as Captain Cat there in the muffled middle by the pump and the town clock, the shops in mourning, the Welfare Hall in widows' weeds. And all the people of the lulled and dumbfound town are sleeping now.</span></p>
+      <p><span>Hush, the babies are sleeping, the farmers, the fishers, the tradesmen and pensioners, cobbler, schoolteacher, postman and publican, the undertaker and the fancy woman, drunkard, dressmaker, preacher, policeman, the webfoot cocklewomen and the tidy wives. Young girls lie bedded soft or glide in their dreams, with rings and trousseaux, bridesmaided by glow-worms down the aisles of the organplaying wood. The boys are dreaming wicked or of the bucking ranches of the night and the jollyrogered sea. And the anthracite statues of the horses sleep in the fields, and the cows in the byres, and the dogs in the wet-nosed yards; and the cats nap in the slant corners or lope sly, streaking and needling, on the one cloud of the roofs.</span></p>
+      <p><span>It is Spring, moonless night in the small town, starless and bible-black, the cobblestreets silent and the hunched, courters'-and- rabbits' wood limping invisible down to the sloeblack, slow, black, crowblack, fishingboat-bobbing sea. The houses are blind as moles (though moles see fine to-night in the snouting, velvet dingles) or blind as Captain Cat there in the muffled middle by the pump and the town clock, the shops in mourning, the Welfare Hall in widows' weeds. And all the people of the lulled and dumbfound town are sleeping now.</span></p>
+    {% end_module_attribute %}
+  {% end_dnd_module %}
+{% end_dnd_section %}
+{% end_dnd_area %}
+{% endblock body %}

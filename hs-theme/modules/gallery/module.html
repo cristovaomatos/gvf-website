@@ -1,0 +1,142 @@
+{% import '../macros.html' %}
+
+<!-- Module Styles -->
+{% require_css %}
+<style>
+  {% scope_css %}
+  .in-gallery--tabs-filter-link {
+    color: {{ theme.typography.body_fonts.font.color }};
+    display: inline-block;
+    text-transform: uppercase;
+    padding: 12px 0;
+  }
+
+  .in-gallery--tabs-filter-link.active {
+    color: {{ theme.global_colors.heading.color }};
+    border-bottom: 2px solid {{ theme.global_colors.primary.color }};
+  }
+
+  .in-gallery-grid__item-img img,
+  .in-gallery-grid__item img,
+  .in-gallery__link a {
+    border-radius: {{ module.style.border_radius.radius }}px;
+    width: 100%;
+  }
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<!-- Portfolio -->
+<div id="{{name}}" class="in-gallery" role="region" aria-labelledby="{{ name }}-tabs-label">
+
+  <div class="in-gallery--tabs-container">
+    <h2 id="{{ name }}-tabs-label" class="sr-only">Portfolio Categories</h2>
+
+    <nav class="in-gallery--tabs" role="navigation" aria-label="Portfolio Filter Tabs">
+      <ul class="in-gallery--tabs-list no-list">
+        {% for item in module.tabs %}
+        <li>
+          <a href="#"
+             class="in-gallery--tabs-filter-link {% if item.set_initial_filter == 'true' %}active{% endif %}"
+             data-id="{{ item.tab_id|capitalize }}"
+             role="tab"
+             id="{{ name }}-tab-{{ loop.index }}"
+             aria-selected="{% if item.set_initial_filter == 'true' %}true{% else %}false{% endif %}"
+             aria-controls="in-gallery-grid"
+             >
+            {{ item.tab_link }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+
+  <div class="in-gallery-grid in-gallery--image-tab grid" id="in-gallery-grid" role="tabpanel" aria-labelledby="{{ name }}-tabs-label">
+    <div class="in-grid__sizer grid-sizer"></div>
+
+    {% for item in module.portfolio %}
+    <div class="in-gallery-grid__item grid-item"
+         data-groups='[{% set string_to_split = item.items_class %}{% set names = string_to_split|split(",") %}{% for name in names %}"{{ name|capitalize }}"{% if !loop.last %},{% endif %}{% endfor %}]'
+         role="group"
+         aria-label="Portfolio item">
+
+      <div class="in-gallery-grid__item-img">
+        {{ image(item.image_field, alt=item.image_field.alt if item.image_field.alt else "Portfolio image", loading="lazy") }}
+
+        {% if module.enable_item_link %}
+        <div class="in-gallery__link">
+          {% set href = item.item_link.url.href %}
+          {% if item.item_link.url.type is equalto "EMAIL_ADDRESS" %}
+          {% set href = "mailto:" + href %}
+          {% endif %}
+          <a href="{{ href }}"
+             {% if item.item_link.open_in_new_tab %}target="_blank"{% endif %}
+             {% if item.item_link.rel %}rel="{{ item.item_link.rel }}"{% endif %}
+             aria-label="View portfolio item"
+             ></a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+{% require_js %}
+{{ require_js('https://cdnjs.cloudflare.com/ajax/libs/Shuffle/6.1.0/shuffle.min.js') }}
+{{ require_js('https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js') }}
+{{ require_js('https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js') }}
+
+<script>
+  jQuery(document).ready(function($) {
+    const Shuffle = window.Shuffle;
+    const container = document.querySelector('#{{name}} .in-gallery-grid');
+
+                                             if (!container) return;
+
+    // Wait until images are loaded
+    imagesLoaded(container, function() {
+      const sizer = container.querySelector('.in-grid__sizer');
+
+      const shuffleInstance = new Shuffle(container, {
+        itemSelector: '.in-gallery-grid__item',
+        sizer: sizer
+      });
+
+      // Setup filtering
+      const allFilters = document.querySelectorAll('#{{name}} .in-gallery--tabs-filter-link');
+
+                                                   allFilters.forEach(function(filterBtn) {
+        filterBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+
+          const filterId = this.getAttribute('data-id');
+
+          // Update active state
+          allFilters.forEach(el => el.classList.remove('active'));
+          this.classList.add('active');
+
+          // Filter shuffle
+          shuffleInstance.filter(filterId);
+
+          // Force layout recalculation after short delay
+          setTimeout(() => {
+            shuffleInstance.layout();
+          }, 100);
+        });
+      });
+
+      // Apply default filter on load
+      const defaultFilterBtn = document.querySelector('#{{name}} .in-gallery--tabs-filter-link.active');
+                                                      if (defaultFilterBtn) {
+        const defaultFilterId = defaultFilterBtn.getAttribute('data-id');
+        shuffleInstance.filter(defaultFilterId);
+      }
+    });
+  });
+</script>
+{% end_require_js %}
+

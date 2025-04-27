@@ -1,0 +1,127 @@
+{% import '../macros.html' %}
+
+<!-- Module Styles -->
+{% require_css %}
+<style>
+  {% scope_css %}
+  .in-map {
+    border-radius: {{ module.style.map.corners.border_radius }}px;
+    height: {{ module.style.map.height.mobile }}px;
+  }
+  
+  .in-map-info-card {
+    background-color: {{theme.global_colors.primary.color}};
+  }
+  
+  .in-map .gm-style .gm-style-iw-t::after {
+    box-shadow: none;
+    background: linear-gradient(45deg,{{theme.global_colors.primary.color}} 50%,{{theme.global_colors.primary.color}} 51%,{{theme.global_colors.primary.color}} 100%) {{theme.global_colors.primary.color}};
+  }
+  
+  {% if module.style.card.overwrite_style %}
+    .in-map-info-card {
+      background-color: rgba({{ module.style.card.background_color.color |convert_rgb }},{{ module.style.card.background_color.opacity }}%);
+    }
+  
+    .in-map .gm-style .gm-style-iw-t::after {
+      background: linear-gradient(45deg,{{ module.style.card.background_color.color}} 50%,{{ module.style.card.background_color.color}} 51%,{{ module.style.card.background_color.color}} 100%) {{ module.style.card.background_color.color}};
+    }
+  
+  .in-map-info-card__title {
+    background-color: rgba({{ module.style.card.title.background_color.color | convert_rgb }},{{ module.style.card.title.background_color.opacity }}%);
+  }
+  
+  .in-map-info-card__title h6 {
+    color: rgba({{ module.style.card.title.text_color.color | convert_rgb }},{{ module.style.card.title.text_color.opacity }}%);
+  }
+  
+  .in-map-info-card__label,
+  .in-map-info-card__text {
+    color: rgba({{ module.style.card.content_color.color | convert_rgb }},{{ module.style.card.content_color.opacity }}%);
+  }
+  
+   {% endif %}
+
+  @media (max-width: 991px) and (min-width: 767px) {
+    .in-map {
+      height: {{ module.style.map.height.tab }}px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .in-map {
+      height: {{ module.style.map.height.desktop }}px;
+    }
+  }
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<!-- Map -->
+<div class="in-map-container" role="region" aria-label="Map section showing location">
+  <div id="{{ name }}" class="in-map" aria-hidden="true"></div>
+</div>
+
+
+
+<!-- Module JS -->
+{% require_js %}
+<script >
+  if(window.mapLoaded === undefined){
+    var jsElm = document.createElement('script');
+    jsElm.type = 'application/javascript';
+    jsElm.src = "https://maps.googleapis.com/maps/api/js?key={{ module.map.map_api }}";
+    document.body.appendChild(jsElm);
+    window.mapLoaded = true;      
+  }
+
+  $(window).on('load', function() {
+    function initMap() {
+      var centerLoc = { lat: {{ module.map.center.center_latitude }}, lng: {{ module.map.center.center_longitude }} };
+      let marker, contentString, infowindow;
+      let infoWindows = [];
+      mapArea = new google.maps.Map(document.getElementById("{{name}}"), {
+                                                            center: centerLoc,
+                                                            zoom: {{ module.map.map_zoom_level }},
+                                                            {{ module.map.map_json }}
+                                                            }),
+                                    markerSrc = { url: "{{ module.pointer_image.src }}", size: new google.maps.Size(50, 50), origin: new google.maps.Point(0, 0), anchor: new google.maps.Point(0, 32) };
+                                                 {% for item in module.map.pointer_detail %}
+                                                 var location = { lat: {{ item.latitude }}, lng: {{ item.longitude }} };
+                                    marker = new google.maps.Marker({ position: location, map: mapArea, icon: markerSrc });
+      infowindow = new google.maps.InfoWindow();
+      infoWindows.push(infowindow);
+      contentString = '<div class="in-map-info-card">'+
+        '<div class="in-map-info-card__content">'+
+        '<div class="in-map-info-card__title">'+
+        '<h6>'+
+        '{{ item.information.heading }}'+
+        '</h6>'+
+        '</div>'+
+        '{% for item2 in item.information.detials %}'+
+        '<div class="in-map-info-card__desc">'+
+          '<span class="in-map-info-card__label">{{ item2.sub_title }}</span>'+
+          '<span class="in-map-info-card__text">{{ item2.text }}</span>'+
+        '</div>' +
+        '{% endfor %}'+
+        '</div>' +
+        '</div>';
+      google.maps.event.addListener(marker,'click', (function(marker, contentString, infowindow){
+        return function() {
+          infoWindows.forEach(infoWindow => infoWindow.close());
+          infowindow.setContent(contentString);
+          infowindow.open(mapArea,marker);
+        };
+      })(marker, contentString,infowindow));
+      {% endfor %}
+    }
+    initMap();
+  });
+$(document).ready(function(){
+  $(window).on('resize',function() {
+     $('.gm-style-iw').css({'max-height':'unset','max-width': 'unset'});  
+  });
+});
+</script>
+{% end_require_js %}

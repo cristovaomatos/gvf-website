@@ -1,0 +1,844 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: Testimonial
+screenshotPath: ../images/template-previews/testimonial.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--testimonial"
+%}
+
+{# Banner Section #}
+
+{% dnd_section
+  padding={
+    'default' : {
+      'bottom' : '0',
+      'left' : '0',
+      'right' : '0',
+      'top' : '0'
+    },
+    'mobile' : {
+      'bottom' : '0',
+      'left' : '0',
+      'right' : '0',
+      'top' : '0'
+    }
+  },
+  full_width= true
+%}
+{% dnd_column
+    offset=0,
+    width=12,
+    padding={
+      'default' : {
+        'left' : '0px',
+        'right' : '0px'
+      }
+    }
+  %}
+{% dnd_row %}
+{% dnd_module
+        path='../modules/banner',
+        breadcrumbs={
+          'current' : {
+            'page_name' : 'Testimonials'
+          }
+        },
+        button_breadcrumb_choice={
+          'select' : 'breadcrumb'
+        },
+        content={
+          'content' : '<h1>Our Wellwishers</h1>',
+          "enable_mini_title" : true,
+          'mini_title' : 'Testimonials'
+        },
+        layout={
+          'select_layout' : 'background_image'
+        },
+        style={
+          'background_image' : {
+            'image' : {
+              'background_position' : 'MIDDLE_CENTER',
+              'background_size' : 'cover',
+              'src' : get_asset_url('../images/multipurpose/testimonial-banner.png'),
+            }
+          },
+          'breadcrumb' : {
+            'overwrite_style' : true
+          },
+          'content' : {
+            'color' : {
+              'description' : {
+                'color' : '#FFFFFF',
+                'opacity' : 100
+              },
+              'mini_title' : {
+                'color' : '#FFFFFF',
+                'opacity' : 100
+              },
+              'title' : {
+                'color' : '#FFFFFF',
+                'opacity' : 100
+              }
+            },
+            'overwrite_content_color' : true
+          },
+          'spacing' : {
+            'desktop_spacing' : {
+              'margin' : {
+                'bottom' : {
+                  'units' : 'px',
+                  'value' : 0
+                },
+                'top' : {
+                  'units' : 'px',
+                  'value' : 0
+                }
+              },
+              'padding' : {
+                'bottom' : {
+                  'units' : 'px',
+                  'value' : 90
+                },
+                'left' : {
+                  'units' : 'px',
+                  'value' : 15
+                },
+                'right' : {
+                  'units' : 'px',
+                  'value' : 15
+                },
+                'top' : {
+                  'units' : 'px',
+                  'value' : 90
+                }
+              }
+            }
+          }
+        }
+      %}
+{% end_dnd_module %}
+{% end_dnd_row %}
+{% dnd_row %}
+{% dnd_module
+        path='../modules/spacer',
+      %}
+{% end_dnd_module %}
+{% end_dnd_row %}
+{% end_dnd_column %}
+{% end_dnd_section %}
+
+{# End Of Banner Section #}
+
+{# Section Heading #}
+
+{% dnd_section
+  padding={
+    'default' : {
+      'bottom' : '80px',
+      'top' : '80px'
+    },
+    'mobile' : {
+      'bottom' : '50px',
+      'top' : '50px'
+    }
+  }
+%}
+{% dnd_column
+    offset=0,
+    width=12
+  %}
+{% dnd_row %}
+{% dnd_module
+        path='../modules/title-content',
+        offset=0,
+        width=12,
+        mini_title='Testimonials',
+        style={
+          'container' : {
+            'enable_max_width' : true,
+            'max_width' : 880
+          },
+            'alignment' : {
+              'desktop_alignment' : 'center'
+          }
+        }
+      %}
+{% module_attribute 'content' %}
+<h2>Customer Service, We Make it Better</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet adipiscing nam suspendisse et lobortis. Adipiscing auctor lobortis in lorem cursus cursus eget duis massa. Diam sem volutpat turpis condimentum.</p>
+{% end_module_attribute %}
+{% end_dnd_module %}
+{% end_dnd_row %}
+{% end_dnd_column %}
+{% end_dnd_section %}
+
+{# End Of Section Heading #}
+
+{# Testimonial Section #}
+
+{% dnd_section
+  padding={
+    'default' : {
+      'bottom' : '0px',
+      'top' : '80px'
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path='../modules/testimonial',
+        offset=0,
+        width=12,
+testimonial=[ {
+        "client_image" : {
+          "alt" : "Client",
+          "height" : 116,
+          "loading" : "lazy",
+          "max_height" : 116,
+          "max_width" : 116,
+          "size_type" : "auto",
+          "src" : get_asset_url('../images/multipurpose/bessie.png'),
+          "width" : 116
+        },
+        "client_logo" : {
+          "alt" : "Logo (3)",
+          "height" : 32,
+          "loading" : "lazy",
+          "max_height" : 32,
+          "max_width" : 138,
+          "size_type" : "auto",
+          "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+          "width" : 138
+        },
+        "client_name" : "Jenny Wilson",
+        "client_review" : "<p>I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>",
+        "review_rating" : [ {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        } ]
+      }, {
+        "client_image" : {
+          "alt" : "Client",
+          "height" : 116,
+          "loading" : "lazy",
+          "max_height" : 116,
+          "max_width" : 116,
+          "size_type" : "auto",
+          "src" : get_asset_url('../images/multipurpose/cody.png'),
+          "width" : 116
+        },
+        "client_logo" : {
+          "alt" : "Logo (3)",
+          "height" : 32,
+          "loading" : "lazy",
+          "max_height" : 32,
+          "max_width" : 138,
+          "size_type" : "auto",
+          "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+          "width" : 138
+        },
+        "client_name" : "Wade Warren",
+        "client_review" : "<p>I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>",
+        "review_rating" : [ {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        } ]
+      }, {
+        "client_image" : {
+          "alt" : "Client",
+          "height" : 116,
+          "loading" : "lazy",
+          "max_height" : 116,
+          "max_width" : 116,
+          "size_type" : "auto",
+          "src" :  get_asset_url('../images/multipurpose/kristin.png'),
+          "width" : 116
+        },
+        "client_logo" : {
+          "alt" : "Logo (3)",
+          "height" : 32,
+          "loading" : "lazy",
+          "max_height" : 32,
+          "max_width" : 138,
+          "size_type" : "auto",
+          "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+          "width" : 138
+        },
+        "client_name" : "Kristin Watson",
+        "client_review" : "<p>I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>",
+        "review_rating" : [ {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        } ]
+      }, {
+        "client_image" : {
+          "alt" : "Client",
+          "height" : 116,
+          "loading" : "lazy",
+          "max_height" : 116,
+          "max_width" : 116,
+          "size_type" : "auto",
+          "src" :  get_asset_url('../images/multipurpose/wade.png'),
+          "width" : 116
+        },
+        "client_logo" : {
+          "alt" : "Logo (3)",
+          "height" : 32,
+          "loading" : "lazy",
+          "max_height" : 32,
+          "max_width" : 138,
+          "size_type" : "auto",
+          "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+          "width" : 138
+        },
+        "client_name" : "Cody Fisher",
+        "client_review" : "<p>I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>",
+        "review_rating" : [ {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        } ]
+      }, {
+        "client_image" : {
+          "alt" : "Client",
+          "height" : 116,
+          "loading" : "lazy",
+          "max_height" : 116,
+          "max_width" : 116,
+          "size_type" : "auto",
+          "src" : get_asset_url('../images/multipurpose/robert.png'),
+          "width" : 116
+        },
+        "client_logo" : {
+          "alt" : "Logo (3)",
+          "height" : 32,
+          "loading" : "lazy",
+          "max_height" : 32,
+          "max_width" : 138,
+          "size_type" : "auto",
+          "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+          "width" : 138
+        },
+        "client_name" : "Jacob Jones",
+        "client_review" : "<p>I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>",
+        "review_rating" : [ {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        } ]
+      }, {
+        "client_image" : {
+          "alt" : "Client",
+          "height" : 116,
+          "loading" : "lazy",
+          "max_height" : 116,
+          "max_width" : 116,
+          "size_type" : "auto",
+          "src" : get_asset_url('../images/multipurpose/jenny.png'),
+          "width" : 116
+        },
+        "client_logo" : {
+          "alt" : "Logo (3)",
+          "height" : 32,
+          "loading" : "lazy",
+          "max_height" : 32,
+          "max_width" : 138,
+          "size_type" : "auto",
+          "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+          "width" : 138
+        },
+        "client_name" : "Bessie Cooper",
+        "client_review" : "<p>I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>",
+        "review_rating" : [ {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        } ]
+      }, {
+        "client_image" : {
+          "alt" : "Client",
+          "height" : 116,
+          "loading" : "lazy",
+          "max_height" : 116,
+          "max_width" : 116,
+          "size_type" : "auto",
+          "src" : get_asset_url('../images/multipurpose/guy.png'),
+          "width" : 116
+        },
+        "client_logo" : {
+          "alt" : "Logo (3)",
+          "height" : 32,
+          "loading" : "lazy",
+          "max_height" : 32,
+          "max_width" : 138,
+          "size_type" : "auto",
+          "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+          "width" : 138
+        },
+        "client_name" : "Guy Hawkins",
+        "client_review" : "<p>I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>",
+        "review_rating" : [ {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        } ]
+      }, {
+        "client_image" : {
+          "alt" : "Client",
+          "height" : 116,
+          "loading" : "lazy",
+          "max_height" : 116,
+          "max_width" : 116,
+          "size_type" : "auto",
+          "src" : get_asset_url('../images/multipurpose/guy.png'),
+          "width" : 116
+        },
+        "client_logo" : {
+          "alt" : "Logo (3)",
+          "height" : 32,
+          "loading" : "lazy",
+          "max_height" : 32,
+          "max_width" : 138,
+          "size_type" : "auto",
+          "src" : get_asset_url('../images/multipurpose/logoipsum.png'),
+          "width" : 138
+        },
+        "client_name" : "Robert Fox",
+        "client_review" : "<p>I am so happy with the work that Infinity did for me! They were professional and very detail orientated. I would highly recommend them.</p>",
+        "review_rating" : [ {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        }, {
+          "image_field" : {
+            "alt" : "star",
+            "height" : 20,
+            "loading" : "lazy",
+            "max_height" : 20,
+            "max_width" : 20,
+            "size_type" : "auto",
+            "src" : get_asset_url('../images/icons/star-filled.svg'),
+            "width" : 20
+          }
+        } ]
+      } ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+{# End Of Testimonial Section #}
+
+{% end_dnd_area %}
+{% endblock body %}

@@ -1,0 +1,128 @@
+{% import '../macros.html'  %}
+
+<!-- Alignment Desktop -->
+
+{% if module.style.alignment_choice.desktop.text_alignment =='left' %}
+{% set lpalign = 'in-content--align-left'%}
+{% elif module.style.alignment_choice.desktop.text_alignment =='center' %}
+{% set lpalign = 'in-content--align-center'%}
+{% elif module.style.alignment_choice.desktop.text_alignment =='right' %}
+{% set lpalign = 'in-content--align-right'%}
+{% endif %}
+
+<!-- Alignment Mobile -->
+
+{% if module.style.alignment_choice.mobile.text_alignment =='left' %}
+{% set mbalign = 'in-content--align-left-mb'%}
+{% elif module.style.alignment_choice.mobile.text_alignment =='center' %}
+{% set mbalign = 'in-content--align-center-mb'%}
+{% elif module.style.alignment_choice.mobile.text_alignment =='right' %}
+{% set mbalign = 'in-content--align-right-mb'%}
+{% endif %}
+
+
+<!-- Module styles -->
+{% require_css %}
+<style>
+  {% scope_css %}
+
+  .in-why-us__column {
+    text-align: {{ module.style.content_alignment.mobile.alignment_field.horizontal_align }};
+  }
+
+  .in-content--align-left-mb {
+    text-align: left;
+  }
+
+  .in-content--align-right-mb {
+    text-align: right;
+  }
+
+  .in-content--align-center-mb {
+    text-align: center;
+  }
+
+  .in-why-us__column {
+    {{ module.style.spacing.mobile.spacing_field.css }};
+  }
+
+  {% if module.style.text_color.overwrite %}
+  .in-why-us__title {
+    color: rgba({{ module.style.text_color.color.color|convert_rgb }},{{ module.style.text_color.color.opacity/100 }});
+  }
+  {% endif %}
+
+
+  @media (min-width: 992px) {
+    .in-why-us__column {
+      text-align: {{ module.style.content_alignment.desktop.alignment_field.horizontal_align }};
+    }
+
+    {% if module.enable_arrow %}
+    .in-why-us__column:nth-child(2n)::before {
+      content: url("{{ module.arrow.arrow_to.src }}");
+    }
+
+    .in-why-us__column:nth-child(2n)::after {
+      content: url("{{ module.arrow.arrow_from.src }}");
+    }
+    {% endif %}
+
+    .in-content--align-left {
+      text-align: left;
+    }
+
+    .in-content--align-right {
+      text-align: right;
+    }
+
+    .in-content--align-center {
+      text-align: center;
+    }
+
+    .in-why-us__column:nth-child(2n)::before {
+      bottom: {{ module.style.arrow_to_position.bottom ~ 'px' }};
+      left: {{ module.style.arrow_to_position.left ~ 'px' }};
+      right: {{ module.style.arrow_to_position.right ~ 'px' }};
+      top: {{ module.style.arrow_to_position.top ~ 'px' }};
+    }
+
+    .in-why-us__column:nth-child(2n)::after {
+      bottom: {{ module.style.arrow_from_position.bottom ~ 'px' }};
+      left: {{ module.style.arrow_from_position.left ~ 'px' }};
+      right: {{ module.style.arrow_from_position.right ~ 'px' }};
+      top: {{ module.style.arrow_from_position.top ~ 'px' }};
+    }
+
+    .in-why-us__column {
+      {{ module.style.spacing.desktop.spacing_field.css }};
+    }
+  }
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+{% if module.add_custom_id %}
+<div id="{{module.custom_id }}">
+{% endif %}
+<div id="{{ name }}" class="in-why-us">
+  <div class="in-why-us__row">
+    {% for item in module.image_box %}
+    <div class="in-why-us__column {{ lpalign }} {{ mbalign }}">
+      <div class="in-why-us__image">
+        {{ image(item.image) }}
+      </div>
+      {% if item.title.enable %}
+      <h3 class="in-why-us__title">
+        {{ item.title.title }}
+      </h3>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+  
+{% if module.add_custom_id %}
+</div>
+{% endif %}

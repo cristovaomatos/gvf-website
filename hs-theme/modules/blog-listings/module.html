@@ -1,0 +1,362 @@
+<!--  style -->
+{% require_css %}
+<style>
+  {% scope_css %}
+  .in-blog__head-mini-title,
+  .elipses{
+    color: {{theme.global_colors.primary.color}};
+  }
+
+  .in-blog__post {
+    background-color: rgba({{ module.styles.card.background_color.color | convert_rgb }},{{ module.styles.card.background_color.opacity }}%);
+    border-radius: {{ module.styles.card.corner.radius }}px;
+  }
+
+  {% if module.enable_box_shadow %}
+  .in-blog__post:hover {
+    box-shadow:  {% if module.box_shadow.shade.inset %} inset {% endif %} {{ module.box_shadow.shade.vertical_value }}px {{ module.box_shadow.shade.horizontal_value }}px {{ module.box_shadow.shade.blur }}px {{ module.box_shadow.shade.spread }}px rgba({{ module.box_shadow.shade.color.color | convert_rgb }},{{ module.box_shadow.shade.color.opacity }}%);
+    transform: scale(1.02);
+  }
+  {% endif %}
+
+
+  .in-blog__featured-img img {
+    border-radius: {{ module.styles.card.featured_image.corner.radius }}px;
+  }
+
+
+
+  {% if module.styles.card.tags.overwrite_style %}
+  .in-blog-list__tag {
+    background-color: rgba({{ module.styles.card.tags.background_color.color |convert_rgb }},{{ module.styles.card.tags.background_color.opacity }}%);
+    font-family: {{ module.styles.card.tags.font.font }}; {{ module.styles.card.tags.font.style }};
+    color: {{ module.styles.card.tags.font.color }}; 
+    font-size: {{ module.styles.card.tags.font.size }}px;
+    line-height: 1.5;
+  }
+
+  .in-blog__post:hover .in-blog-list__tag,
+  .in-blog-list__tag:hover {
+    background-color: rgba({{ module.styles.card.tags.on_hover.background_color.color |convert_rgb }},{{ module.styles.card.tags.on_hover.background_color.opacity }}%);
+    font-family: {{ module.styles.card.tags.on_hover.font.font }}; {{ module.styles.card.tags.on_hover.font.style }};
+    color: {{ module.styles.card.tags.on_hover.font.color }}; 
+    font-size: {{ module.styles.card.tags.on_hover.font.size }}px;
+    line-height: 1.5
+  }
+  {% else %}
+  .in-blog__post:hover .in-blog-list__tag,
+  .in-blog-list__tag:hover {
+    background-color: {{theme.global_colors.primary.color}};
+    color: #ffffff;
+  }
+
+  {% endif %}
+
+  {% if module.styles.card.title.overwrite_style %}
+  .in-blog__title,
+  .in-blog__title:hover {
+    font-family: {{ module.styles.card.title.text.font.font }}; {{ module.styles.card.title.text.font.style }};
+    color: {{ module.styles.card.title.text.font.color }};
+    font-size: {{ module.styles.card.title.text.font.size }}px;
+    line-height: 1.1;
+  }
+  {% endif %}
+
+  {% if module.styles.card.author_and_date.overwrite_style %}
+  .in-blog__author {
+    font-family: {{ module.styles.card.author_and_date.text.font.font }}; {{ module.styles.card.author_and_date.text.font.style }};
+    color: {{ module.styles.card.author_and_date.text.font.color }};
+    font-size: {{ module.styles.card.author_and_date.text.font.size }}px;
+    line-height: 1.1;
+  }
+  {% endif %}
+
+  {% if module.styles.card.description.overwrite_style %}
+  .in-blog__description p {
+    font-family: {{ module.styles.card.description.text.font.font }}; {{ module.styles.card.description.text.font.style }};
+    color: {{ module.styles.card.description.text.font.color }};
+    font-size: {{ module.styles.card.description.text.font.size }}px;
+    line-height: 1.5;
+  }
+  {% endif %}
+
+  {% if module.styles.card.button.overwrite_style %}
+  .in-blog__btn,
+  .in-blog__btn:hover {
+    font-family: {{ module.styles.card.button.text.font.font }}; {{ module.styles.card.button.text.font.style }};
+    color: {{ module.styles.card.button.text.font.color }};
+    font-size: {{ module.styles.card.button.text.font.size }}px;
+    line-height: 1.1;
+  }
+
+  .in-blog__btn .in-blog__btn-icon svg path {
+    stroke: {{ module.styles.card.button.text.font.color }};
+  }
+  {% endif %}
+
+  {% if module.styles.widgets.title.overwrite_style %}
+  .in-blog__widget-title {
+    font-family: {{ module.styles.widgets.title.font.font }}; 
+    {{ module.styles.widgets.title.font.style }}; 
+    color: {{ module.styles.widgets.title.font.color }};
+    font-size: {{ module.styles.widgets.title.font.size }}px;
+  }
+  {% endif %}
+
+  {% if module.styles.widgets.text.overwrite_style %}
+
+  .in-blog__sidebar-tags > li > a {
+    font-family: {{ module.styles.widgets.text.normal.font.font }}; {{ module.styles.widgets.text.normal.font.style }}; 
+    color: {{ module.styles.widgets.text.normal.font.color }}; 
+    font-size: {{ module.styles.widgets.text.normal.font.size }}px;
+    line-height: 1.5;
+  }
+
+  .in-blog__sidebar-tags > li > a:hover {
+    font-family: {{ module.styles.widgets.text.hover.font.font }}; {{ module.styles.widgets.text.hover.font.style }}; 
+    color: {{ module.styles.widgets.text.hover.font.color }};
+    font-size: {{ module.styles.widgets.text.hover.font.size }}px;
+    line-height: 1.5;
+  }
+  {% endif %}
+
+
+  {% if module.styles.widgets.popular_post.overwrite_style %}
+  .in-blog__sidebar-post > li > a {
+    font-family: {{ module.styles.widgets.popular_post.normal.font.font }};
+    {{ module.styles.widgets.popular_post.normal.font.style }}; 
+    color: {{ module.styles.widgets.popular_post.normal.font.color }}; 
+    font-size: {{ module.styles.widgets.popular_post.normal.font.size }}px;
+    line-height: 1.5;
+  }
+
+  .in-blog__sidebar-post > li > a:hover {
+    font-family: {{ module.styles.widgets.popular_post.hover.font.font }}; {{ module.styles.widgets.popular_post.hover.font.style }}; 
+    color: {{ module.styles.widgets.popular_post.hover.font.color }};
+    font-size: {{ module.styles.widgets.popular_post.hover.font.size }}px;
+    line-height: 1.5;
+  }
+  {% endif %}
+
+  {% if theme.blog_setting.sidebar.enable_blog_sidebar == 'false' %}
+
+  @media (min-width: 992px) {
+    .in-blog__main {
+      max-width: 100%;
+    }
+
+    .in-blog__post {
+      max-width: calc(33.33% - 25px);
+    }
+
+    .in-blog__post:not(:nth-child(2n)) {
+      margin-right: unset;
+    }
+
+    .in-blog__post:not(:nth-child(3n)) {
+      margin-right: 20px;
+    }
+  } 
+
+  @media (max-width: 1100px) {
+    .in-blog__main {
+      margin: 20px 0 40px;
+    }
+  }
+  {% endif %}
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<div id="{{name}}" class="in-blog">
+  <div class="in-blog__head">
+    {% if tag %}
+    <h5 class="in-blog__head-mini-title">
+      {{ module.category_page.mini_title }}
+    </h5>
+    <h1 class="in-blog__head-tag-banner">{{ page_meta.html_title|split(' | ')|last }}</h1>
+    {% else %}
+    <h5 class="in-blog__head-mini-title">
+      {{ module.blog_head.mini_title }}
+    </h5>
+    <div class="in-blog__head-content">
+      {{ module.blog_head.content }}
+    </div>
+    {% endif %}
+  </div>
+  <div class="in-blog__row">
+    <div class="in-blog__main">
+      <div class="in-blog-list">
+        {% for content in contents %}
+        <article class="in-blog__post" role="article" aria-labelledby="post-title-{{ loop.index }}">
+          {% if module.blog_meta_information.featured_image %}
+          <div class="in-blog__featured-img">
+         
+              <img src="{{ content.featuredImage }}" 
+                   alt="{{ content.name }}"
+                   loading="lazy" 
+                   width="370" 
+                   height="220">
+        
+            {% if module.blog_meta_information.tags %}
+            <div class="in-blog-list__tag-wrap">
+              {% for tag in content.tag_list %}
+              <a class="in-blog-list__tag" href="{{ blog_tag_url(group.id, tag.slug) }}">{{ tag.name }}</a>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          {% endif %}
+
+          <div class="in-blog__content">
+            {% if module.blog_meta_information.title %}
+            <h6 id="post-title-{{ loop.index }}">
+              <a href="{{ content.absolute_url }}" class="in-blog__title">{{ content.name }}</a>
+            </h6>
+            {% endif %}
+            {% if module.blog_meta_information.author || module.blog_meta_information.publish_date %}
+            <div class="in-blog__author">
+              {% if module.blog_meta_information.author %}
+              <span>{{ module.author_label }}</span>
+              <a class="blog-index__post-author-name in-blog__author-name" href="{{ blog_author_url(group.id, content.blog_post_author.slug) }}">
+                {{ content.blog_post_author.display_name }} 
+              </a>
+              {% endif %} 
+              {% if module.blog_meta_information.publish_date %}
+              <span> {{ datetimeformat(content.publish_date_local_time, '%e %B, %Y') }}</span>
+              {% endif %}
+            </div>
+            {% endif %}
+            {% if module.blog_meta_information.description %}
+            <div class="in-blog__description">
+              {% if module.content_type == 'description' %}
+              {{ content.post_body | truncatehtml(100) }}
+              {% else %}
+              {{ content.meta_description | truncatehtml(100) }}
+              {% endif %}
+            </div>
+            {% endif %}
+            {% if module.blog_meta_information.button %}
+            <a href="{{ content.absolute_url }}" class="in-blog__btn" aria-label="Read full post: {{ content.name }}">
+              {{ module.blog_meta_information.button_text }}
+              <span class="in-blog__btn-icon">
+                <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 16H27" stroke="{{theme.global_colors.primary.color}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M18 7L27 16L18 25" stroke="{{theme.global_colors.primary.color}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+            {% endif %}
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if theme.blog_setting.sidebar.enable_blog_sidebar %}
+    <aside class="in-blog__sidebar" role="complementary" aria-labelledby="sidebar-title">
+      <h6 id="sidebar-title" class="sr-only">Blog Sidebar</h6>
+
+      <div class="in-blog__action-search hs-search-field"> 
+        <h6 class="in-blog__widget-title">
+          {{ module.search.label_placeholder_button_text }}
+        </h6>
+        <div class="hs-search-field__bar"> 
+          <form action="/{{ site_settings.content_search_results_page_path }}" role="search" aria-label="Blog search form">
+            <input type="text" class="hs-search-field__input" name="term" autocomplete="off" aria-label="Search term" placeholder="{{ module.search.label_placeholder_button_text }}">
+            <input type="hidden" name="type" value="BLOG_POST">
+            <input type="hidden" name="type" value="LISTING_PAGE">
+            <button class="in-btn in-btn--filled-dark" aria-label="Search blog">
+              {{ module.search.label_placeholder_button_text }}
+            </button>
+          </form>
+        </div>
+        <ul class="hs-search-field__suggestions" role="list"></ul>
+      </div>
+
+      {% if theme.blog_setting.sidebar.sidebar_option.topics.enable_blog_topics %}
+      <div class="in-blog__widget">
+        <h6 class="in-blog__widget-title">{{ module.category.title }}</h6>
+        {% set my_tags = blog_tags(group.id, 250) %}
+        <ul class="in-blog__sidebar-tags">
+          {% for item in my_tags %}
+          <li>
+            <a href="{{ blog_tag_url(group.id, item.slug) }}" class="in-blog__sidebar-tags-link">
+              {{ item }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      {% if theme.blog_setting.sidebar.sidebar_option.popular_posts.enable_blog_popular_posts %}
+      <div class="in-blog__widget">
+        <h6 class="in-blog__widget-title">{{ module.popular_posts.title }}</h6>
+        {% set pop_posts = blog_popular_posts(group.id, 5) %}
+        <ul class="in-blog__sidebar-post">
+          {% for pop_post in pop_posts %}
+          <li>
+            <a href="{{ pop_post.absolute_url }}">{{ pop_post.name }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      {% if theme.blog_setting.sidebar.sidebar_option.subscription_form.enable_subscription %}
+      <div class="in-blog__widget">
+        <h6 class="in-blog__widget-title">{{ module.subscribe.title }}</h6>
+        {% blog_subscribe select_blog=group.id, title='', response_message='Thanks for Subscribing!', label='Blog Email Subscription', overrideable=False %}
+      </div>
+      {% endif %}
+    </aside>
+    {% endif %}
+  </div>
+
+  <!-- Pagination -->
+  <nav class="blog-pagination in-blog-pagination" aria-label="Blog pagination">
+    {% set page_list = [-2, -1, 0, 1, 2] %}
+    {% if contents.total_page_count - current_page_num == 1 %}{% set offset = -1 %}
+    {% elif contents.total_page_count - current_page_num == 0 %}{% set offset = -2 %}
+    {% elif current_page_num == 2 %}{% set offset = 1 %}
+    {% elif current_page_num == 1 %}{% set offset = 2 %}
+    {% else %}{% set offset = 0 %}{% endif %}
+
+    <h6>{{ module.pagination.page_label }}</h6>
+    <div class="blog-pagination-left">
+      {% if contents.total_page_count > 5 %}
+      {% if current_page_num >= 4 %}
+      <a href="{{ blog_page_link(1) }}" aria-label="Go to page 1">1</a>
+      <span class="elipses" aria-hidden="true">...</span>
+      {% endif %}
+      {% endif %}
+    </div>
+
+    <div class="blog-pagination-center">
+      {% for page in page_list %}
+      {% set this_page = current_page_num + page + offset %}
+      {% if this_page > 0 and this_page <= contents.total_page_count %}
+      <a {% if this_page == current_page_num %}class="active" aria-current="page"{% endif %} href="{{ blog_page_link(this_page) }}" aria-label="Go to page {{ this_page }}">{{ this_page }}</a>
+      {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="blog-pagination-right">
+      {% if contents.total_page_count > 5 %}
+      {% if contents.total_page_count - current_page_num > 2 %}
+      <span class="elipses" aria-hidden="true">...</span>
+      <a href="{{ blog_page_link(contents.total_page_count) }}" aria-label="Go to last page">{{ contents.total_page_count }}</a>
+      {% endif %}
+      {% endif %}
+      {% if next_page_num %}
+      <a class="next-link" href="{{ blog_page_link(current_page_num + 1) }}" aria-label="Go to next page">
+        {{ module.pagination.next_label }}
+      </a>
+      {% endif %}
+    </div>
+  </nav>
+</div>
+
+
+

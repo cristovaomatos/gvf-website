@@ -1,0 +1,27 @@
+<!--
+templateType: error_page
+isAvailableForNewContent: true
+label: Infinity - 500 Error
+screenshotPath: ../../images/template-previews/500.png
+-->
+{% set template_css = '../../css/templates/system.css' %}
+{% extends '../layouts/base.html' %}
+{# pageTitle is used on system templates for setting a value for the title tag #}
+{% set pageTitle = "Error 500 | Internal Server Error" %}
+
+{% block body %}
+<section class="error-page" data-error="500">
+  <div class="error-page__banner system-page__banner">    
+    {% if theme.system_page_setting.error_page_server_error_setting.is_error_page_server_error_banner_img %}
+    {% set loadingAttr = theme.system_page_setting.error_page_server_error_setting.error_page_server_error_banner.error_page_server_error_banner_image.loading != 'disabled' ? 'loading="{{ theme.system_page_setting.error_page_server_error_setting.error_page_server_error_banner.error_page_server_error_banner_image.loading }}"' : '' %}
+    <img src="{{ theme.system_page_setting.error_page_server_error_setting.error_page_server_error_banner.error_page_server_error_banner_image.src }}" alt="{{ theme.system_page_setting.error_page_server_error_setting.error_page_server_error_banner.error_page_server_error_banner_image.alt }}" {{ loadingAttr }}>  
+    {% endif %}
+  </div>
+  <div class="in-error__content-500">
+    {% module 'content'
+      path='@hubspot/rich_text',
+      html='<h1>Internal Server Error</h1><p>Sorry, we had some technical problems during your last operation.</p>'
+    %}
+  </div>
+</section>
+{% endblock body %}

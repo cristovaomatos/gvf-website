@@ -1,0 +1,297 @@
+<!-- Form Alignment Choice -->
+{% if module.form_title is truthy %}
+{% set no_title = False %}
+{% else %}
+{% set no_title = True %}
+{% endif %}
+
+{% if module.style.form_alignment.form_horizontal_alignment_choice.form_horizontal_alignment =='left' %}
+{% set alignmentForm = 'in-form--align-left'%}
+{% elif module.style.form_alignment.form_horizontal_alignment_choice.form_horizontal_alignment =='center' %}
+{% set alignmentForm = 'in-form--align-center'%}
+{% elif module.style.form_alignment.form_horizontal_alignment_choice.form_horizontal_alignment =='right' %}
+{% set alignmentForm = 'in-form--align-right'%}
+{% endif %}
+
+<!-- Button Choice -->
+
+{% if module.button.overwrite %}
+{% if module.button.choice_field =='filled_dark' %}
+{% set overwrite_btn = 'in-form--filled-dark'%}
+{% elif module.button.choice_field =='filled_light' %}
+{% set overwrite_btn = 'in-form--filled-light'%}
+{% elif module.button.choice_field =='outlined_dark' %}
+{% set overwrite_btn = 'in-form--outlined-dark'%}
+{% endif %}
+{% endif %}
+
+<!-- Module Styles -->
+{% require_css %}
+<style>
+  {% scope_css %}
+  form input[type=text],
+  form input[type=email],
+  form input[type=password],
+  form input[type=tel],
+  form input[type=number],
+  form input[type=search],
+  form select,
+  form textarea {
+    {% if module.style.input_fields.background_color.overwrite %}
+    background: rgba({{ module.style.input_fields.background_color.color.color|convert_rgb }},{{ module.style.input_fields.background_color.color.opacity/100 }});
+    {% endif %}
+
+    {% if module.enable_input_field_box_shadow %}
+    box-shadow: {% for item in module.input_field_box_shadow.shades %} {{  item.horizontal_value }}px {{ item.vertical_value }}px {{ item.blur }}px {{ item.spread }}px rgba({{ item.color.color |convert_rgb}},{{ item.color.opacity }}%) {% if item.inset %}inset{% endif %} {% if loop.length > 1 and !loop.last%},{% endif %} {% endfor %};
+    {% endif %}
+
+    {% if module.style.input_fields.border.enable == true %}
+    border: none;
+    {% endif %}
+  }
+
+  {% if module.style.form_spacing.mobile.overwrite %}
+  .in-form--form form,
+  .in-form .submitted-message {
+    {{ module.style.form_spacing.mobile.spacing_mobile_.css }}
+  }
+  {% endif %}
+
+  {% if module.enable_form_box_shadow %}
+  .in-form--form {
+    box-shadow: {% for item in module.form_box_shadow.shades %} {{  item.horizontal_value }}px {{ item.vertical_value }}px {{ item.blur }}px {{ item.spread }}px rgba({{ item.color.color |convert_rgb}},{{ item.color.opacity }}%) {% if item.inset %}inset{% endif %} {% if loop.length > 1 and !loop.last%},{% endif %} {% endfor %};
+  } 
+  {% endif %}
+
+  {% if module.style.form_corners.overwrite_radius %}
+  .in-form--form,
+  .in-form--form form  {
+    border-radius: {{ module.style.form_corners.radius }}px;
+  }
+
+  .in-form--form > span > .form-title {
+    border-top-left-radius: {{ module.style.form_corners.radius}}px;
+    border-top-right-radius: {{ module.style.form_corners.radius}}px;
+  }
+
+  .in-form--form > span > .form-title + div > form,
+  .in-form--form > span > .form-title + div > .submitted-message {
+    border-radius: 0 0 {{ module.style.form_corners.radius }}px {{ module.style.form_corners.radius }}px;
+  }
+  {% endif %}
+
+  {% if module.style.form_background_color.enable %}
+  .in-form--form form,
+  .in-form .submitted-message {
+    background-color: rgba({{ module.style.form_background_color.color.color|convert_rgb }},{{ module.style.form_background_color.color.opacity }}%);
+  }
+  {% endif %}
+
+  {% if module.style.form_background_color.enable %}
+  .in-form--form .form-title {
+    background-color: rgba({{ module.style.form_background_color.color.color|convert_rgb }},{{ module.style.form_background_color.color.opacity }}%);
+  }
+  {% endif %}
+
+  {% if module.style.button_full_width %}
+  .ac-form--multiple-field form .actions {
+    text-align: center;
+  }
+  .in-form--multiple-field form input[type="submit"] {
+    width: 100%;
+  }
+  {% endif %}
+
+  .in-form--filled-light form .actions input[type="submit"] {
+    {{ theme.buttons.light.filled.normal.border.border.css }}
+    {{ theme.buttons.light.filled.normal.text.font.style }};
+    background: {{ theme.buttons.light.filled.normal.background.color.css }};
+    color: {{ theme.buttons.light.filled.normal.text.font.color }};
+  }
+
+  .in-form--filled-light form .actions input[type="submit"]:hover {
+    {{ theme.buttons.light.filled.hover.border.border.css }}
+    background: {{ theme.buttons.light.filled.hover.background.color.color }};
+    color: {{ theme.buttons.light.filled.hover.text.color.css  }};
+  }
+
+  .in-form--filled-light form .actions input[type="submit"]:active,
+  .in-form--filled-light form .actions input[type="submit"]:focus {
+    {{ theme.buttons.light.filled.active.border.border.css }}
+    background: {{ theme.buttons.light.filled.active.background.color.css }};
+    color: {{ theme.buttons.light.filled.active.text.color.css }};
+  }
+
+  .in-form--filled-dark form  input[type="submit"] {
+    {{ theme.buttons.dark.filled.normal.border.border.css }}
+    {{ theme.buttons.dark.filled.normal.text.font.style }};
+    background: {{ theme.buttons.dark.filled.normal.background.color.css }};
+    color: {{ theme.buttons.dark.filled.normal.text.font.color }};
+  }
+
+  .in-form--filled-dark form .actions input[type="submit"]:hover {
+    {{ theme.buttons.dark.filled.hover.border.border.css }}
+    background: {{ theme.buttons.dark.filled.hover.background.color.css }};
+    color: {{ theme.buttons.dark.filled.hover.text.color.css }};
+  }
+
+  .in-form--filled-dark form .actions input[type="submit"]:active,
+  .in-form--filled-dark form .actions input[type="submit"]:focus {
+    {{ theme.buttons.dark.filled.active.border.border.css }}
+    background: {{ theme.buttons.dark.filled.hover.background.color.css }};
+    color: {{ theme.buttons.dark.filled.active.text.color.css }};
+  }
+
+  .in-form--outlined-dark form input[type="submit"] {
+    {{ theme.buttons.dark.outlined.normal.border.border.css }}
+    {{ theme.buttons.dark.outlined.normal.text.font.style }};
+    background: {{ theme.buttons.dark.outlined.normal.background.color.css }};
+    color: {{ theme.buttons.dark.outlined.normal.text.font.color }};
+  }
+
+  .in-form--outlined-dark form .actions input[type="submit"]:hover {
+    {{ theme.buttons.dark.outlined.hover.border.border.css }}
+    background: {{ theme.buttons.dark.outlined.hover.background.color.css }};
+    color: {{ theme.buttons.dark.outlined.hover.text.color.css }};
+  }
+
+  .in-form--outlined-dark form .actions input[type="submit"]:focus,
+  .in-form--outlined-dark form .actions input[type="submit"]:active {
+    {{ theme.buttons.dark.outlined.active.border.border.css }}
+    background: {{ theme.buttons.dark.outlined.active.background.color.css }};
+    color: {{ theme.buttons.dark.outlined.active.text.color.css }};
+  }
+
+  .form-title {
+    text-align: center;
+    margin-bottom: 0;
+    {% if module.style.form_title.color.overwrite %}
+    color: rgba({{ module.style.form_title.color.color_field.color |convert_rgb }},{{ module.style.form_title.color.color_field.opacity  }}%);
+    {% endif %}
+    {% if module.style.form_title.border.enable %}
+    padding-left: 0;
+    border-bottom: {{ module.style.form_title.border.border.border_width }}px solid rgba({{ module.style.form_title.border.border.border_color.color |convert_rgb }},{{ module.style.form_title.border.border.border_color.opacity }}%);
+    {% endif %}
+  }
+
+  /*   Thank You Message */
+
+  .in-form--form .submitted-message {
+ 
+    {% if module.style.thank_you_message.color.overwrite_styles %}
+    color: {{ module.style.thank_you_message.color.color_field_1.color }};
+    {% endif %}
+    {{ module.style.thank_you_message.alignment.textalignment_field.css }};
+  }
+
+  @media (min-width: 768px) { 
+    {% if module.style.form_max_width.enable %}
+    .in-form {
+      max-width: {{ module.style.form_max_width.form_max_width }}px;
+      margin: 0 auto;
+    }
+    {% endif %}
+  }
+
+  @media (min-width: 992px) { 
+    .ac-form.ac-form--align-left {
+      margin: 0 auto 0 0;
+    }
+
+    .in-form.ac-form--align-center {
+      margin: 0 auto;
+    }
+
+    .in-form.ac-form--align-right {
+      margin: 0 0 0 auto;
+    }
+
+    {% if  module.style.form_title.alignment.form_horizontal_alignment_choice.form_horizontal_alignment =='left' %} 
+    .in-form--form .form-title {
+      text-align: left;
+    }
+
+    {% elif  module.style.form_title.alignment.form_horizontal_alignment_choice.form_horizontal_alignment =='center' %}
+    .in-form--form .form-title {
+      text-align: center;
+    }
+
+    {% elif  module.style.form_title.alignment.form_horizontal_alignment_choice.form_horizontal_alignment =='right' %}
+    .in-form--form .form-title {
+      text-align: right;
+    }
+
+    {% endif %}
+
+    {% if module.style.form_spacing.desktop.overwrite %}
+    .in-form--form form ,
+    .in-form .submitted-message {
+      {{ module.style.form_spacing.desktop.spacing.css }}
+    }
+    {% endif %}
+
+    .in-form--single-field form {
+      {% if  module.style.side_btn_form_alignment.desktop.form_horizontal_alignment =='left' %} 
+      justify-content: flex-start;
+      {% elif  module.style.side_btn_form_alignment.desktop.form_horizontal_alignment =='right' %} 
+      justify-content: flex-end;
+      {% elif  module.style.side_btn_form_alignment.desktop.form_horizontal_alignment =='center' %} 
+      justify-content: center;
+      {% endif %}
+    }
+  }
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<!-- Form -->
+
+<div id="{{ name }}" class="in-form {{ alignmentForm }}" role="form" aria-labelledby="{{ name }}-title">
+
+  {% if module.form_layouts_choice.form_layouts == 'single_field_inline_button' %}
+  <!--   Single Field Form With Button On Side -->
+  <div class="in-form--form in-form--single-field {{ overwrite_btn }}">
+    {% form
+        title='{{  module.form_title }}',
+        no_title='{{ no_title }}',
+        form_to_use="{{ module.single_field_inline_button.form_id }}"
+        response_response_type="{{ module.single_field_inline_button.response_type }}"
+        response_message="{{ module.single_field_inline_button.message }}"
+        response_redirect_id="{{ module.single_field_inline_button.redirect_id }}"
+        response_redirect_url="{{module.single_field_inline_button.redirect_url}}"
+        gotowebinar_webinar_key="{{ module.single_field_inline_button.gotowebinar_webinar_key }}"
+      %}
+  </div>
+
+  {% elif module.form_layouts_choice.form_layouts == 'single_field_form' %}
+ <!--   Single Field Form With Button On Bottom -->
+  <div class="in-form--form in-form--single-form-field {{ overwrite_btn }}">
+    {% form
+        title='{{  module.form_title }}',
+        no_title='{{ no_title }}',
+        form_to_use="{{ module.single_field_inline_button.form_id }}"
+        response_response_type="{{ module.single_field_inline_button.response_type }}"
+        response_message="{{ module.single_field_inline_button.message }}"
+        response_redirect_id="{{ module.single_field_inline_button.redirect_id }}"
+        response_redirect_url="{{module.single_field_inline_button.redirect_url}}"
+        gotowebinar_webinar_key="{{ module.single_field_inline_button.gotowebinar_webinar_key }}"
+      %}
+  </div>
+
+  {% elif module.form_layouts_choice.form_layouts == 'multiple_field_form' %}
+  <!--   Multiple Field Form    -->
+  <div class="in-form--form in-form--multiple-field {{ overwrite_btn }}">
+    {% form
+        title='{{  module.form_title }}',
+        no_title='{{ no_title }}',
+        form_to_use="{{ module.multiple_field_form.form_id }}"
+        response_response_type="{{ module.multiple_field_form.response_type }}"
+        response_message="{{ module.multiple_field_form.message }}"
+        response_redirect_id="{{ module.multiple_field_form.redirect_id }}"
+        response_redirect_url="{{module.multiple_field_form.redirect_url}}"
+        gotowebinar_webinar_key="{{ module.multiple_field_form.gotowebinar_webinar_key }}"
+      %}
+  </div>
+  {% endif %}
+</div>
+

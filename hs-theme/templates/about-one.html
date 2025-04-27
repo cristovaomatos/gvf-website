@@ -1,0 +1,440 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: About Company
+  screenshotPath: ../images/template-previews/about-company.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--about-company"
+%}
+
+<!-- Banner Section -->
+{% dnd_section
+  full_width=true,
+  padding={
+    "default" : {
+      "bottom" : "0px",
+      "left" : "0px",
+      "right" : "0px",
+      "top" : "0px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12,
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    }
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/banner",
+        offset=0,
+        width=12,
+        button_breadcrumb_choice={
+          "select" : "breadcrumb"
+        },
+        content={
+          "content" : "<h1>Know about us</h1>",
+          "enable_mini_title" : true
+        },
+        layout={
+          "select_layout" : "background_image"
+        },
+        style={
+          "background_image" : {
+            "image" : {
+              "background_position" : "MIDDLE_CENTER",
+              "background_size" : "cover",
+              "src" : get_asset_url('../images/multipurpose/banner-six.jpg')
+            }
+          },
+          "breadcrumb" : {
+            "overwrite_style" : true
+          },
+          "content" : {
+            "color" : {
+              "description" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              },
+              "mini_title" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              },
+              "title" : {
+                "color" : "#FAFAFA",
+                "opacity" : 100
+              }
+            },
+            "overwrite_content_color" : true
+          },
+          "spacing" : {
+            "desktop_spacing" : {
+              "margin" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 0
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 0
+                }
+              },
+              "padding" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 85
+                },
+                "left" : {
+                  "units" : "px",
+                  "value" : 15
+                },
+                "right" : {
+                  "units" : "px",
+                  "value" : 15
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 85
+                }
+              }
+            },
+            "mobile_spacing" : {
+              "margin" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 0
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 0
+                }
+              },
+              "padding" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 50
+                },
+                "left" : {
+                  "units" : "px",
+                  "value" : 15
+                },
+                "right" : {
+                  "units" : "px",
+                  "value" : 15
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 50
+                }
+              }
+            }
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+<!-- Content and Image Section  -->
+{% include_dnd_partial path="../sections/two-column-content-image.html" %}
+
+<!-- Counter and Content Section  -->
+{% include_dnd_partial path="../sections/two-column-counter-content.html" %}
+
+<!-- Video Section  -->
+{% include_dnd_partial path="../sections/two-column-content-video.html" %}
+
+<!--  Team Section -->
+{% dnd_section
+  padding={
+    "mobile" : {
+      "bottom" : "50px",
+      "top" : "50px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/title-content",
+        offset=0,
+        width=12,
+        enable_mini_title=false,
+        style={
+          "container" : {
+            "enable_max_width" : true,
+            "max_width" : 850
+          }
+        }
+      %}
+        {% module_attribute "content" %}
+          <h2>The <span style="color: {{ theme.global_colors.primary.color }};">team behind</span> Infinity are spread world around</h2>
+        {% end_module_attribute %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/spacer",
+        offset=0,
+        width=12,
+        style={
+          "height_desktop_" : 60,
+          "height_mobile_" : 50,
+          "height_tablet_" : 50
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/team",
+        offset=0,
+        width=12,
+        layout_choice={
+          "select_layout" : "slider"
+        },
+        team=[ {
+          "designation" : "CEO",
+          "image" : {
+            "alt" : "Mathew James",
+            "height" : 318,
+            "loading" : "lazy",
+            "max_height" : 318,
+            "max_width" : 357,
+            "size_type" : "exact",
+            "src" : get_asset_url('../images/multipurpose/mathew-james.jpg'),
+            "width" : 357
+          },
+          "member_name" : "Mathew James",
+          "milestone" : "8k Projects Done",
+          "profile_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://blog.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }, {
+          "designation" : "CEO",
+          "image" : {
+            "alt" : "Emma Jones",
+            "height" : 318,
+            "loading" : "lazy",
+            "max_height" : 318,
+            "max_width" : 357,
+            "size_type" : "exact",
+            "src" : get_asset_url('../images/multipurpose/emma-jones.jpg'),
+            "width" : 357
+          },
+          "member_name" : "Emma Jones",
+          "milestone" : "8k Projects Done",
+          "profile_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://blog.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }, {
+          "designation" : "CEO",
+          "image" : {
+            "alt" : "Jacob Smith",
+            "height" : 318,
+            "loading" : "lazy",
+            "max_height" : 318,
+            "max_width" : 357,
+            "size_type" : "exact",
+            "src" : get_asset_url('../images/multipurpose/jacob-smith.jpg'),
+            "width" : 357
+          },
+          "member_name" : "Jacob Smith",
+          "milestone" : "8k Projects Done",
+          "profile_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://blog.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }, {
+          "designation" : "CEO",
+          "image" : {
+            "alt" : "Wade Warner",
+            "height" : 318,
+            "loading" : "lazy",
+            "max_height" : 318,
+            "max_width" : 357,
+            "size_type" : "exact",
+            "src" : get_asset_url('../images/multipurpose/wade-warner.jpg'),
+            "width" : 357
+          },
+          "member_name" : "Wade Warner",
+          "milestone" : "8k Projects Done",
+          "profile_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://blog.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }, {
+          "designation" : "CEO",
+          "image" : {
+            "alt" : "Esther Howard",
+            "height" : 318,
+            "loading" : "lazy",
+            "max_height" : 318,
+            "max_width" : 357,
+            "size_type" : "exact",
+            "src" : get_asset_url('../images/multipurpose/esther-howard.jpg'),
+            "width" : 357
+          },
+          "member_name" : "Mathew James",
+          "milestone" : "8k Projects Done",
+          "profile_link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://blog.hubspot.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        } ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+<!-- Content section -->
+{% dnd_section
+  background_image={
+    "background_position" : "MIDDLE_CENTER",
+    "background_size" : "cover",
+    "image_url" : get_asset_url('../images/multipurpose/banner-seven.jpg'),
+  },
+  padding={
+    "mobile" : {
+      "bottom" : "50px",
+      "top" : "50px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/title-content",
+        offset=0,
+        width=12,
+        button={
+          "enable_primary_button" : true,
+          "enable_secondary_button" : true
+        },
+        mini_title="CONNECT WITH US",
+        style={
+          "container" : {
+            "background_color" : {
+              "color" : "#FFFFFF",
+              "opacity" : 100
+            },
+            "corner" : 24,
+            "enable_max_width" : true,
+            "max_width" : 750,
+            "spacing" : {
+              "desktop_spacing" : {
+                "margin" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 0
+                  }
+                },
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 50
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 40
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 60
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 40
+                  }
+                }
+              },
+              "mobile_spacing" : {
+                "margin" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 0
+                  }
+                },
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 40
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 30
+                  }
+                }
+              }
+            }
+          }
+        }
+      %}
+        {% module_attribute "content" %}
+          <h2>Grow Your Bussiess with us</h2>
+          <p>Sed amet dolor penatibus sed at posuere justo, lacinia neque.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Leo nec felis at pellentesque. Sed amet dolor penatibus sed at posuere justo, lacinia neque.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        {% end_module_attribute %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+{% end_dnd_area %}
+{% endblock body %}

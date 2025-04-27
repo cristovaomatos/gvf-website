@@ -1,0 +1,96 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Contact Us
+  screenshotPath: ../images/template-previews/contact.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--contact"
+%}
+
+<!-- Banner Section  -->
+{% include_dnd_partial path="../sections/two-column-content-form.html" %}
+
+<!-- Map Section  -->
+{% dnd_section
+  background_color="rgba(250, 249, 246, 1)",
+  padding={
+    "default" : {
+      "bottom" : "50px"
+    },
+    "mobile" : {
+      "bottom" : "30px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/title-content",
+        offset=0,
+        width=12,
+        mini_title="OUR BRANCHES",
+        style={
+          "container" : {
+            "enable_max_width" : true
+          },
+            "alignment" : {
+              "desktop_alignment" : "center"
+            }
+        }
+      %}
+        {% module_attribute "content" %}
+          <h2>We are global 400+ Offices</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Leo nec felis at pellentesque. Sed amet dolor penatibus sed at posuere justo, lacinia neque.</p>
+        {% end_module_attribute %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+{% dnd_section
+ full_width=true,
+  background_color="rgba(250, 249, 246, 1)",
+  padding={
+    "default" : {
+      "left" : "0px",
+      "right" : "0px",
+      "top" : "0px"
+    },
+    "mobile" : {
+      "bottom" : "50px",
+      "top" : "0px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12,
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    }
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/map",
+        offset=0,
+        width=12
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
+{% end_dnd_area %}
+{% endblock body %}

@@ -1,0 +1,58 @@
+{% import '../macros.html' %}
+
+{% require_css %}
+<style>
+  {% scope_css %}
+  
+  .in-logo {
+    {% if module.style.alignment.alignment_desktop == "center" %}
+      text-align: center;
+    {% elif module.style.alignment.alignment_desktop == "right" %}
+      text-align: right;
+    {% else %}
+      text-align: left;
+    {% endif %}
+  }
+  
+  @media (max-width: 767px) {
+    .in-logo {
+      {% if module.style.alignment.alignment_mobile == "center" %}
+        text-align: center;
+      {% elif module.style.alignment.alignment_mobile == "right" %}
+        text-align: right;
+      {% else %}
+        text-align: left;
+      {% endif %}
+    }
+  }
+    
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<div id="{{name}}" class="in-logo">
+<!--   classes from the macro were beign passed to link and image function -->
+  {% if module.enable_custom_logo %}
+  {% set href = module.logo.link.url.href %}
+  {% if module.logo.link.url.type is equalto "EMAIL_ADDRESS" %}
+    {% set href = "mailto:" + href %}
+  {% endif %}
+  <a href="{{ href }}"
+    {% if module.logo.link.open_in_new_tab %}target="_blank"{% endif %}
+    {% if module.logo.link.rel %}rel="{{ module.logo.link.rel }}"{% endif %}
+    >
+    {{ image(module.logo.logo) }}
+  </a>
+  
+  {% else %}
+  {% logo
+      override_inherited_src="{{ module.logo_field.override_inherited_src }}"
+      src="{{ module.logo_field.src }}"
+      alt="{{ module.logo_field.alt }}"
+      width="{{ module.logo_field.width }}"
+      height="{{ module.logo_field.height }}"
+      suppress_company_name="{{ module.logo_field.suppress_company_name }}"
+    %}
+  {% endif %}
+</div>
+

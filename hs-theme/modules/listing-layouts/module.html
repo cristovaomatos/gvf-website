@@ -1,0 +1,312 @@
+{% import '../macros.html' %}
+
+<!-- Column Count -->
+{% if module.column_count.select_column =='one_column' %}
+{% set columnClassName = 'in-listing__col-one'%}
+{% elif module.column_count.select_column =='two_column' %}
+{% set columnClassName = 'in-listing__col-two'%}
+{% elif module.column_count.select_column =='three_column' %}
+{% set columnClassName = 'in-listing__col-three'%}
+{% endif %}
+
+<!-- Module styles  -->
+{% require_css %}
+<style>
+  {% scope_css %}
+
+  {% if module.enable_box_shadow %}
+  .in-listing-card__column:hover,
+  .in-listing-grid__column:hover {
+    border-color: transparent;
+    box-shadow: {% if module.box_shadow.shade.inset %} inset {% endif %} {{ module.box_shadow.shade.vertical_value }}px {{ module.box_shadow.shade.horizontal_value }}px {{ module.box_shadow.shade.blur }}px {{ module.box_shadow.shade.spread }}px rgba({{ module.box_shadow.shade.color.color | convert_rgb }},{{ module.box_shadow.shade.color.opacity }}%);
+  }
+  {% endif %}
+
+  .in-listing-card__column,
+  .in-listing-grid__column {
+    background: rgba({{ module.style.card.background.background_color.color|convert_rgb }},{{ module.style.card.background.background_color.opacity/100 }});
+    {% if module.style.card.border_color.overwrite_border_color %}
+    border: 2px solid rgba({{ module.style.card.border_color.border_color.color|convert_rgb }},{{ module.style.card.border_color.border_color.opacity/100 }});
+    {% endif %}
+    border-radius: {{ module.style.card.corners.radius ~ 'px' }};
+    {{ module.style.card.spacing.mobile.css }};
+  }
+
+  .in-listing--tabs-list a {
+    color: {{ theme.typography.body_text.desktop.font.color }};
+  }
+
+  .in-listing--tabs-list a:hover {
+    color: {{ theme.global_colors.heading.color }};
+    font-weight: 400;
+  }
+
+  .in-listing--tabs-filter-link.active {
+    color: {{ theme.global_colors.heading.color }};
+    border-bottom: 2px solid {{  theme.global_colors.primary.color }};
+  }
+
+  {% if module.style.content.overwrite_styles %}
+
+  .in-listing-grid__subtitle span,
+  .in-listing-card__subtitle span {
+    color: rgba({{ module.style.content.content_color.subtitle_color.color_field.color|convert_rgb }},{{ module.style.content.content_color.subtitle_color.color_field.opacity/100 }});
+  }
+
+  .in-listing-card__title,
+  .in-listing-grid__title {
+    color: rgba({{ module.style.content.content_color.title_color.color_field.color|convert_rgb }},{{ module.style.content.content_color.title_color.color_field.opacity/100 }});
+  }
+
+  .in-listing-grid__description,
+  .in-listing-grid__description p,
+  .in-listing-card__description,
+  .in-listing-card__description p {
+    color: rgba({{ module.style.content.content_color.description_color.color_field.color|convert_rgb }},{{ module.style.content.content_color.description_color.color_field.opacity/100 }});
+  }
+
+  .in-listing-card__title-wrap span,
+  .in-listing-grid__title-wrap span {
+    background: rgba({{ module.style.content.content_color.tag_color.background.color|convert_rgb }},{{ module.style.content.content_color.tag_color.background.opacity/100 }});
+    color: rgba({{ module.style.content.content_color.tag_color.text_color.color|convert_rgb }},{{ module.style.content.content_color.tag_color.text_color.opacity/100 }});
+  }
+
+  .in-listing-grid__button .in-btn--outlined-dark,
+  .in-listing-card__button .in-btn--outlined-dark {
+    background: transparent;
+    color: rgba({{ module.style.content.content_color.button_text_border_color.border_text_color_normal.color|convert_rgb }},{{ module.style.content.content_color.button_text_border_color.border_text_color_normal.opacity/100 }});
+    border-color: rgba({{ module.style.content.content_color.button_text_border_color.border_text_color_normal.color|convert_rgb }},{{ module.style.content.content_color.button_text_border_color.border_text_color_normal.opacity/100 }});
+  }
+
+  .in-listing-grid__button .in-btn--outlined-dark:hover,
+  .in-listing-grid__button .in-btn--outlined-dark:focus,
+  .in-listing-grid__button .in-btn--outlined-dark:active,
+  .in-listing-card__button .in-btn--outlined-dark:hover,
+  .in-listing-card__button .in-btn--outlined-dark:focus,
+  .in-listing-card__button .in-btn--outlined-dark:active {
+    background: rgba({{ module.style.content.content_color.button_text_border_color.border_text_color_normal.color|convert_rgb }},{{ module.style.content.content_color.button_text_border_color.border_text_color_normal.opacity/100 }});
+    border-color: rgba({{ module.style.content.content_color.button_text_border_color.border_text_color_normal.color|convert_rgb }},{{ module.style.content.content_color.button_text_border_color.border_text_color_normal.opacity/100 }});
+    color: rgba({{ module.style.content.content_color.button_text_border_color.text_color_hover.color|convert_rgb }},{{ module.style.content.content_color.button_text_border_color.text_color_hover.opacity/100 }});
+  }
+
+  {% endif %}
+
+  .in-listing-grid__column,
+  .in-listing-card__column {
+    {% if module.style.content_alignment.mobile.text_alignment == "left"  %}
+    text-align: left;
+    {% elif module.style.content_alignment.mobile.text_alignment == "center"  %}
+    text-align: center;
+    {% elif module.style.content_alignment.mobile.text_alignment == "right"  %}
+    text-align: right;
+    {% endif %}
+  }
+
+  .in-listing-grid__title-wrap,
+  .in-listing-card__title-wrap {
+    {% if module.style.content_alignment.mobile.text_alignment == "left"  %}
+    justify-content: flex-start;
+    {% elif module.style.content_alignment.mobile.text_alignment == "center"  %}
+    justify-content: center;
+    {% elif module.style.content_alignment.mobile.text_alignment == "right"  %}
+    justify-content: flex-end;
+    {% endif %}
+  }
+
+  @media (min-width: 992px) {
+    .in-listing-card__column,
+    .in-listing-grid__column {
+      {{ module.style.card.spacing.desktop.css }};
+    }
+
+    .in-listing-grid__column,
+    .in-listing-card__column {
+      {% if module.style.content_alignment.desktop.text_alignment == "left"  %}
+      text-align: left;
+      {% elif module.style.content_alignment.desktop.text_alignment == "center"  %}
+      text-align: center;
+      {% elif module.style.content_alignment.desktop.text_alignment == "right"  %}
+      text-align: right;
+      {% endif %}
+    }
+
+    .in-listing-grid__title-wrap,
+    .in-listing-card__title-wrap {
+      {% if module.style.content_alignment.desktop.text_alignment == "left"  %}
+      justify-content: flex-start;
+      {% elif module.style.content_alignment.desktop.text_alignment == "center"  %}
+      justify-content: center;
+      {% elif module.style.content_alignment.desktop.text_alignment == "right"  %}
+      justify-content: flex-end;
+      {% endif %}
+    }
+
+  }
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+<div id="{{ name }}" class="in-listing" role="region" aria-label="Listing Section">
+
+  {% if module.layout_choice.select_layout =='card' %}
+  <!--   Card Layout -->
+  <div class="in-listing-card">
+    <div class="in-listing-card__row">
+      {% for item in module.tab_content %}
+      <div class="in-listing-card__column {{ columnClassName }}" role="group" aria-labelledby="listing-title-{{ loop.index }}">
+        {% if item.sub_title.enable %}
+        <div class="in-listing-card__subtitle">
+          <span>{{ item.sub_title.text }}</span>
+        </div>
+        {% endif %}
+        <div class="in-listing-card__title-wrap">
+          <h5 class="in-listing-card__title" id="listing-title-{{ loop.index }}">
+            {{ item.title }}
+          </h5>
+          {% if item.tag.enable %}
+          <span>{{ item.tag.text_field }}</span>
+          {% endif %}
+        </div>
+        <div class="in-listing-card__description">
+          {{ item.description }}
+        </div>
+        {% if item.button.enable_button %}
+        <div class="in-listing-card__button">
+          {% set href = item.button.button.button_link.url.href %}
+          {% if item.button.button.button_link.url.type is equalto "EMAIL_ADDRESS" %}
+          {% set href = "mailto:" + href %}
+          {% endif %}
+          <a href="{{ href }}" class="in-btn in-btn--outlined-dark {% if theme.buttons.button.animation.enable_animation  %} in-btn-animation {% endif %}"
+             {% if item.button.button.button_link.open_in_new_tab %}target="_blank"{% endif %}
+             {% if item.button.button.button_link.rel %}rel="{{ item.button.button.button_link.rel }}"{% endif %}
+             aria-label="{{ item.button.button.button_text }}">
+            {{ item.button.button.button_text }}
+          </a>
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% elif module.layout_choice.select_layout =='filter' %}
+  <!--   Filter Layout -->
+  <div id="{{ name }}" role="region" aria-label="Filter Section">
+    <div class="in-listing--tabs-container">
+      <nav class="in-listing--tabs" role="tablist" aria-label="Listing Filters">
+        <ul class="in-listing--tabs-list no-list">
+          {% for item in module.tabs %}
+          <li role="presentation">
+            <a href="#" class="in-listing--tabs-filter-link {% if item.set_initial_filter == 'true' %}active{% endif %}" 
+               data-id="{{ item.tab_id|capitalize }}" 
+               aria-label="Filter by {{ item.tab_name }}"
+               role="tab"
+               {% if item.set_initial_filter == 'true' %}aria-selected="true"{% else %}aria-selected="false"{% endif %}>
+              {{ item.tab_name }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+    <div class="in-listing-grid" id="in-listing-grid">
+      <div class="in-listing-grid__sizer in-grid__sizer" aria-hidden="true"></div>
+      {% for item in module.tab_content %}
+      <div class="in-listing-grid__item grid-item" 
+           role="group" 
+           aria-labelledby="grid-title-{{ loop.index }}"
+           data-groups='[{% set string_to_split = item.item_id %}{% set names = string_to_split|split(",") %}{% for name in names %}"{{ name|capitalize }}"{% if !loop.last %},{% endif %}{% endfor %}]'>
+        <div class="in-listing-grid__column">
+          {% if item.sub_title.enable %}
+          <div class="in-listing-grid__subtitle">
+            <span>{{ item.sub_title.text }}</span>
+          </div>
+          {% endif %}
+          <div class="in-listing-grid__title-wrap">
+            <h5 class="in-listing-grid__title" id="grid-title-{{ loop.index }}">
+              {{ item.title }}
+            </h5>
+            {% if item.tag.enable %}
+            <span>{{ item.tag.text_field }}</span>
+            {% endif %}
+          </div>
+          <div class="in-listing-grid__description">
+            {{ item.description }}
+          </div>
+          {% if item.button.enable_button %}
+          <div class="in-listing-grid__button">
+            {% set href = item.button.button.button_link.url.href %}
+            {% if item.button.button.button_link.url.type is equalto "EMAIL_ADDRESS" %}
+            {% set href = "mailto:" + href %}
+            {% endif %}
+            <a href="{{ href }}" class="in-btn in-btn--outlined-dark {% if theme.buttons.button.animation.enable_animation  %} in-btn-animation {% endif %}"
+               {% if item.button.button.button_link.open_in_new_tab %}target="_blank"{% endif %}
+               {% if item.button.button.button_link.rel %}rel="{{ item.button.button.button_link.rel }}"{% endif %}
+               aria-label="{{ item.button.button.button_text }}">
+              {{ item.button.button.button_text }}
+            </a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+
+{# Module JS #}
+
+ {% if module.layout_choice.select_layout =='filter' %}
+
+{% require_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Shuffle/5.4.1/shuffle.min.js"></script>
+{{ require_js('https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js') }}
+<script defer="defer">
+  jQuery(document).ready(function($){
+    // shuffle
+    function showShuffleElements() {
+      const Shuffle = window.Shuffle;
+      const element = document.querySelector('#{{name}} .in-listing-grid');
+                                             if (element !== null) {
+        imagesLoaded(element, function() {
+          const sizer = element.querySelector('#{{name}} .in-listing-grid__sizer');
+                                              const shuffleInstance = new Shuffle(element, {
+                                              itemSelector: '#{{name}} .in-listing-grid__item',
+                                              sizer: sizer,
+                                              group: [{% for item in module.tabs %}
+                                              "{{ item.tab_id }}"
+                                              {% if loop.length > 1 and !loop.last%},
+                                              {% endif %}
+                                              {% endfor %}
+                                              ]
+        });
+        const allClasses = $("#{{name}} .in-listing--tabs-filter-link");
+                             var getData = function(event) {
+          event.preventDefault();
+          let clickedElement = event.target;
+          let filterId = clickedElement.getAttribute('data-id');
+          shuffleInstance.filter(filterId);
+          for (var i = 0; i < allClasses.length; i++) {
+            if( allClasses[i].classList.contains('active')){
+              allClasses[i].classList.remove('active');
+            }
+          }
+          clickedElement.classList.add('active');
+        }
+        for (var i = 0; i < allClasses.length; i++) {
+          allClasses[i].addEventListener('click', getData, false);
+        }
+        const selectedClasses = document.getElementsByClassName('in-listing--tabs-filter-link active');
+        var defaultFilter = selectedClasses[0].getAttribute('data-id');
+        shuffleInstance.filter(defaultFilter);
+      });
+    }
+  }
+  showShuffleElements();
+  });
+</script>
+{% end_require_js %}
+ {% endif %}
+

@@ -1,0 +1,112 @@
+<!-- Module styles -->
+{% require_css %}
+<style>
+  {% scope_css %}
+  .in-accordion__accordion {
+    {{ module.style.accordion.spacing.spacing_field.css }};
+    background: rgba({{ module.style.accordion.background_color.background_color.color|convert_rgb }},{{ module.style.accordion.background_color.background_color.opacity }}%);
+    border-radius: {{ module.style.accordion.border_radius.border_radius ~ 'px' }};
+    {% if module.style.accordion.box_shadow.enable_box_shadow %}
+    box-shadow: {{ module.style.accordion.box_shadow.box_shadow.horizontal_value }}px {{ module.style.accordion.box_shadow.box_shadow.vertical_value  }}px {{ module.style.accordion.box_shadow.box_shadow.spread }}px {{ module.style.accordion.box_shadow.box_shadow.blur }}px rgba({{ module.style.accordion.box_shadow.box_shadow.color_field.color|convert_rgb }},{{ module.style.accordion.box_shadow.box_shadow.color_field.opacity/100 }});
+    {% endif %}
+  }
+
+  {# Accordion title #}
+
+  .in-accordion__accordion-title {
+    {{ module.style.title.spacing.spacing_field_1.css }};
+  }
+
+  .in-accordion__accordion-title h6 {
+    {% if module.style.title.font.overwrite %}
+    {{ module.style.title.font.font_field.style }};
+    color: {{ module.style.title.font.font_field.color }};
+    font-size: {{ module.style.title.font.font_field.size ~ 'px' }};
+    {% endif %}
+  }
+
+  {% if module.style.icon.overwrite %}
+  .in-accordion__icon svg {
+    fill: rgba({{ module.style.icon.color.color|convert_rgb }},{{ module.style.icon.color.opacity }}%);
+  }
+  {% else %}
+  .in-accordion__icon svg {
+    fill: {{ theme.global_colors.primary.color }};
+  }
+  {% endif %}
+
+  {# Accordion content #}
+
+  .in-accordion__accordion-content,
+  .in-accordion__accordion-content p {
+    {% if module.style.content.font.overwrite %}
+    {{ module.style.content.font.font_field.style }};
+    color: {{ module.style.content.font.font_field.color }};
+    font-size:  {{ module.style.content.font.font_field.size ~ 'px' }};
+    {% endif %}
+  }
+
+  .in-accordion__accordion-content {
+    {{ module.style.content.spacing.spacing_field_1.css }};
+  }
+
+  {% if  module.icon_position.choice == 'left' %}
+  .in-accordion__accordion-content {
+    padding-left: 30px!important;
+  }
+  {% endif %}
+
+  @media (max-width: 767px) {
+    .in-accordion__accordion {
+      {{ module.style.accordion.spacing.spacing_mobile.css }}
+    }
+  }
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+<!-- Accordion -->
+<div id="{{ name }}" class="in-accordion" role="presentation">
+  <div class="in-accordion-wrap">
+    {% for item in module.accordion %}
+    <div class="in-accordion__accordion in-faq-accordion">
+      {% set heading_id = name ~ '-heading-' ~ loop.index %}
+      {% set content_id = name ~ '-content-' ~ loop.index %}
+      <div class="in-accordion__accordion-title in-accordion__title"
+           id="{{ heading_id }}"
+           role="button"
+           tabindex="0"
+           aria-expanded="false"
+           aria-controls="{{ content_id }}">
+        {% if module.toggler_icon.icon_position.choice == 'left' %}
+        <div class="in-accordion__icon in-accordion__open-icon" aria-hidden="true">
+          {% icon name="{{ module.toggler_icon.opening_icon.name }}" style="{{ module.toggler_icon.opening_icon.type }}" unicode="{{ module.toggler_icon.opening_icon.unicode }}" icon_set="{{ module.toggler_icon.opening_icon.icon_set }}" %}
+        </div>
+        <div class="in-accordion__icon in-accordion__close-icon" aria-hidden="true">
+          {% icon name="{{ module.toggler_icon.closing_icon.name }}" style="{{ module.toggler_icon.closing_icon.type }}" unicode="{{ module.toggler_icon.closing_icon.unicode }}" icon_set="{{ module.toggler_icon.closing_icon.icon_set }}" %}
+        </div>
+        {% endif %}
+        <h6>
+          {{ item.title }}
+        </h6>
+        {% if module.toggler_icon.icon_position.choice == 'right' %}
+        <div class="in-accordion__icon in-accordion__open-icon" aria-hidden="true">
+           {% icon name="{{ module.toggler_icon.opening_icon.name }}" style="{{ module.toggler_icon.opening_icon.type }}"	unicode="{{ module.toggler_icon.opening_icon.unicode }}" icon_set="{{ module.toggler_icon.opening_icon.icon_set }}" %}
+        </div>
+        <div class="in-accordion__icon in-accordion__close-icon" aria-hidden="true">
+          {% icon name="{{ module.toggler_icon.closing_icon.name }}" style="{{ module.toggler_icon.closing_icon.type }}" unicode="{{ module.toggler_icon.closing_icon.unicode }}" icon_set="{{ module.toggler_icon.closing_icon.icon_set }}" %}
+        </div>
+        {% endif %}
+      </div>
+      <div class="in-accordion__accordion-content in-accordion__content"
+           id="{{ content_id }}"
+           role="region"
+           aria-labelledby="{{ heading_id }}"
+           hidden>
+        {{ item.content }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<!--
+  templateType: section
+  label: Two Column with Video and Content.
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/two-column-video-content.png
+  description: "Section separated in two columns. Left column has Video and right column has Content."
+-->
+{% dnd_section
+    class="in-tab-full-width",
+    vertical_alignment="MIDDLE"
+    padding={
+    "mobile" : {
+      "bottom" : "50px",
+      "top" : "50px"
+    }
+    }
+  %}
+    {% dnd_column
+      offset=0,
+      width=6
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path='../modules/video-popup',
+          video_poster={
+            'poster' : {
+              'alt' : 'Video Poster',
+              'height' : 410,
+              'loading' : 'lazy',
+              'max_height' : 410,
+              'max_width' : 634,
+              'size_type' : 'auto',
+              'src' : get_asset_url('../images/multipurpose/video-poster-two.jpg'),
+              'width' : 634
+            }
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+    {% dnd_column
+      offset=6,
+      width=6
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path='../modules/title-content',
+          button={
+            'enable_primary_button' : true,
+            'primary_button' : {
+              'icon' : {
+                'icon' : {
+                  'name' : 'arrow-right',
+                  'type' : 'SOLID',
+                  'unicode' : 'f061'
+                },
+                'icon_position' : 'right'
+              },
+              'text' : 'sign up'
+            }
+          },
+          mini_title='WHY US ?'
+        %}
+          {% module_attribute 'content' %}
+            <h2>Our Dreams and Teams work together</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum, egestas rutrum pellentesque malesuada imperdiet. Integer fermentum imperdiet id magna nunc augue. Varius vel maecenas nec dictum interdum tortor.</p>
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
