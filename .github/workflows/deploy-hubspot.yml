@@ -41,7 +41,7 @@ jobs:
       - name: Upload Theme to HubSpot
         run: |
           echo "Starting upload to HubSpot..."
-          hs upload hs-theme hs-theme --notify --skip-unchanged-files
+          hs upload hs-theme hs-theme
 
       - name: Notify Slack on Failure
         if: failure()
