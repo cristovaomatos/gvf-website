@@ -36,6 +36,7 @@ jobs:
           echo "portals:" >> hubspot.config.yml
           echo "  - name: production" >> hubspot.config.yml
           echo "    portalId: $HUBSPOT_ACCOUNT_ID" >> hubspot.config.yml
+          echo "    authType: personalaccesskey" >> hubspot.config.yml
           echo "    personalAccessKey: $HUBSPOT_PERSONAL_ACCESS_KEY" >> hubspot.config.yml
 
       - name: Upload Theme to HubSpot
