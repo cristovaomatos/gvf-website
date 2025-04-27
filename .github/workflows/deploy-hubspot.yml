@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -15,8 +16,32 @@ jobs:
       - name: Install HubSpot CLI
         run: npm install -g @hubspot/cli
 
-      - name: Authenticate HubSpot
-        run: hs auth --personalaccesskey "${{ secrets.HUBSPOT_PERSONAL_ACCESS_KEY }}"
+      - name: Verify environment variables
+        run: |
+          if [ -z "${{ secrets.HUBSPOT_PERSONAL_ACCESS_KEY }}" ]; then
+            echo "Error: HUBSPOT_PERSONAL_ACCESS_KEY is missing"
+            exit 1
+          fi
+          if [ -z "${{ secrets.HUBSPOT_ACCOUNT_ID }}" ]; then
+            echo "Error: HUBSPOT_ACCOUNT_ID is missing"
+            exit 1
+          fi
 
-      - name: Upload Theme
-        run: hs upload hs-theme hs-theme
+      - name: Upload Theme (only changed files)
+        env:
+          HUBSPOT_PERSONAL_ACCESS_KEY: ${{ secrets.HUBSPOT_PERSONAL_ACCESS_KEY }}
+          HUBSPOT_ACCOUNT_ID: ${{ secrets.HUBSPOT_ACCOUNT_ID }}
+        run: |
+          echo "Starting upload to HubSpot..."
+          hs upload hs-theme hs-theme --account "$HUBSPOT_ACCOUNT_ID" --overwrite
+
+      - name: Notify Slack on Failure
+        if: failure()
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          payload: |
+            {
+              "text": "🚨 GVF Website Theme deployment FAILED on branch *${{ github.ref }}*!"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
