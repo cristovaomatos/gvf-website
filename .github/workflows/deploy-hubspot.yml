@@ -27,13 +27,21 @@ jobs:
             exit 1
           fi
 
-      - name: Upload Theme (only changed files)
+      - name: Create HubSpot config file
         env:
           HUBSPOT_PERSONAL_ACCESS_KEY: ${{ secrets.HUBSPOT_PERSONAL_ACCESS_KEY }}
           HUBSPOT_ACCOUNT_ID: ${{ secrets.HUBSPOT_ACCOUNT_ID }}
         run: |
+          echo "defaultPortal: production" > hubspot.config.yml
+          echo "portals:" >> hubspot.config.yml
+          echo "  - name: production" >> hubspot.config.yml
+          echo "    portalId: $HUBSPOT_ACCOUNT_ID" >> hubspot.config.yml
+          echo "    personalAccessKey: $HUBSPOT_PERSONAL_ACCESS_KEY" >> hubspot.config.yml
+
+      - name: Upload Theme
+        run: |
           echo "Starting upload to HubSpot..."
-          hs upload hs-theme hs-theme --account "$HUBSPOT_ACCOUNT_ID"
+          hs upload hs-theme hs-theme
 
       - name: Notify Slack on Failure
         if: failure()
