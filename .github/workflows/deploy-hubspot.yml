@@ -33,7 +33,7 @@ jobs:
           HUBSPOT_ACCOUNT_ID: ${{ secrets.HUBSPOT_ACCOUNT_ID }}
         run: |
           echo "Starting upload to HubSpot..."
-          hs upload hs-theme hs-theme --account "$HUBSPOT_ACCOUNT_ID" --overwrite
+          hs upload hs-theme hs-theme --account "$HUBSPOT_ACCOUNT_ID"
 
       - name: Notify Slack on Failure
         if: failure()
